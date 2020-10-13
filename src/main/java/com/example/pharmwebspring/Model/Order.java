@@ -15,5 +15,4 @@ public class Order {
     private String user_id;
     private String prod_name;
     private String pharm_name;
-    //private int count; -> 조인 (cart)
 }

@@ -16,18 +16,17 @@ public class LoginServiceImpl implements LoginService {
     private LoginDAO dao;
 
     @Override
-    public void insertUser(User user) { dao.setUser(user); }
+    public void insertUser(User user) {
+        dao.setUser(user);
+    }
 
     @Override
-    public void insertPharmacy(Pharmacy pharmacy) {
-        dao.setPharmacy(pharmacy);
-    }
+    public void insertPharmacy(Pharmacy pharmacy) { dao.setPharmacy(pharmacy); }
 
     @Override
     public User checkUser(Login login) { return dao.getUser(login); }
 
     @Override
     public Pharmacy checkPharmacy(Login login) { return dao.getPharmacy(login); }
-
 
 }

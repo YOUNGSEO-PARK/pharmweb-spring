@@ -20,40 +20,52 @@ public class APIController {
     @Autowired
     LoginService loginService;
 
-//    @PostMapping("/uregi")
-//    public RegisterRes regUser(@RequestBody User regUser){
-//        // validation
-//        Login login = new Login();
-//        User userRegi = new User();
-//        RegisterRes registerRes = new RegisterRes();
-//
-//        userRegi.setUser_id(regUser.getUser_id());
-//        userRegi.setUser_pw(regUser.getUser_pw());
-//        userRegi.setUser_pw(regUser.getUser_name());
-//        userRegi.setUser_pw(regUser.getUser_phone());
-//        userRegi.setUser_pw(regUser.getUser_email());
-//        userRegi.setUser_pw(regUser.getUser_adr());
-//
-//        User user = loginService.getUser(login);
-//
-//        if(user==null){
-//            loginService.insertUser(regUser);
-//            registerRes.setStatus(200);
-//        }else{
-//            registerRes.setStatus(400);
-//        }
-//
-//        return registerRes;
-//    }
-//
-//    @PostMapping("/pregi")
-//    public RegisterRes regPharmacy(@RequestBody Pharmacy pharmacy){
-//
-//        loginService.insertPharmacy(pharmacy);
-//        RegisterRes registerRes = new RegisterRes();
-//        registerRes.setStatus(200);
-//        return registerRes;
-//    }
+    @PostMapping("/uregi")
+    public RegisterRes regUser(@RequestBody User regUser){
+        // validation
+        Login login = new Login();
+        RegisterRes registerRes = new RegisterRes();
+
+        // validation
+        User user = loginService.checkUser(login);
+
+        if(user==null){
+            loginService.insertUser(regUser);
+            registerRes.setStatus(200);
+        }else{
+            registerRes.setStatus(400);
+        }
+
+        return registerRes;
+    }
+
+    @PostMapping("/pregi")
+    public RegisterRes regPharmacy(@RequestBody Pharmacy regPharm){
+
+        Login login = new Login();
+        Pharmacy pharmRegi = new Pharmacy();
+        RegisterRes registerRes = new RegisterRes();
+
+        pharmRegi.setPharm_id(regPharm.getPharm_id());
+        pharmRegi.setPharm_pw(regPharm.getPharm_pw());
+        pharmRegi.setOpentime(regPharm.getOpentime());
+        pharmRegi.setClosetime(regPharm.getClosetime());
+        pharmRegi.setPharm_name(regPharm.getPharm_name());
+        pharmRegi.setPharm_adr(regPharm.getPharm_adr());
+        pharmRegi.setRegi_no(regPharm.getRegi_no());
+
+        // validation
+        Pharmacy pharmacy = loginService.checkPharmacy(login);
+
+        if(pharmacy==null){
+            loginService.insertPharmacy(regPharm);
+            registerRes.setStatus(200);
+        }else{
+            registerRes.setStatus(400);
+        }
+
+        return registerRes;
+    }
 
     @PostMapping("/uidlogin") //sql -> 값 가져와서 성공 실패 보는
     public RegisterRes LoginUser(@RequestBody Login login){

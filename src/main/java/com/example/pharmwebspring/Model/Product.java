@@ -10,7 +10,4 @@ public class Product {
     private int code;
     private String img_uri;
     private int price;
-    //private int amount;
-    //private String pharm_name_fk-> 고려중,,,
-
 }
