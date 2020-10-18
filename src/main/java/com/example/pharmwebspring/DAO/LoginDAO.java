@@ -12,10 +12,14 @@ import java.util.List;
 @Mapper
 public interface LoginDAO {
 
+    String idList(String login_id);
+
     void setUser(User user);
     void setPharmacy(Pharmacy pharmacy);
 
     User getUser(Login login);
     Pharmacy getPharmacy(Login login);
+
+    User deleteUser(Login login);
 
 }
