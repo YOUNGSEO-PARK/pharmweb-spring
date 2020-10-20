@@ -18,6 +18,12 @@ import java.util.List;
 @Controller
 public class ViewController {
 
+    @GetMapping("/login2")
+    public String login2page(){
+        return "login2";
+    }
+
+
     @GetMapping("/index")
     public String indexpage(){
         return "index";
@@ -156,5 +162,10 @@ public class ViewController {
     @GetMapping("/tips")
     public String tipspage(){
         return "tips";
+    }
+
+    @GetMapping("/pharmacist")
+    public String pharmacistpage(){
+        return "pharmacist";
     }
 }

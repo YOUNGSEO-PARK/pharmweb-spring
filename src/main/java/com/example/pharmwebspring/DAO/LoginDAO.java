@@ -19,7 +19,7 @@ public interface LoginDAO {
 
     User getUser(Login login);
     Pharmacy getPharmacy(Login login);
-
+    String getIDList(String id);
     User deleteUser(Login login);
 
 }

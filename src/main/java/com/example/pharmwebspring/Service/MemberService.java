@@ -12,7 +12,7 @@ public interface MemberService {
 
     User checkUser(Login login);
     Pharmacy checkPharmacy(Login login);
-
+    String getIDList(String id);
     User deleteUser(Login login);
 
 }
