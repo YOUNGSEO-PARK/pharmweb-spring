@@ -31,5 +31,10 @@ public class MemberServiceImpl implements MemberService {
     public Pharmacy checkPharmacy(Login login) { return dao.getPharmacy(login); }
 
     @Override
+    public String getIDList(String id) {
+        return dao.getIDList(id);
+    }
+
+    @Override
     public User deleteUser(Login login) { return dao.deleteUser(login); }
 }

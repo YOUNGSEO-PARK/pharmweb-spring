@@ -21,6 +21,49 @@
 
   <link rel="stylesheet" href="css/style.css">
 
+  <script type="text/javascript">
+    function check(){
+
+      var str = document.getElementById('user_id');
+
+
+
+      if( str.value == '' || str.value == null ){
+        alert( '값을 입력해주세요' );
+        return false;
+      }
+
+      var blank_pattern = /^\s+|\s+$/g;
+      if( str.value.replace( blank_pattern, '' ) == "" ){
+        alert(' 공백만 입력되었습니다 ');
+        return false;
+      }
+
+      //공백 금지
+      //var blank_pattern = /^\s+|\s+$/g;(/\s/g
+      var blank_pattern = /[\s]/g;
+      if( blank_pattern.test( str.value) == true){
+        alert(' 공백은 사용할 수 없습니다. ');
+        return false;
+      }
+
+
+      var special_pattern = /[`~!@#$%^&*|\\\'\";:\/?]/gi;
+
+      if( special_pattern.test(str.value) == true ){
+        alert('특수문자는 사용할 수 없습니다.');
+        return false;
+      }
+
+      /*
+      if( str.value.search(/\W|\s/g) > -1 ){
+          alert( '특수문자 또는 공백을 입력할 수 없습니다.' );
+          str.focus();
+          return false;
+      }*/
+
+    }
+  </script>
 
 </head>
 
@@ -101,42 +144,44 @@
             <h2 class="h3 mb-5 text-black">Register</h2>
           </div>
           <div class="col-md-12">
-    
-            <form name="regiform" action="#" method="post">
+
+            <form action="#" method="post">
     
               <div class="p-3 p-lg-5 border">
                 <div class="form-group row">
-                  <div class="col-md-4">
+                  <div class="col-md-8">
                     <label for="user_id" class="text-black">아이디<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="user_id" name="user_id">
+                    <div class="input-group">
+                      <input type="text required" class="form-control" id="user_id" name="user_id" required="required">
+                      <span class="input-group-btn">
+                        <button class="btn" type="button">중복확인</button></span>
+                    </div>
+                <div class="form-group row">
+                  <div class="col-md-8">
+                    <label for="user_pw" class="text-black">비밀번호<span class="text-danger">*</span></label>
+                    <input type="password" class="form-control" id="user_pw" name="user_pw" required="required">
                   </div>
                 </div>
                 <div class="form-group row">
-                  <div class="col-md-6">
-                    <label for="user_pw" class="text-black">비밀번호<span class="text-danger">*</span>(문자/숫자/특수문자 혼합하여 8자리 이상)</label>
-                    <input type="text" class="form-control" id="user_pw" name="user_pw">
-                  </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-md-2">
+                    <div class="col-md-8">
                       <label for="user_name" class="text-black">이름<span class="text-danger">*</span></label>
-                      <input type="text" class="form-control" id="user_name" name="user_name" placeholder="">
+                      <input type="text" class="form-control" id="user_name" name="user_name" required="required">
                     </div>
                   </div>
                   <div class="form-group row">
-                    <div class="col-md-5">
-                      <label for="user_phone" class="text-black">핸드폰 번호<span class="text-danger">*</span>(-없이 작성)</label>
-                      <input type="tel" class="form-control" id="user_phone" name="user_phone" placeholder="">
+                    <div class="col-md-8">
+                      <label for="user_phone" class="text-black">핸드폰 번호<span class="text-danger">*</span></label>
+                      <input type="tel" class="form-control" id="user_phone" name="user_phone" required="required">
                     </div>
                   </div>
                 <div class="form-group row">
-                  <div class="col-md-6">
+                  <div class="col-md-8">
                     <label for="user_email" class="text-black">이메일<span class="text-danger">*</span></label>
-                    <input type="email" class="form-control" id="user_email" name="user_email" placeholder="">
+                    <input type="email" class="form-control" id="user_email" name="user_email" required="required">
                   </div>
                 </div>
                 <div class="form-group row">
-                  <div class="col-md-12">
+                  <div class="col-md-8">
                     <label for="user_adr" class="text-black">주소<span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="user_adr" name="user_adr">
                   </div>
@@ -144,12 +189,12 @@
                 <br>
                 <br>
                 <br>
-
-
                 <div class="form-group row">
                   <div class="col-lg-12">
                     <input type="button" id="userRegiBtn" class="btn btn-primary btn-lg btn-block" value="회원가입" onClick="check()">
                   </div>
+                </div>
+              </div>
                 </div>
               </div>
             </form>
@@ -220,7 +265,7 @@
   <script src="js/aos.js"></script>
 
   <script src="js/main.js"></script>
-  <script src="js/HTTPRequest.js"></script>
+
 </body>
 
 </html>

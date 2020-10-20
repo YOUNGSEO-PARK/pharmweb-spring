@@ -71,7 +71,7 @@
         </div>
         <div class="icons">
           <a href="#" class="icons-btn d-inline-block js-search-open"><span class="icon-search"></span></a>
-          <a href="cart" class="icons-btn d-inline-block bag">
+          <a href="login" class="icons-btn d-inline-block bag">
             <span class="icon-person"></span>
           </a>
           <a href="#" class="site-menu-toggle js-menu-toggle ml-3 d-inline-block d-lg-none"><span
@@ -105,7 +105,7 @@
             <div class="p-3 p-lg-5 border">
               <div class="form-group row">
                 <div class="col-md-6">
-                  <label for="login_id" class="text-black">아이디</label>
+                  <label for="login_id" class="text-black">아이디<span class="text-danger">*</span></label>
                   <input type="text" class="form-control" id="login_id" name="login_id">
                 </div>
               </div>
@@ -116,7 +116,15 @@
                 </div>
               </div>
               <div>
-                <div class="form-group row"></div>
+                <div class="form-group row">
+                  <div class ="col-lg-6">
+                    <form method="get" action="#">
+                      <label><input type="checkbox" name="login" value="user"> 사용자</label>
+                      <label><input type="checkbox" name="login" value="pahrmacist"> 약사</label>
+                      <label><input type="checkbox" name="login" value="rider"> 라이더</label>
+                    </form>
+                  </div>
+                </div>
               </div>
 
               <div class="form-group row">
