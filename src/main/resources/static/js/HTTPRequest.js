@@ -125,7 +125,7 @@ $("#userRegiBtn").on('click',()=>{ //.on 이벤트 트리거
 
 })
 
-function check(){
+function check_id(){
 
     var str =$("#user_id")
 
