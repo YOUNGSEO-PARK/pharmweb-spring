@@ -21,6 +21,7 @@
 
     <link rel="stylesheet" href="css/style.css">
 
+
 </head>
 
 <body>
@@ -65,13 +66,13 @@
                             <li><a href="custom">Custom</a></li>
                             <li><a href="tips">Tips</a></li>
                             <li><a href="location">Locate</a></li>
-                            <li><a href="contact">Login</a></li>
+                            <li class="active"><a href="login">Login</a></li>
                         </ul>
                     </nav>
                 </div>
                 <div class="icons">
                     <a href="#" class="icons-btn d-inline-block js-search-open"><span class="icon-search"></span></a>
-                    <a href="mypage" class="icons-btn d-inline-block bag">
+                    <a href="cart" class="icons-btn d-inline-block bag">
                         <span class="icon-person"></span>
                     </a>
                     <a href="#" class="site-menu-toggle js-menu-toggle ml-3 d-inline-block d-lg-none"><span
@@ -81,12 +82,14 @@
         </div>
     </div>
 
-
     <div class="bg-light py-3">
         <div class="container">
             <div class="row">
-                <div class="col-md-12 mb-0"><a href="index">Home</a> <span class="mx-2 mb-0">/</span> <strong
-                        class="text-black">Shop</strong></div>
+                <div class="col-md-12 mb-0">
+                    <a href="index">Home</a> <span class="mx-2 mb-0">/</span>
+                    <a href="login"><strong class="text-black">Login</strong></a><span class="mx-2
+                mb-0">/</span>Register
+                </div>
             </div>
         </div>
     </div>
@@ -94,15 +97,85 @@
     <div class="site-section">
         <div class="container">
             <div class="row">
-                <div class="col-md-12 text-center">
-                    <span class="icon-check_circle display-3 text-primary"></span>
-                    <h2 class="display-3 text-black">Thank you!</h2>
-                    <p class="lead mb-5">성공적으로 주문이 완료되었습니다.</p>
-                    <p><a href="index" class="btn btn-md height-auto px-4 py-3 btn-primary">메인페이지로 돌아가기</a></p>
+                <div class="col-md-12">
+                    <h2 class="h3 mb-5 text-black">라이더 회원가입</h2>
                 </div>
+                <div class="col-md-12">
+
+                    <form name="regiform" action="#" method="post">
+
+                        <div class="p-3 p-lg-5 border">
+                            <div class="p-3 p-lg-5 border">
+                                <div class="form-group" style="padding-left: 250px;">
+                                    <div class="form-group row">
+                                        <div class="col-md-8">
+                                            <label for="rider_id" class="text-black">아이디 <span
+                                                    class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="rider_id" name="rider_id"
+                                                   required="required">
+                                            <p class="btn"
+                                               style="float: right; color:#75b239; padding:0px; margin:0px;">중복확인</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-8">
+                                            <label for="rider_pw" class="text-black">비밀번호 <span
+                                                    class="text-danger">*</span></label>
+                                            <input type="password" class="form-control" id="rider_pw" name="rider_pw"
+                                                   required="required">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-8">
+                                            <label for="rider_name" class="text-black">이름 <span
+                                                    class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="rider_name" name="rider_name"
+                                                   required="required">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-8">
+                                            <label for="rider_phone" class="text-black">핸드폰번호 <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="rider_phone" name="rider_phone"
+                                                   required="required">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-8">
+                                            <label for="rider_adr" class="text-black">주소 <span
+                                                    class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="rider_adr" name="rider_adr">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-8">
+                                            <label for="license_no" class="text-black">운전면허증 번호 <span
+                                                    class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="license_no" name="license_no"
+                                                   required="required">
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <br>
+                                </div>
+
+
+                                <div class="form-group row">
+                                    <div class="col-lg-12">
+                                        <input type="button" id="riderRegiBtn" class="btn btn-primary btn-lg btn-block"
+                                               value="회원가입">
+                                    </div>
+                                </div>
+                            </div>
+                    </form>
+                </div>
+
             </div>
         </div>
     </div>
+
+
     <footer class="site-footer bg-light">
         <div class="container">
             <div class="row">
@@ -165,7 +238,7 @@
 <script src="js/aos.js"></script>
 
 <script src="js/main.js"></script>
-
+<script src="js/HTTPRequest.js"></script>
 </body>
 
 </html>

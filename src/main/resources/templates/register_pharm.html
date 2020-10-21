@@ -30,15 +30,6 @@
 
     <div class="site-navbar py-2">
 
-        <div class="search-wrap">
-            <div class="container">
-                <a href="#" class="search-close js-search-close"><span class="icon-close2"></span></a>
-                <form action="#" method="post">
-                    <input type="text" class="form-control" placeholder="검색어를 입력해주세요.">
-                </form>
-            </div>
-        </div>
-
         <div class="container">
             <div class="d-flex align-items-center justify-content-between">
                 <div class="logo">
@@ -65,13 +56,13 @@
                             <li><a href="custom">Custom</a></li>
                             <li><a href="tips">Tips</a></li>
                             <li><a href="location">Locate</a></li>
-                            <li><a href="contact">Login</a></li>
+                            <li class="active"><a href="login">Login</a></li>
                         </ul>
                     </nav>
                 </div>
                 <div class="icons">
                     <a href="#" class="icons-btn d-inline-block js-search-open"><span class="icon-search"></span></a>
-                    <a href="mypage" class="icons-btn d-inline-block bag">
+                    <a href="login" class="icons-btn d-inline-block bag">
                         <span class="icon-person"></span>
                     </a>
                     <a href="#" class="site-menu-toggle js-menu-toggle ml-3 d-inline-block d-lg-none"><span
@@ -81,12 +72,14 @@
         </div>
     </div>
 
-
     <div class="bg-light py-3">
         <div class="container">
             <div class="row">
-                <div class="col-md-12 mb-0"><a href="index">Home</a> <span class="mx-2 mb-0">/</span> <strong
-                        class="text-black">Shop</strong></div>
+                <div class="col-md-12 mb-0">
+                    <a href="index">Home</a> <span class="mx-2 mb-0">/</span>
+                    <a href="login"><strong class="text-black">Login</a><span class="mx-2
+                mb-0">/</span>Register</strong>
+                </div>
             </div>
         </div>
     </div>
@@ -94,15 +87,92 @@
     <div class="site-section">
         <div class="container">
             <div class="row">
-                <div class="col-md-12 text-center">
-                    <span class="icon-check_circle display-3 text-primary"></span>
-                    <h2 class="display-3 text-black">Thank you!</h2>
-                    <p class="lead mb-5">성공적으로 주문이 완료되었습니다.</p>
-                    <p><a href="index" class="btn btn-md height-auto px-4 py-3 btn-primary">메인페이지로 돌아가기</a></p>
+                <div class="col-md-12">
+                    <h2 class="h3 mb-5 text-black">약사 회원가입</h2>
                 </div>
+                <div class="col-md-12">
+
+                    <form name="regiform" action="#" method="post">
+
+                        <div class="p-3 p-lg-5 border">
+                            <div class="form-group" style="padding-left: 250px;">
+                                <div class="form-group row">
+                                    <div class="col-md-8">
+                                        <label for="pharm_id" class="text-black">아이디 <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="pharm_id" name="pharm_id"
+                                               required="required">
+                                        <p class="btn" style="float: right; color:#75b239; padding:0px; margin:0px;">
+                                            중복확인</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-8">
+                                        <label for="pharm_pw" class="text-black">비밀번호 <span class="text-danger">*</span></label>
+                                        <input type="password" class="form-control" id="pharm_pw" name="pharm_pw"
+                                               required="required">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-4">
+                                        <label for="opentime" class="text-black">영업시간(00:00~24:00) <span
+                                                class="text-danger">*</span></label>
+                                        <input type="time" class="form-control" id="opentime" name="opentime"
+                                               required="required">
+                                    </div>
+                                    <div style="padding-top:15px;"><br>~</div>
+                                    <div class="col-md-4">
+                                        <label for="closetime" class="text-white">close</label>
+                                        <input type="time" class="form-control" id="closetime" name="closetime"
+                                               required="required">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-8">
+                                        <label for="pharm_name" class="text-black">약국 이름 <span
+                                                class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="pharm_name" name="pharm_name"
+                                               required="required">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-8">
+                                        <label for="pharm_adr" class="text-black">약국 주소 <span
+                                                class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="pharm_adr" name="pharm_adr"
+                                               required="required">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-8">
+                                        <label for="regi_no" class="text-black">약국 사업자번호 <span
+                                                class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="regi_no" name="regi_no"
+                                               required="required">
+                                    </div>
+                                </div>
+
+
+                                <br>
+                                <br>
+                                <br>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-lg-12">
+                                    <input type="button" id="pharmRegiBtn" class="btn btn-primary btn-lg btn-block"
+                                           value="회원가입">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    </form>
+                </div>
+
             </div>
         </div>
     </div>
+
+
     <footer class="site-footer bg-light">
         <div class="container">
             <div class="row">
@@ -164,6 +234,7 @@
 <script src="js/jquery.magnific-popup.min.js"></script>
 <script src="js/aos.js"></script>
 
+<script src="js/HTTPRequest.js"></script>
 <script src="js/main.js"></script>
 
 </body>
