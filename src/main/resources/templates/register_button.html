@@ -21,6 +21,7 @@
 
     <link rel="stylesheet" href="css/style.css">
 
+
 </head>
 
 <body>
@@ -41,7 +42,7 @@
                     <nav class="site-navigation text-right text-md-center" role="navigation">
                         <ul class="site-menu js-clone-nav d-none d-lg-block">
                             <li class="has-children">
-                                <a href="shop">Shop</a>
+                                <a href="#">Shop</a>
                                 <ul class="dropdown">
                                     <li><a href="shop_heart">심장 &amp; 신경</a></li>
                                     <li><a href="shop_ent">이비인후과</a></li>
@@ -56,12 +57,12 @@
                             <li><a href="custom">Custom</a></li>
                             <li><a href="tips">Tips</a></li>
                             <li><a href="location">Locate</a></li>
-                            <li><a href="login">Login</a></li>
+                            <li class="active"><a href="login">Login</a></li>
                         </ul>
                     </nav>
                 </div>
                 <div class="icons">
-                    <a href="mypage" class="icons-btn d-inline-block bag">
+                    <a href="login" class="icons-btn d-inline-block bag">
                         <span class="icon-person"></span>
                     </a>
                     <a href="#" class="site-menu-toggle js-menu-toggle ml-3 d-inline-block d-lg-none"><span
@@ -71,66 +72,38 @@
         </div>
     </div>
 
-
     <div class="bg-light py-3">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 mb-0">
                     <a href="index">Home</a> <span class="mx-2 mb-0">/</span>
-                    <strong class="text-black"> Mypage </strong>
+                    <a href="login"><strong class="text-black">Login</strong></a><span class="mx-2
+                mb-0">/</span><strong class="text-black">Register</strong>
                 </div>
             </div>
         </div>
     </div>
 
-    <br>
-
-
-    <div class="container">
-        <div class="row justify-content-between">
-            <div class="col-lg-1 navibar">
-                <ul>
-                    <li><a href="mypage">개인정보</a></li>
-                    <li><a href="mp_cart">장바구니</a></li>
-                    <li><a href="mp_history">주문내역</a></li>
-                    <li><a href="mp_delete">회원탈퇴</a></li>
-                </ul>
-            </div>
-
-            <div class="col-lg-10" style="padding-left:40px;">
-                <form name="deleteform" action="#" method="post">
+    <div class="site-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
                     <div class="p-3 p-lg-5 border">
-                        <div class="form-group" style="padding-left: 250px;">
-                            <div class="form-group row">
-                                <div class="col-md-6">
-                                    <label for="login_id" class="text-black">아이디</label>
-                                    <input type="text" class="form-control" id="login_id" name="login_id">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-md-6">
-                                    <label for="login_pw" class="text-black">비밀번호</label>
-                                    <input type="text" class="form-control" id="login_pw" name="login_pw">
-                                </div>
-                            </div>
-                            <div>
-                                <div class="form-group row"></div>
-                            </div>
-
-                            <div class="form-group row">
-                                <div class="col-md-5" style="padding-left: 75px;">
-                                    <input type="button" id="userDeleteBtn" class="btn btn-primary btn-lg btn-block" value="회원탈퇴">
-                                </div>
+                        <div style="text-align: center;">  <h3>회원유형선택</h3> </div>
+                        <div class="row">
+                            <div style="padding: 50px 200px; ">
+                                <button class="regibutton" onclick="location.href='register'"> 회원</button>
+                                <button class="regibutton" onclick="location.href='register_pharm'"> 약사</button>
+                                <button class="regibutton" onclick="location.href='register_rider'"> 라이더</button>
                             </div>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
-
-
         </div>
     </div>
-    <br>
+
+
 
     <footer class="site-footer bg-light">
         <div class="container">
@@ -163,6 +136,7 @@
                         </ul>
                     </div>
 
+
                 </div>
             </div>
             <div class="row pt-5 mt-5 text-center">
@@ -192,8 +166,8 @@
 <script src="js/jquery.magnific-popup.min.js"></script>
 <script src="js/aos.js"></script>
 
-<script src="js/main.js"></script>
 <script src="js/HTTPRequest.js"></script>
+<script src="js/main.js"></script>
 
 </body>
 
