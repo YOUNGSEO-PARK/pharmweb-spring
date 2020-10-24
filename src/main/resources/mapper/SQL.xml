@@ -24,10 +24,15 @@
         select * from parmdb.user where user_id=#{login_id} and user_pw=#{login_pw}
     </select>
 
-<!--    <select id="getMember" parameterType="com.example.pharmwebspring.Model.Login"-->
-<!--            resultType="com.example.pharmwebspring.Model.Member">-->
-<!--        select * from parmdb.member where member_id=#{login_id} and member_pw=#{login_pw}-->
-<!--    </select>-->
+    <insert id="setRider" parameterType="com.example.pharmwebspring.Model.Rider">
+        INSERT INTO parmdb.rider (rider_id, rider_pw, rider_name, rider_phone, rider_adr, license_no)
+        VALUE (#{rider_id}, #{rider_pw}, #{rider_name}, #{rider_phone}, #{rider_adr}, #{license_no})
+    </insert>
+
+    <select id="getRider" parameterType="com.example.pharmwebspring.Model.Login"
+            resultType="com.example.pharmwebspring.Model.Rider">
+        select * from parmdb.rider where rider_id=#{login_id} and rider_pw=#{login_pw}
+    </select>
 
     <select id="getIDList" parameterType="String" resultType="String">
         select user_id from parmdb.user where user_id=#{value}

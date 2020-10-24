@@ -1,52 +1,3 @@
-$("#userLoginBtn").on('click', () => { //.on 이벤트 트리거
-    var data = {};
-    //loginform 태그에 접근 후 직렬화 후 객체화
-    $("form[name=loginform]").serializeArray().map(function (x) {
-        data[x.name] = x.value;
-    });
-    console.log(data)
-
-    $.ajax({
-        type: "POST", //fix
-        dataType: "json", //fix
-        contentType: "application/json; charset=utf-8;", //fix
-        url: "/api/uidlogin",
-        data: JSON.stringify(data), //fix ; 객체->스트링
-    }).done(function (data) {
-        //로직 필요에 따라 변경
-        if (data.status == 102) {
-            alert("안녕하세요, 기운팜팜입니다!")
-            document.location.href = '/api/session';
-        } else if (data.status == 103) {
-            alert("유저 로그인 실패! 아이디와 비밀번호를 다시 입력해주세요!")
-        }
-    })
-})
-
-$("#pharmLoginBtn").on('click', () => { //.on 이벤트 트리거
-    var data = {};
-    //loginform 태그에 접근 후 직렬화 후 객체화
-    $("form[name=loginform]").serializeArray().map(function (x) {
-        data[x.name] = x.value;
-    });
-    console.log(data)
-
-    $.ajax({
-        type: "POST", //fix
-        dataType: "json", //fix
-        contentType: "application/json; charset=utf-8;", //fix
-        url: "/api/pidlogin",
-        data: JSON.stringify(data), //fix ; 객체->스트링
-    }).done(function (data) {
-        //로직 필요에 따라 변경
-        if (data.status == 202) {
-            alert("약사님, 안녕하세요!")
-            document.location.href = '/api/session';
-        } else if (data.status == 203) {
-            alert("약사 로그인 실패! 아이디와 비밀번호를 다시 입력해주세요!")
-        }
-    })
-})
 
 
 $("#userRegiBtn").on('click', () => { //.on 이벤트 트리거
@@ -89,7 +40,7 @@ function check() {
 
     var blank_pattern = /^\s+|\s+$/g;
     if (str.val().replace(blank_pattern, '') == "") {
-        alert(' 공백만 입력되었습니다 ');
+        alert('공백만 입력되었습니다.');
         return false;
     }
 
@@ -97,7 +48,7 @@ function check() {
     //var blank_pattern = /^\s+|\s+$/g;(/\s/g
     var blank_pattern = /[\s]/g;
     if (blank_pattern.test(str.val()) == true) {
-        alert(' 공백은 사용할 수 없습니다. ');
+        alert('공백은 사용할 수 없습니다.');
         return false;
     }
 
@@ -108,49 +59,88 @@ function check() {
         return false;
     }
 
-    /*
-    if( str.value.search(/\W|\s/g) > -1 ){
-        alert( '특수문자 또는 공백을 입력할 수 없습니다.' );
-        str.focus();
-        return false;
-    }*/
-
 }
 
 
 //------------------------------success-fin-------------------------------------------------------------------
 
-// $("#LoginBtn").on('click', () => { //.on 이벤트 트리거
-//
-//     $("input[name='login']:radio").change(function () {
-//         var serviceType = this.value;
-//
-//         if (login == "user") {
-//             var data = {};
-//             //loginform 태그에 접근 후 직렬화 후 객체화
-//             $("form[name=loginform]").serializeArray().map(function (x) {
-//                 data[x.name] = x.value;
-//             });
-//             console.log(data)
-//
-//             $.ajax({
-//                 type: "POST", //fix
-//                 dataType: "json", //fix
-//                 contentType: "application/json; charset=utf-8;", //fix
-//                 url: "/api/midlogin",
-//                 data: JSON.stringify(data), //fix ; 객체->스트링
-//             }).done(function (data) {
-//                 //로직 필요에 따라 변경
-//                 if (data.status == 402) {
-//                     alert("안녕하세요, 기운팜팜입니다!")
-//                     document.location.href = '/api/session';
-//                 } else if (data.status == 403) {
-//                     alert("유저 로그인 실패! 아이디와 비밀번호를 다시 입력해주세요!")
-//                 }
-//             })
-//         }
-//     })
-// })
+$("#LoginBtn").on('click', () => { //.on 이벤트 트리거
+
+    var radioVal = $('input[name="login"]:checked').val();
+
+    if (radioVal == "user") {
+        var data = {};
+        //loginform 태그에 접근 후 직렬화 후 객체화
+        $("form[name=loginform]").serializeArray().map(function (x) {
+            data[x.name] = x.value;
+        });
+        console.log(data)
+
+        $.ajax({
+            type: "POST", //fix
+            dataType: "json", //fix
+            contentType: "application/json; charset=utf-8;", //fix
+            url: "/api/uidlogin",
+            data: JSON.stringify(data), //fix ; 객체->스트링
+        }).done(function (data) {
+            //로직 필요에 따라 변경
+            if (data.status == 102) {
+                alert("안녕하세요, 기운팜팜입니다!")
+                document.location.href = '/api/session';
+            } else if (data.status == 103) {
+                alert("유저 로그인 실패! 아이디와 비밀번호를 다시 입력해주세요!")
+            }
+        })
+    }
+    else if (radioVal == "pharmacist"){
+        var data = {};
+        //loginform 태그에 접근 후 직렬화 후 객체화
+        $("form[name=loginform]").serializeArray().map(function (x) {
+            data[x.name] = x.value;
+        });
+        console.log(data)
+
+        $.ajax({
+            type: "POST", //fix
+            dataType: "json", //fix
+            contentType: "application/json; charset=utf-8;", //fix
+            url: "/api/pidlogin",
+            data: JSON.stringify(data), //fix ; 객체->스트링
+        }).done(function (data) {
+            //로직 필요에 따라 변경
+            if (data.status == 202) {
+                alert("약사님, 안녕하세요!")
+                document.location.href = '/api/session';
+            } else if (data.status == 203) {
+                alert("약사 로그인 실패! 아이디와 비밀번호를 다시 입력해주세요!")
+            }
+        })
+    }
+    else if(radioVal == "rider"){
+        var data = {};
+        //loginform 태그에 접근 후 직렬화 후 객체화
+        $("form[name=loginform]").serializeArray().map(function (x) {
+            data[x.name] = x.value;
+        });
+        console.log(data)
+
+        $.ajax({
+            type: "POST", //fix
+            dataType: "json", //fix
+            contentType: "application/json; charset=utf-8;", //fix
+            url: "/api/ridlogin",
+            data: JSON.stringify(data), //fix ; 객체->스트링
+        }).done(function (data) {
+            //로직 필요에 따라 변경
+            if (data.status == 302) {
+                alert("라이더님, 안녕하세요!")
+                document.location.href = '/api/session';
+            } else if (data.status == 303) {
+                alert("라이 로그인 실패! 아이디와 비밀번호를 다시 입력해주세요!")
+            }
+        })
+    }
+})
 
 $("#pharmRegiBtn").on('click', () => { //.on 이벤트 트리거
     var data = {};
@@ -164,7 +154,7 @@ $("#pharmRegiBtn").on('click', () => { //.on 이벤트 트리거
         dataType: "json", //fix
         contentType: "application/json; charset=utf-8;", //fix
         url: "/api/pregi",
-        data: JSON.stringify(data), //fix ; 객체->트링
+        data: JSON.stringify(data), //fix ; 객체->스트링
     }).done(function (data) {
 
         //로직 필요에 따라 변경
@@ -173,6 +163,31 @@ $("#pharmRegiBtn").on('click', () => { //.on 이벤트 트리거
             document.location.href = '/';
         } else if (data.status == 201) {
             alert("약사 회원가입 실패! 아이디와 비밀번호를 다시 입력해주세요!")
+        }
+    })
+})
+
+$("#riderRegiBtn").on('click', () => { //.on 이벤트 트리거
+    var data = {};
+    $("form[name=regiform]").serializeArray().map(function (x) {
+        data[x.name] = x.value;
+    });
+    console.log(data)
+
+    $.ajax({
+        type: "POST", //fix
+        dataType: "json", //fix
+        contentType: "application/json; charset=utf-8;", //fix
+        url: "/api/rregi",
+        data: JSON.stringify(data), //fix ; 객체->스트링
+    }).done(function (data) {
+
+        //로직 필요에 따라 변경
+        if (data.status == 300) {
+            alert("라이더 회원가입 성공! 환영합니다!")
+            document.location.href = '/';
+        } else if (data.status == 301) {
+            alert("라이더 회원가입 실패! 아이디와 비밀번호를 다시 입력해주세요!")
         }
     })
 })

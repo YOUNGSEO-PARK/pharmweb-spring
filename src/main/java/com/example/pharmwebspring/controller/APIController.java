@@ -16,42 +16,6 @@ public class APIController {
     @Autowired
     MemberService memberService;
 
-    @PostMapping("/login")
-    public void login(Info info) {
-        /*
-        int oc = select oc from member where id = info.id and pw = info.pw
-        switch (oc) {
-            case U:
-
-            case P:
-
-            case R:
-
-        }
-         */
-    }
-
-    @PostMapping("/joinUser")
-    public void joinU(User user) {
-        /*
-        String id = user.id
-        String pw = user.pw
-        멤버에 id, pw로 값 넣기
-
-        유저에 다른거로 값 넣기
-         */
-    }
-
-    @PostMapping("/joinPharmacy")
-    public void joinP(Pharmacy p) {
-
-    }
-
-    @PostMapping("/joinRider")
-    public void joinR(Rider r) {
-
-    }
-
     @PostMapping("/uregi")
     public RegisterRes regUser(@RequestBody User regUser) {
 
@@ -73,7 +37,6 @@ public class APIController {
         return registerRes;
     }
 
-
     @PostMapping("/pregi")
     public RegisterRes regPharmacy(@RequestBody Pharmacy regPharmacy) {
 
@@ -90,6 +53,27 @@ public class APIController {
         } else {
 
             registerRes.setStatus(201); // 약사 회원가입 실패
+        }
+
+        return registerRes;
+    }
+
+    @PostMapping("/rregi")
+    public RegisterRes regPharmacy(@RequestBody Rider regRider) {
+
+        // validation\
+        RegisterRes registerRes = new RegisterRes();
+
+        String pharms = memberService.getIDList(regRider.getRider_id());
+
+        System.out.print(regRider);
+        if (pharms == null) {
+
+            memberService.insertRider(regRider);
+            registerRes.setStatus(300); // 라이더 회원가입 성공
+        } else {
+
+            registerRes.setStatus(301); // 라이더 회원가입 실패
         }
 
         return registerRes;
@@ -136,20 +120,20 @@ public class APIController {
         return registerRes;
     }
 
-    @PostMapping("/midlogin") //sql -> 값 가져와서 성공 실패 보는
-    public RegisterRes LoginMember(HttpServletRequest request, @RequestBody Login login) {
+    @PostMapping("/ridlogin") //sql -> 값 가져와서 성공 실패 보는
+    public RegisterRes LoginRider(HttpServletRequest request, @RequestBody Login login) {
 
         RegisterRes registerRes = new RegisterRes();
-        Member member = (Member) memberService.checkMember(login);
+        Rider rider = memberService.checkRider(login);
         HttpSession session = request.getSession();
 
-        if (member == null) {
+        if (rider == null) {
 
-            registerRes.setStatus(403);
+            registerRes.setStatus(303);
         } else {
 
-            session.setAttribute("id", member.getMember_id());
-            registerRes.setStatus(402);
+            session.setAttribute("id", rider.getRider_id());
+            registerRes.setStatus(302);
         }
         return registerRes;
     }
