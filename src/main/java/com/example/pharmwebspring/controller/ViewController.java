@@ -166,4 +166,9 @@ public class ViewController {
     public String register_riderpage() {
         return "register_rider";
     }
+
+    @GetMapping("/register_button")
+    public String register_buttonpage() {
+        return "register_button";
+    }
 }
