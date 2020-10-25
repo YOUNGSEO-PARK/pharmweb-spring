@@ -20,7 +20,7 @@ $("#LoginBtn").on('click', () => { //.on 이벤트 트리거
             //로직 필요에 따라 변경
             if (data.status == 102) {
                 alert("안녕하세요, 기운팜팜입니다!")
-                document.location.href = '/api/session';
+                document.location.href = '/index';
             } else if (data.status == 103) {
                 alert("유저 로그인 실패! 아이디와 비밀번호를 다시 입력해주세요!")
             }
@@ -96,7 +96,7 @@ $("#userRegiBtn").on('click', () => { //.on 이벤트 트리거
             //로직 필요에 따라 변경
             if (data.status == 100) {
                 alert("유저 회원가입 성공! 환영합니다!")
-                document.location.href = '/';
+                document.location.href = '/index';
             } else if (data.status == 101) {
                 alert("유저 회원가입 실패! 아이디와 비밀번호를 다시 입력해주세요!")
             }
@@ -134,6 +134,8 @@ function check() {
         alert('특수문자는 사용할 수 없습니다.');
         return false;
     }
+
+    return true;
 
 }
 
@@ -192,25 +194,32 @@ $("#riderRegiBtn").on('click', () => { //.on 이벤트 트리거
 //------------------------------success-fin-------------------------------------------------------------------
 
 $("#userDeleteBtn").on('click', () => { //.on 이벤트 트리거
-    var data = {};
-    $("form[name=deleteform]").serializeArray().map(function (x) {
-        data[x.name] = x.value;
-    });
-    console.log(data)
+    let value=confirm("정말 삭제하시겠습니까??");
 
-    $.ajax({
-        type: "POST", //fix
-        dataType: "json", //fix
-        contentType: "application/json; charset=utf-8;", //fix
-        url: "/api/udelete",
-        data: JSON.stringify(data), //fix ; 객체->스트링
-    }).done(function (data) {
-        //로직 필요에 따라 변경
-        if (data.status == 200) {
-            alert("유저 회원탈퇴가 완료되었습니다. 이용해주셔서 감사합니다.")
-            document.location.href = '/';
-        } else if (data.status == 400) {
-            alert("존재하지 않는 아이디입니다. 아이디와 비밀번호를 다시 입력해주세요.")
-        }
-    })
+    if(value){
+        var data = {};
+        $("form[name=deleteform]").serializeArray().map(function (x) {
+            data[x.name] = x.value;
+        });
+        console.log(data)
+
+        $.ajax({
+            type: "POST", //fix
+            dataType: "json", //fix
+            contentType: "application/json; charset=utf-8;", //fix
+            url: "/api/udelete",
+            data: JSON.stringify(data), //fix ; 객체->스트링
+        }).done(function (data) {
+            //로직 필요에 따라 변경
+            if (data.status == 200) {
+                alert("유저 회원탈퇴가 완료되었습니다. 이용해주셔서 감사합니다.")
+                document.location.href = '/';
+            } else if (data.status == 400) {
+                alert("존재하지 않는 아이디입니다. 아이디와 비밀번호를 다시 입력해주세요.")
+            }
+        })
+    }else{
+
+    }
+
 })

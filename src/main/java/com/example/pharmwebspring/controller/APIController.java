@@ -42,19 +42,20 @@ public class APIController {
 
         // validation\
         RegisterRes registerRes = new RegisterRes();
+        System.out.println(regPharmacy);
 
         String pharms = memberService.getIDList(regPharmacy.getPharm_id());
 
-        System.out.print(regPharmacy);
-        if (pharms == null) {
-
-            memberService.insertPharmacy(regPharmacy);
-            registerRes.setStatus(200); // 약사 회원가입 성공
-        } else {
-
-            registerRes.setStatus(201); // 약사 회원가입 실패
-        }
-
+        System.out.print(regPharmacy.getOpentime().getClass());
+//        if (pharms == null) {
+//
+//            memberService.insertPharmacy(regPharmacy);
+//            registerRes.setStatus(200); // 약사 회원가입 성공
+//        } else {
+//
+//            registerRes.setStatus(201); // 약사 회원가입 실패
+//        }
+        registerRes.setStatus(201);
         return registerRes;
     }
 
@@ -95,7 +96,8 @@ public class APIController {
             registerRes.setStatus(103);
         } else {
             session.setAttribute("id", user.getUser_id());
-
+            session.setAttribute("category",1);
+            System.out.println(session.getAttribute("id"));
             registerRes.setStatus(102);
         }
         return registerRes;
@@ -138,18 +140,18 @@ public class APIController {
     }
 
     @PostMapping("/udelete")
-    public RegisterRes DeleteUser(@RequestBody Login login) {
+    public RegisterRes DeleteUser(@RequestBody Login login, HttpSession session) {
 
         RegisterRes registerRes = new RegisterRes();
-        User user = memberService.deleteUser(login);
 
-        if (user == null) {
-
-            registerRes.setStatus(400);
-        } else {
-
+        try {
+            memberService.deleteUser(login);
             registerRes.setStatus(200);
+            session.invalidate();
+        }catch (Exception e){
+            registerRes.setStatus(400);
         }
+
         return registerRes;
     }
 }

@@ -15,35 +15,49 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public void insertUser(User user) {
+
         dao.setUser(user);
     }
 
     @Override
-    public void insertPharmacy(Pharmacy pharmacy) { dao.setPharmacy(pharmacy); }
+    public void insertPharmacy(Pharmacy pharmacy) {
+
+        dao.setPharmacy(pharmacy);
+    }
 
     @Override
-    public void insertRider(Rider rider) { dao.setRider(rider); }
+    public void insertRider(Rider rider) {
+
+        dao.setRider(rider);
+    }
 
     @Override
     public User checkUser(Login login) {
+
         return dao.getUser(login);
     }
 
     @Override
     public Pharmacy checkPharmacy(Login login) {
+
         return dao.getPharmacy(login);
     }
 
     @Override
-    public Rider checkRider(Login login) { return dao.getRider(login); }
+    public Rider checkRider(Login login) {
+
+        return dao.getRider(login);
+    }
 
     @Override
     public String getIDList(String id) {
+
         return dao.getIDList(id);
     }
 
     @Override
-    public User deleteUser(Login login) {
-        return dao.deleteUser(login);
+    public void deleteUser(Login login) {
+
+        dao.deleteUser(login);
     }
 }

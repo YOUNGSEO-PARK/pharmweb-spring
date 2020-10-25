@@ -1,32 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <title>기운팜팜</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="fonts/icomoon/style.css">
-
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <link rel="stylesheet" href="css/jquery-ui.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-
-
-    <link rel="stylesheet" href="css/aos.css">
-
-    <link rel="stylesheet" href="css/style.css">
-
-</head>
-
-<body>
-
-<div class="site-wrap">
-
+<th:block th:fragment="headerFragment">
 
     <div class="site-navbar py-2">
 
@@ -51,39 +26,30 @@
                                     <li><a href="shop_tooth">치과</a></li>
                                     <li><a href="shop_vitamin">비타민</a></li>
                                     <li><a href="shop_etc">그 외</a></li>
+
                                 </ul>
                             </li>
                             <li><a href="custom">Custom</a></li>
                             <li><a href="tips">Tips</a></li>
                             <li><a href="location">Locate</a></li>
-                            <li><a href="login">Login</a></li>
+                            <li><a th:href="${url} "th:text="${status}"></a></li>
                         </ul>
                     </nav>
                 </div>
                 <div class="icons">
+<!--                    <a href="mypage" class="icons-btn d-inline-block bag">-->
+<!--                        <span class="icon-person mr-2"></span> <a th:href="" th:text="${id}"></a></a>-->
+
                     <a href="mypage" class="icons-btn d-inline-block bag">
-                        <span class="icon-person"></span>
-                    </a>
+                        <span class="icon-person mr-2"></span></a> <a href="mypage" th:text="${id}" ></a>
+
                     <a href="#" class="site-menu-toggle js-menu-toggle ml-3 d-inline-block d-lg-none"><span
                             class="icon-menu"></span></a>
+
                 </div>
             </div>
         </div>
     </div>
 
-
-</div>
-
-<script src="js/jquery-3.3.1.min.js"></script>
-<script src="js/jquery-ui.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/owl.carousel.min.js"></script>
-<script src="js/jquery.magnific-popup.min.js"></script>
-<script src="js/aos.js"></script>
-
-<script src="js/main.js"></script>
-
-</body>
-
+</th:block>
 </html>

@@ -27,6 +27,6 @@ public interface LoginDAO {
 
     String getIDList(String id);
 
-    User deleteUser(Login login);
+     void deleteUser(Login login);
 
 }
