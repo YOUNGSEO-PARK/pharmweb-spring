@@ -24,9 +24,12 @@ public interface LoginDAO {
 
     Rider getRider(Login login);
 
+    String getUserIDList(String id);
 
-    String getIDList(String id);
+    String getPharmIDList(String id);
 
-     void deleteUser(Login login);
+    String getRiderIDList(String id);
+
+    void deleteUser(Login login);
 
 }

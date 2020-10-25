@@ -50,9 +50,21 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public String getIDList(String id) {
+    public String getUserIDList(String id) {
 
-        return dao.getIDList(id);
+        return dao.getUserIDList(id);
+    }
+
+    @Override
+    public String getPharmIDList(String id) {
+
+        return dao.getPharmIDList(id);
+    }
+
+    @Override
+    public String getRiderIDList(String id) {
+
+        return dao.getRiderIDList(id);
     }
 
     @Override

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 public class ViewController {
 
     public void test(Model model, HttpSession session){
-        String id =(String) session.getAttribute("id");
+        String id = (String) session.getAttribute("id");
 //        int category=(int)session.getAttribute("category");
 //        switch (category){
 //            case 1:
@@ -25,9 +25,11 @@ public class ViewController {
             model.addAttribute("id", id);
             model.addAttribute("status", "Logout");
             model.addAttribute("url","/logout");
+            model.addAttribute("mypage", "/mypage");
         }else{
             model.addAttribute("status", "Login");
             model.addAttribute("url","/login");
+            model.addAttribute("mypage", "/login");
         }
     }
 
@@ -39,8 +41,9 @@ public class ViewController {
     }
 
     @GetMapping("/register")
-    public String resgisterpage() {
+    public String resgisterpage(Model model, HttpSession session) {
 
+        test(model,session);
         return "register";
     }
 
@@ -58,40 +61,25 @@ public class ViewController {
         return "login";
     }
 
-    @GetMapping("/about")
-    public String aboutpage() {
-
-        return "about";
-    }
-
     @GetMapping("/cart")
-    public String cartpage(Model model) {
+    public String cartpage(Model model, HttpSession session) {
 
+        test(model,session);
         return "cart";
     }
 
     @GetMapping("/order")
-    public String orderpage() {
+    public String orderpage(Model model, HttpSession session) {
 
+        test(model,session);
         return "order";
     }
 
     @GetMapping("/custom")
-    public String custompage() {
+    public String custompage(Model model, HttpSession session) {
 
+        test(model,session);
         return "custom";
-    }
-
-    @GetMapping("/footer")
-    public String footerpage() {
-
-        return "footer";
-    }
-
-    @GetMapping("/header")
-    public String headerpage() {
-
-        return "header";
     }
 
     @GetMapping("/location")
@@ -102,128 +90,149 @@ public class ViewController {
     }
 
     @GetMapping("/mp_cart")
-    public String mp_cartpage() {
+    public String mp_cartpage(Model model, HttpSession session) {
 
+        test(model,session);
         return "mp_cart";
     }
 
     @GetMapping("/mp_delete")
-    public String mp_deletepage() {
+    public String mp_deletepage(Model model, HttpSession session) {
 
+        test(model,session);
         return "mp_delete";
     }
 
     @GetMapping("/mp_history")
-    public String mp_historypage() {
+    public String mp_historypage(Model model, HttpSession session) {
 
+        test(model,session);
         return "mp_history";
     }
 
     @GetMapping("/mp_profile")
-    public String mp_profilepage(Model model) {
+    public String mp_profilepage(Model model, HttpSession session) {
 
+        test(model,session);
         return "mp_profile";
     }
 
     @GetMapping("/mypage")
-    public String mypagepage() {
+    public String mypagepage(Model model, HttpSession session) {
 
+        test(model,session);
         return "mypage";
     }
 
     @GetMapping("/shop")
-    public String shoppage() {
+    public String shoppage(Model model, HttpSession session) {
 
+        test(model,session);
         return "shop";
     }
 
     @GetMapping("/shop_allergy")
-    public String shop_allergypage() {
+    public String shop_allergypage(Model model, HttpSession session) {
 
+        test(model,session);
         return "shop_allergy";
     }
 
     @GetMapping("/shop_ent")
-    public String shop_entpage() {
+    public String shop_entpage(Model model, HttpSession session) {
 
+        test(model,session);
         return "shop_ent";
     }
 
     @GetMapping("/shop_etc")
-    public String shop_etcpage() {
+    public String shop_etcpage(Model model, HttpSession session) {
 
+        test(model,session);
         return "shop_etc";
     }
 
     @GetMapping("/shop_eye")
-    public String shop_eyepage() {
+    public String shop_eyepage(Model model, HttpSession session) {
 
+        test(model,session);
         return "shop_eye";
     }
 
     @GetMapping("/shop_heart")
-    public String shop_heartpage() {
+    public String shop_heartpage(Model model, HttpSession session) {
 
+        test(model,session);
         return "shop_heart";
     }
 
     @GetMapping("/shop_single")
-    public String shop_singlepage() {
+    public String shop_singlepage(Model model, HttpSession session) {
 
+        test(model,session);
         return "shop_single";
     }
 
     @GetMapping("/shop_tooth")
-    public String shop_toothpage() {
+    public String shop_toothpage(Model model, HttpSession session) {
 
+        test(model,session);
         return "shop_tooth";
     }
 
     @GetMapping("/shop_urology")
-    public String shop_urologypage() {
+    public String shop_urologypage(Model model, HttpSession session) {
 
+        test(model,session);
         return "shop_urology";
     }
 
     @GetMapping("/shop_vitamin")
-    public String shop_vitaminpage() {
+    public String shop_vitaminpage(Model model, HttpSession session) {
 
+        test(model,session);
         return "shop_vitamin";
     }
 
     @GetMapping("/thankyou")
-    public String thankyoupage() {
+    public String thankyoupage(Model model, HttpSession session) {
 
+        test(model,session);
         return "thankyou";
     }
 
     @GetMapping("/tips")
-    public String tipspage() {
+    public String tipspage(Model model, HttpSession session) {
 
+        test(model,session);
         return "tips";
     }
 
     @GetMapping("/pharmacist")
-    public String pharmacistpage() {
+    public String pharmacistpage(Model model, HttpSession session) {
 
+        test(model,session);
         return "pharmacist";
     }
 
     @GetMapping("/register_pharm")
-    public String register_pharmpage() {
+    public String register_pharmpage(Model model, HttpSession session) {
 
+        test(model,session);
         return "register_pharm";
     }
 
     @GetMapping("/register_rider")
-    public String register_riderpage() {
+    public String register_riderpage(Model model, HttpSession session) {
 
+        test(model,session);
         return "register_rider";
     }
 
     @GetMapping("/register_button")
-    public String register_buttonpage() {
+    public String register_buttonpage(Model model, HttpSession session) {
 
+        test(model,session);
         return "register_button";
     }
 }

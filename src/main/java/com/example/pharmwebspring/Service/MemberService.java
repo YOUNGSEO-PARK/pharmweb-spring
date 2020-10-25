@@ -15,7 +15,11 @@ public interface MemberService {
 
     Rider checkRider(Login login);
 
-    String getIDList(String id);
+    String getUserIDList(String id);
+
+    String getPharmIDList(String id);
+
+    String getRiderIDList(String id);
 
     void deleteUser(Login login);
 

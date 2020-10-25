@@ -33,8 +33,16 @@
         select * from parmdb.rider where rider_id=#{login_id} and rider_pw=#{login_pw}
     </select>
 
-    <select id="getIDList" parameterType="String" resultType="String">
+    <select id="getUserIDList" parameterType="String" resultType="String">
         select user_id from parmdb.user where user_id=#{value}
+    </select>
+
+    <select id="getPharmIDList" parameterType="String" resultType="String">
+        select pharm_id from parmdb.pharmacy where pharm_id=#{value}
+    </select>
+
+    <select id="getRiderIDList" parameterType="String" resultType="String">
+        select rider_id from parmdb.rider where rider_id=#{value}
     </select>
 
     <delete id="deleteUser" parameterType="com.example.pharmwebspring.Model.Login">

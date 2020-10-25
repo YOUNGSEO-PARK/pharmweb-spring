@@ -22,7 +22,7 @@ public class APIController {
         // validation
         RegisterRes registerRes = new RegisterRes();
 
-        String users = memberService.getIDList(regUser.getUser_id());
+        String users = memberService.getUserIDList(regUser.getUser_id());
 
         System.out.print(regUser);
         if (users == null) {
@@ -44,18 +44,16 @@ public class APIController {
         RegisterRes registerRes = new RegisterRes();
         System.out.println(regPharmacy);
 
-        String pharms = memberService.getIDList(regPharmacy.getPharm_id());
+        String pharms = memberService.getPharmIDList(regPharmacy.getPharm_id());
 
-        System.out.print(regPharmacy.getOpentime().getClass());
-//        if (pharms == null) {
-//
-//            memberService.insertPharmacy(regPharmacy);
-//            registerRes.setStatus(200); // 약사 회원가입 성공
-//        } else {
-//
-//            registerRes.setStatus(201); // 약사 회원가입 실패
-//        }
-        registerRes.setStatus(201);
+        if (pharms == null) {
+
+            memberService.insertPharmacy(regPharmacy);
+            registerRes.setStatus(200); // 약사 회원가입 성공
+        } else {
+
+            registerRes.setStatus(201); // 약사 회원가입 실패
+        }
         return registerRes;
     }
 
@@ -64,7 +62,7 @@ public class APIController {
 
         // validation\
         RegisterRes registerRes = new RegisterRes();
-        String pharms = memberService.getIDList(regRider.getRider_id());
+        String pharms = memberService.getRiderIDList(regRider.getRider_id());
 
         System.out.print(regRider);
         if (pharms == null) {
@@ -78,11 +76,11 @@ public class APIController {
 
         return registerRes;
     }
-
-    @GetMapping("/session")
-    public String getSession(HttpServletRequest request, HttpSession session) {
-        return (String) session.getAttribute("id");
-    }
+//
+//    @GetMapping("/session")
+//    public String getSession(HttpServletRequest request, HttpSession session) {
+//        return (String) session.getAttribute("id");
+//    }
 
     @PostMapping("/uidlogin") //sql -> 값 가져와서 성공 실패 보는
     public RegisterRes LoginUser(HttpServletRequest request, @RequestBody Login login) {
@@ -140,16 +138,18 @@ public class APIController {
     }
 
     @PostMapping("/udelete")
-    public RegisterRes DeleteUser(@RequestBody Login login, HttpSession session) {
+    public RegisterRes DeleteUser(HttpSession session, @RequestBody Login login) {
 
         RegisterRes registerRes = new RegisterRes();
+        User user = memberService.checkUser(login);
 
-        try {
+        if (user == null) {
+
+            registerRes.setStatus(401);
+        } else {
             memberService.deleteUser(login);
-            registerRes.setStatus(200);
-            session.invalidate();
-        }catch (Exception e){
             registerRes.setStatus(400);
+            session.invalidate();
         }
 
         return registerRes;
