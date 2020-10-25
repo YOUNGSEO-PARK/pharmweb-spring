@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.pharmwebspring.DAO.LoginDAO">
-
-    <insert id="setPharmacy" parameterType="com.example.pharmwebspring.Model.Pharmacy">
-        INSERT INTO parmdb.pharmacy (pharm_id, pharm_pw, opentime, closetime, pharm_name, pharm_adr, regi_no)
-        VALUE (#{pharm_id}, #{pharm_pw}, #{opentime}, #{closetime}, #{pharm_name}, #{pharm_adr}, #{regi_no})
-    </insert>
-
-    <select id="getPharmacy" parameterType="com.example.pharmwebspring.Model.Login"
-            resultType="com.example.pharmwebspring.Model.Pharmacy">
-        select * from parmdb.pharmacy where pharm_id=#{login_id} and pharm_pw=#{login_pw}
-    </select>
 
     <insert id="setUser" parameterType="com.example.pharmwebspring.Model.User">
         INSERT INTO parmdb.user (user_id, user_pw, user_name, user_phone, user_email, user_adr)
@@ -22,6 +11,16 @@
     <select id="getUser" parameterType="com.example.pharmwebspring.Model.Login"
             resultType="com.example.pharmwebspring.Model.User">
         select * from parmdb.user where user_id=#{login_id} and user_pw=#{login_pw}
+    </select>
+
+    <insert id="setPharmacy" parameterType="com.example.pharmwebspring.Model.Pharmacy">
+        INSERT INTO parmdb.pharmacy (pharm_id, pharm_pw, opentime, closetime, pharm_name, pharm_adr, regi_no)
+        VALUE (#{pharm_id}, #{pharm_pw}, #{opentime}, #{closetime}, #{pharm_name}, #{pharm_adr}, #{regi_no})
+    </insert>
+
+    <select id="getPharmacy" parameterType="com.example.pharmwebspring.Model.Login"
+            resultType="com.example.pharmwebspring.Model.Pharmacy">
+        select * from parmdb.pharmacy where pharm_id=#{login_id} and pharm_pw=#{login_pw}
     </select>
 
     <insert id="setRider" parameterType="com.example.pharmwebspring.Model.Rider">
@@ -39,7 +38,7 @@
     </select>
 
     <delete id="deleteUser" parameterType="com.example.pharmwebspring.Model.Login">
-        delete from parmdb.user where user_id={#login_id} and user_pw={#login_pw}
+        delete from parmdb.user where user_id={#login_id}
     </delete>
 
 </mapper>

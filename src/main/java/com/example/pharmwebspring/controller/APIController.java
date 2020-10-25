@@ -63,7 +63,6 @@ public class APIController {
 
         // validation\
         RegisterRes registerRes = new RegisterRes();
-
         String pharms = memberService.getIDList(regRider.getRider_id());
 
         System.out.print(regRider);
@@ -152,18 +151,5 @@ public class APIController {
             registerRes.setStatus(200);
         }
         return registerRes;
-    }
-
-    class Info {
-        private String id;
-        private String pw;
-
-        public String getId() {
-            return id;
-        }
-
-        public String getPw() {
-            return pw;
-        }
     }
 }
