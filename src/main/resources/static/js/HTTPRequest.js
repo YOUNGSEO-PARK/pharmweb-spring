@@ -210,10 +210,10 @@ $("#userDeleteBtn").on('click', () => { //.on 이벤트 트리거
         }).done(function (data) {
             //로직 필요에 따라 변경
             if (data.status == 400) {
-                alert("유저 회원탈퇴가 완료되었습니다. 이용해주셔서 감사합니다.")
+                alert("회원탈퇴가 완료되었습니다. 이용해주셔서 감사합니다.")
                 document.location.href = '/index';
             } else if (data.status == 401) {
-                alert("존재하지 않는 아이디 혹은 비밀번호 입력 오류입니다. 아이디와 비밀번호를 다시 입력해주세요.")
+                alert("비밀번호 입력 오류입니다. 비밀번호를 다시 입력해주세요.")
             }
         })
     }

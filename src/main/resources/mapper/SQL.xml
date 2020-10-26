@@ -46,7 +46,7 @@
     </select>
 
     <delete id="deleteUser" parameterType="com.example.pharmwebspring.Model.Login">
-        delete from parmdb.user where user_id=#{login_id}
+        delete from parmdb.user where user_id=#{login_id} and user_pw=#{login_pw}
     </delete>
 
 </mapper>

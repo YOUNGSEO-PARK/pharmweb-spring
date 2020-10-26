@@ -138,15 +138,22 @@ public class APIController {
     }
 
     @PostMapping("/udelete")
-    public RegisterRes DeleteUser(HttpSession session, @RequestBody Login login) {
+    public RegisterRes DeleteUser(HttpSession session, @RequestBody String login_pw) {
+
+        Login login = new Login();
+
+        login.setLogin_id((String) session.getAttribute("id"));
+        login.setLogin_pw(login_pw);
 
         RegisterRes registerRes = new RegisterRes();
         User user = memberService.checkUser(login);
+        System.out.println(login.getLogin_id()+' '+login_pw);
 
         if (user == null) {
 
             registerRes.setStatus(401);
         } else {
+
             memberService.deleteUser(login);
             registerRes.setStatus(400);
             session.invalidate();

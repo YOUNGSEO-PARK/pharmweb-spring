@@ -22,15 +22,24 @@ public class ViewController {
 //
 //        }
         if(id!=null){
+
             model.addAttribute("id", id);
             model.addAttribute("status", "Logout");
             model.addAttribute("url","/logout");
             model.addAttribute("mypage", "/mypage");
         }else{
+
             model.addAttribute("status", "Login");
             model.addAttribute("url","/login");
             model.addAttribute("mypage", "/login");
         }
+    }
+
+    @GetMapping("/")
+    public String page(Model model, HttpSession session) {
+
+        test(model,session);
+        return "index";
     }
 
     @GetMapping("/index")
