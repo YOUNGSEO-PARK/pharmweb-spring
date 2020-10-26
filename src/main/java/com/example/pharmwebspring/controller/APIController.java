@@ -140,6 +140,11 @@ public class APIController {
         } else {
 
             session.setAttribute("id", rider.getRider_id());
+            session.setAttribute("rname", rider.getRider_name());
+            session.setAttribute("rphone", rider.getRider_phone());
+            session.setAttribute("radr", rider.getRider_adr());
+            session.setAttribute("license", rider.getLicense_no());
+
             registerRes.setStatus(302);
         }
         return registerRes;
