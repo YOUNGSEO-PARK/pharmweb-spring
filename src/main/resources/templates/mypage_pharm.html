@@ -3,7 +3,6 @@
 <th:block th:replace="layout/01_link :: linkFragment"></th:block>
 
 
-
 <body>
 
 <div class="site-wrap">
@@ -24,7 +23,7 @@
     <br>
 
 
-    <div class="container" style="padding-left:40px;">
+    <div class="container">
         <div class="row justify-content-between">
             <div class="col-lg-2 navibar">
                 <ul>
@@ -43,47 +42,52 @@
                         <div class="col-lg-7" style="padding-left: 50px;">
                             <form class="form-horizontal">
                                 <div class="form-group ">
-                                    <label for="user_id" class="col-sm-5 control-label">아이디</label>
+                                    <label for="pahrm_id" class="col-sm-5 control-label">아이디</label>
                                     <div class="col-lg-25">
-                                        <input class="form-control" type="text" id="user_id" placeholder="pampam22"
+                                        <input class="form-control" type="text" id="pharm_id" placeholder="pampam22"
                                                disabled>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="user_pw" class="col-sm-5 control-label">비밀번호</label>
+                                    <label for="pharm_pw" class="col-sm-5 control-label">비밀번호</label>
                                     <div class="col-lg-25">
-                                        <input class="form-control" id="user_pw" type="password">
+                                        <input class="form-control" id="pharm_pw" type="password">
+                                    </div>
+                                    <div style="float:right;">
+                                        <p class="mb-0"><a href="mp_profile" class="justify-content-between">수정하기</a>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-4">
+                                        <label for="opentime" class="text-black">영업시간 </label>
+                                        <input type="time" class="form-control" id="opentime" name="opentime"disabled >
+                                    </div>
+                                    <div style="padding-top:15px;"><br>~</div>
+                                    <div class="col-md-4">
+                                        <label for="closetime" class="text-white">close</label>
+                                        <input type="time" class="form-control" id="closetime" name="closetime" disabled>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="user_name" class="col-sm-5 control-label">이름</label>
+                                    <label for="pharm_name" class="col-sm-5 control-label">약국이름</label>
                                     <div class="col-lg-25">
-                                        <input class="form-control" type="text" id="user_name" placeholder="홍길동"
-                                               disabled>
+                                        <input class="form-control" type="text" id="pharm_name" placeholder="늘푸른약국" disabled>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="user_phone" class="col-sm-5 control-label">핸드폰 번호</label>
+                                    <label for="pharm_adr" class="col-sm-5 control-label">약국주소</label>
                                     <div class="col-lg-25">
-                                        <input class="form-control" type="text" id="user_phone"
-                                               placeholder="010-0000-0000">
+                                        <input class="form-control" type="text" id="pharm_adr"
+                                               placeholder="서울특별시 oo시" disabled>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="user_email" class="col-sm-5 control-label">이메일</label>
+                                    <label for="resi_no" class="col-sm-5 control-label">약국사업자번호</label>
                                     <div class="col-lg-25">
-                                        <input class="form-control" type="text" id="user_email"
-                                               placeholder="member1@email.com">
+                                        <input class="form-control" type="text" id="resi_no"
+                                               placeholder="000-00-00000" disabled>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="user_adr" class="col-sm-5 control-label">주소</label>
-                                    <div class="col-lg-25">
-                                        <input class="form-control" type="text" id="user_adr" placeholder="서울특별시 OO구">
-                                    </div>
-                                </div>
-                                <div>
-                                    <p class="mb-0"><a href="mypage" class="justify-content-between">수정완료</a></p>
                                 </div>
                             </form>
                         </div>
