@@ -53,7 +53,7 @@ public class ViewController {
     @GetMapping("/index")
     public String indexpage(Model model, HttpSession session) {
 
-       test(model,session);
+        test(model,session);
         return "index";
     }
 

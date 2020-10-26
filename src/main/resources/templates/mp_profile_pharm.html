@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lagn="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block th:replace="layout/01_link :: linkFragment"></th:block>
+
+
+
+<body>
+/**/
+<div class="site-wrap">
+
+    <th:block th:replace="layout/02_header :: headerFragment"></th:block>
+
+    <div class="bg-light py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 mb-0">
+                    <a href="index">Home</a> <span class="mx-2 mb-0">/</span>
+                    <strong class="text-black"> Mypage </strong>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+
+    <div class="container" style="padding-left:40px;">
+        <div class="row justify-content-between">
+            <div class="col-lg-2 navibar">
+                <ul>
+                    <li><a href="mypage">개인정보</a></li>
+                    <li><a href="mp_cart">장바구니</a></li>
+                    <li><a href="mp_history">주문내역</a></li>
+                    <li><a href="mp_delete">회원탈퇴</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-10">
+                <div class="container" style="padding-left:40px;">
+                    <div class=" form-group row" style="padding:50px; border:1px solid #f3f3f3;">
+                        <div>
+                            <image src="images/m_profile.jpg" width="150px" height="150px"></image>
+                        </div>
+                        <div class="col-lg-7" style="padding-left: 50px;">
+                            <form class="form-horizontal">
+                                <div class="form-group ">
+                                    <label for="pahrm_id" class="col-sm-5 control-label">아이디</label>
+                                    <div class="col-lg-25">
+                                        <input class="form-control" type="text" id="pharm_id" placeholder="pampam22"
+                                               disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pharm_pw" class="col-sm-5 control-label">비밀번호</label>
+                                    <div class="col-lg-25">
+                                        <input class="form-control" id="pharm_pw" type="password">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-4">
+                                        <label for="opentime" class="text-black">영업시간 </label>
+                                        <input type="time" class="form-control" id="opentime" name="opentime" >
+                                    </div>
+                                    <div style="padding-top:15px;"><br>~</div>
+                                    <div class="col-md-4">
+                                        <label for="closetime" class="text-white">close</label>
+                                        <input type="time" class="form-control" id="closetime" name="closetime" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pharm_name" class="col-sm-5 control-label">약국이름</label>
+                                    <div class="col-lg-25">
+                                        <input class="form-control" type="text" id="pharm_name" placeholder="늘푸른약국"
+                                               >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pharm_adr" class="col-sm-5 control-label">약국주소</label>
+                                    <div class="col-lg-25">
+                                        <input class="form-control" type="text" id="pharm_adr"
+                                               placeholder="서울특별시 oo시">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="resi_no" class="col-sm-5 control-label">약국사업자번호</label>
+                                    <div class="col-lg-25">
+                                        <input class="form-control" type="text" id="resi_no"
+                                               placeholder="000-00-00000" disabled>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="mb-0"><a href="mypage" class="justify-content-between">수정완료</a></p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <th:block th:replace="layout/03_footer :: footerFragment"></th:block>
+
+</div>
+
+<th:block th:replace="layout/04_script :: scriptFragment"></th:block>
+
+</body>
+
+</html>
