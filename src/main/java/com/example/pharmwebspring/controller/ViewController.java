@@ -41,7 +41,7 @@ public class ViewController {
         String pname = (String) session.getAttribute("pname");
         String opentime = (String) session.getAttribute("opentime");
         String closetime = (String) session.getAttribute("closetime");
-        String padr = (String) session.getAttribute("uadr");
+        String padr = (String) session.getAttribute("padr");
         String regino = (String) session.getAttribute("regino");
         model.addAttribute("home", "/pharmacist");
 
