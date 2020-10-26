@@ -31,6 +31,7 @@ public class DataDao {
             rs = pstmt.executeQuery();
             while (rs.next()) {
                 MapapiDto dto = new MapapiDto();
+                dto.setName(rs.getString("dutyName"));
                 dto.setLat(rs.getFloat("wgs84Lat"));
                 dto.setLon(rs.getFloat("wgs84Lon"));
                 list.add(dto);
