@@ -11,6 +11,8 @@
     margin: 20px;
     cursor: pointer;
     border-radius: 50%;
+    width: 200px;
+    height:200px;
 }
 body {
     line-height: 1.7;
