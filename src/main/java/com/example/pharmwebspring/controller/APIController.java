@@ -2,11 +2,14 @@ package com.example.pharmwebspring.controller;
 
 import com.example.pharmwebspring.Model.*;
 import com.example.pharmwebspring.Service.MemberService;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
 
 @RestController
 @SessionAttributes("member")
@@ -76,11 +79,6 @@ public class APIController {
 
         return registerRes;
     }
-//
-//    @GetMapping("/session")
-//    public String getSession(HttpServletRequest request, HttpSession session) {
-//        return (String) session.getAttribute("id");
-//    }
 
     @PostMapping("/uidlogin") //sql -> 값 가져와서 성공 실패 보는
     public RegisterRes LoginUser(HttpServletRequest request, @RequestBody Login login) {
@@ -94,8 +92,7 @@ public class APIController {
             registerRes.setStatus(103);
         } else {
             session.setAttribute("id", user.getUser_id());
-            session.setAttribute("category",1);
-            System.out.println(session.getAttribute("id"));
+//            session.setAttribute("category",1);
             registerRes.setStatus(102);
         }
         return registerRes;
@@ -138,16 +135,18 @@ public class APIController {
     }
 
     @PostMapping("/udelete")
-    public RegisterRes DeleteUser(HttpSession session, @RequestBody String login_pw) {
+    public RegisterRes DeleteUser(HttpSession session, @RequestBody String pw) throws JSONException {
 
         Login login = new Login();
 
         login.setLogin_id((String) session.getAttribute("id"));
+
+        JSONObject jObject = new JSONObject(pw);
+        String login_pw = jObject.getString("login_pw");
         login.setLogin_pw(login_pw);
 
         RegisterRes registerRes = new RegisterRes();
         User user = memberService.checkUser(login);
-        System.out.println(login.getLogin_id()+' '+login_pw);
 
         if (user == null) {
 
