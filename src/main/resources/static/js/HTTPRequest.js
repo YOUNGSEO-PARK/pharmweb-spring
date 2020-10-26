@@ -221,3 +221,34 @@ $("#userDeleteBtn").on('click', () => { //.on 이벤트 트리거
 
 //------------------------------success-fin-------------------------------------------------------------------
 
+var myCommon = {};
+myCommon.util = {
+    // method : get/post , url : call url
+    // params    : json 형식 요청 데이터, callbackFunction : callback 함수명
+    callAjax : function(method, url, type,params, callbackFunction ){
+        if(method=="" || url==""){
+            console.log("method or url empty");
+            return false;
+        }
+
+        $.ajax({
+            type : method
+            , url : url
+            , data : JSON.stringify(params)
+            , contentType:'application/json; charset=utf-8'
+            , dataType: type
+            , success : function(response) {
+                if (type == "html") {
+                    $(document.getElementById(callbackFunction)).html(response);
+                } else {
+                    // Callback 함수 호출
+                    if (typeof(callbackFunction) == "function")
+                        callbackFunction(params, response);
+                }
+            }
+            , error : function(jqXHR, error) {
+                console.log(error);
+            }
+        });
+    }
+};
