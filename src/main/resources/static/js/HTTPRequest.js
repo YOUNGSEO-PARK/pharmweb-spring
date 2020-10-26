@@ -115,3 +115,81 @@ $("#userDeleteBtn").on('click',()=>{ //.on 이벤트 트리거
         }
     })
 })
+/*
+$('input[type=button]').click(function(){
+    $.ajax({
+        url : './location',
+        type : 'GET',
+        dataType : 'json',
+        success : function(data){
+            const list = data.list;
+            let txt;
+
+            $.each(list, function(index, data){
+                //data === list[i]
+                txt += `<tr>
+                <td>${data.wgs84Lat}</td>
+                <td>${data.wgs84Lon}</td>
+                </tr>`;
+            });
+
+            $('table').html(txt);
+        }
+    });
+});*/
+
+
+var myCommon = {};
+myCommon.util = {
+    // method : get/post , url : call url
+    // params    : json 형식 요청 데이터, callbackFunction : callback 함수명
+    callAjax : function(method, url, type,params, callbackFunction ){
+        if(method=="" || url==""){
+            console.log("method or url empty");
+            return false;
+        }
+
+        $.ajax({
+            type : method
+            , url : url
+            , data : JSON.stringify(params)
+            , contentType:'application/json; charset=utf-8'
+            , dataType: type
+            , success : function(response) {
+                if (type == "html") {
+                    $(document.getElementById(callbackFunction)).html(response);
+                } else {
+                    // Callback 함수 호출
+                    if (typeof(callbackFunction) == "function")
+                        callbackFunction(params, response);
+                }
+            }
+            , error : function(jqXHR, error) {
+                console.log(error);
+            }
+        });
+    }
+};
+/*
+function Getloc() {
+    //$("#loc-btn").click(function () {
+        var position = {
+            wgs84Lat: $("#wgs84Lat").val(),
+            wgs84Lon: $("#wgs84Lon").val()
+        };
+        $.ajax({
+            url: "/location",
+            data: position,
+            type: "get",
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                alert("success");
+                return data;
+            },
+
+            error: function () {
+                alert("error");
+            }
+        });
+    };*/

@@ -1,19 +1,20 @@
 package com.example.pharmwebspring.controller;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Controller;
 import com.example.pharmwebspring.Model.*;
 import com.example.pharmwebspring.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Member;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 @Controller
 public class ViewController {
@@ -61,6 +62,18 @@ public class ViewController {
     @GetMapping("/header")
     public String headerpage(){
         return "header";
+    }
+
+
+    @Autowired
+    private DataDao dataDao;
+
+   // private static Logger logger = LoggerFactory.getLogger(ViewController.class);
+    @ResponseBody
+    @RequestMapping(value = "/loc_location", method = RequestMethod.GET)
+    public List<MapapiDto> location(){
+        ArrayList<MapapiDto> list = dataDao.getDataAll();
+        return list;
     }
 
     @GetMapping("/location")
