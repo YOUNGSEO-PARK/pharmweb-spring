@@ -16,6 +16,8 @@ public class ViewController {
         String uemail = (String) session.getAttribute("uemail");
         String uadr = (String) session.getAttribute("uadr");
 
+        model.addAttribute("home", "/index");
+
         if(id!=null){
 
             model.addAttribute("id", id);
@@ -43,6 +45,7 @@ public class ViewController {
         String closetime = (String) session.getAttribute("closetime");
         String padr = (String) session.getAttribute("padr");
         String regino = (String) session.getAttribute("regino");
+
         model.addAttribute("home", "/pharmacist");
 
         if(id!=null){
@@ -74,7 +77,7 @@ public class ViewController {
     @GetMapping("/index")
     public String indexpage(Model model, HttpSession session) {
 
-       userSession(model,session);
+        userSession(model,session);
         return "index";
     }
 
