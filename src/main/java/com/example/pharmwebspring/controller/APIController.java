@@ -91,13 +91,13 @@ public class APIController {
 
             registerRes.setStatus(103);
         } else {
-            session.setAttribute("uid", user.getUser_id());
+            session.setAttribute("id", user.getUser_id());
             session.setAttribute("uname", user.getUser_name());
             session.setAttribute("uphone", user.getUser_phone());
             session.setAttribute("uemail", user.getUser_email());
             session.setAttribute("uadr", user.getUser_adr());
 //            session.setAttribute("category",1);
-            System.out.println(user.getUser_adr());
+
             registerRes.setStatus(102);
         }
         return registerRes;
@@ -116,6 +116,12 @@ public class APIController {
         } else {
 
             session.setAttribute("id", pharmacy.getPharm_id());
+            session.setAttribute("pname", pharmacy.getPharm_name());
+            session.setAttribute("opentime", pharmacy.getOpentime());
+            session.setAttribute("closetime", pharmacy.getClosetime());
+            session.setAttribute("padr", pharmacy.getPharm_adr());
+            session.setAttribute("regino", pharmacy.getRegi_no());
+
             registerRes.setStatus(202);
         }
         return registerRes;

@@ -17,7 +17,6 @@ public interface LoginDAO {
 
     void setRider(Rider rider);
 
-
     User getUser(Login login);
 
     Pharmacy getPharmacy(Login login);

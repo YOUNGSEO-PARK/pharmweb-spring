@@ -9,7 +9,7 @@
             <div class="d-flex align-items-center justify-content-between">
                 <div class="logo">
                     <div class="site-logo">
-                        <a href="index"><img src="images/logo2.jpg" alt="" width="250" height="80"></a>
+                        <a th:href="${home}"><img src="images/logo2.jpg" alt="" width="250" height="80"></a>
                     </div>
                 </div>
                 <div class="main-nav d-none d-lg-block">
@@ -39,7 +39,7 @@
                 <div class="icons">
 
                     <a th:href="${mypage}" class="icons-btn d-inline-block bag">
-                        <span class="icon-person mr-2"></span></a> <a href="mypage" th:text="${uid}" ></a>
+                        <span class="icon-person mr-2"></span></a> <a href="mypage" th:text="${id}" ></a>
 
                     <a href="#" class="site-menu-toggle js-menu-toggle ml-3 d-inline-block d-lg-none"><span
                             class="icon-menu"></span></a>
