@@ -1,10 +1,18 @@
 package com.example.pharmwebspring.controller;
 
+import com.example.pharmwebspring.Model.DataDao;
+import com.example.pharmwebspring.Model.MapapiDto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class ViewController {
@@ -243,5 +251,16 @@ public class ViewController {
 
         test(model,session);
         return "register_button";
+    }
+
+    @Autowired
+    private DataDao dataDao;
+
+    // private static Logger logger = LoggerFactory.getLogger(ViewController.class);
+    @ResponseBody
+    @RequestMapping(value = "/loc_location", method = RequestMethod.GET)
+    public List<MapapiDto> location(){
+        ArrayList<MapapiDto> list = dataDao.getDataAll();
+        return list;
     }
 }
