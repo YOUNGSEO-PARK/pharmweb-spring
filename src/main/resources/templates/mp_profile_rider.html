@@ -45,8 +45,7 @@
                                 <div class="form-group ">
                                     <label for="rider_id" class="col-sm-5 control-label">아이디</label>
                                     <div class="col-lg-25">
-                                        <input class="form-control" type="text" id="rider_id" placeholder="pampam22"
-                                               disabled>
+                                        <p th:text="${id}" class="form-control" type="text" id="rider_id"></p>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -58,32 +57,32 @@
                                 <div class="form-group">
                                     <label for="rider_name" class="col-sm-5 control-label">이름</label>
                                     <div class="col-lg-25">
-                                        <input class="form-control" type="text" id="rider_name" placeholder="홍길동" disabled>
+                                        <p th:text="${rname}" class="form-control" type="text" id="rider_name"></p>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="rider_phone" class="col-sm-5 control-label">핸드폰번호</label>
+                                    <label for="rider_phone" class="col-sm-5 control-label">휴대폰번호</label>
                                     <div class="col-lg-25">
                                         <input class="form-control" type="text" id="rider_phone"
-                                               placeholder="010-0000-0000">
+                                               th:placeholder="${rphone}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="rider_adr" class="col-sm-5 control-label">주소</label>
                                     <div class="col-lg-25">
                                         <input class="form-control" type="text" id="rider_adr"
-                                               placeholder="경기도 성남시 oo동">
+                                               th:placeholder="${radr}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="license_no" class="col-sm-5 control-label">운전면허증 번호</label>
                                     <div class="col-lg-25">
                                         <input class="form-control" type="text" id="license_no"
-                                               placeholder="000-00-00000" disabled>
+                                               th:placeholder="${license}">
                                     </div>
                                 </div>
                                 <div>
-                                    <p class="mb-0"><a href="mypage" class="justify-content-between">수정완료</a></p>
+                                    <p class="mb-0"><a href="mypage_rider" class="justify-content-between">수정완료</a></p>
                                 </div>
                             </form>
                         </div>
