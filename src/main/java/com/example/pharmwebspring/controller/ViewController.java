@@ -10,7 +10,11 @@ import javax.servlet.http.HttpSession;
 public class ViewController {
 
     public void test(Model model, HttpSession session){
-        String id = (String) session.getAttribute("id");
+        String uid = (String) session.getAttribute("uid");
+        String  uname= (String) session.getAttribute("uname");
+        String uphone = (String) session.getAttribute("uphone");
+        String uemail = (String) session.getAttribute("uemail");
+        String uadr = (String) session.getAttribute("uadr");
 //        int category=(int)session.getAttribute("category");
 //        switch (category){
 //            case 1:
@@ -21,9 +25,14 @@ public class ViewController {
 //                break;
 //
 //        }
-        if(id!=null){
+        if(uid!=null){
 
-            model.addAttribute("id", id);
+            model.addAttribute("uid", uid);
+            model.addAttribute("uname", uname);
+            model.addAttribute("uphone", uphone);
+            model.addAttribute("uemail", uemail);
+            model.addAttribute("uadr", uadr);
+
             model.addAttribute("status", "Logout");
             model.addAttribute("url","/logout");
             model.addAttribute("mypage", "/mypage");
@@ -243,5 +252,33 @@ public class ViewController {
 
         test(model,session);
         return "register_button";
+    }
+
+    @GetMapping("/mp_profile_pharm")
+    public String mp_profile_pharmpage(Model model, HttpSession session) {
+
+        test(model,session);
+        return "mp_profile_pharm";
+    }
+
+    @GetMapping("/mp_profile_rider")
+    public String mp_profile_riderpage(Model model, HttpSession session) {
+
+        test(model,session);
+        return "mp_profile_rider";
+    }
+
+    @GetMapping("/mypage_pharm")
+    public String mypage_pharmpage(Model model, HttpSession session) {
+
+        test(model,session);
+        return "mypage_pharm";
+    }
+
+    @GetMapping("/mypage_rider")
+    public String mypage_riderpage(Model model, HttpSession session) {
+
+        test(model,session);
+        return "mypage_rider";
     }
 }

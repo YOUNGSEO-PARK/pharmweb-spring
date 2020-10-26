@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 
 
 @RestController
-@SessionAttributes("member")
+
 @RequestMapping("/api")
 public class APIController {
 
@@ -91,8 +91,13 @@ public class APIController {
 
             registerRes.setStatus(103);
         } else {
-            session.setAttribute("id", user.getUser_id());
+            session.setAttribute("uid", user.getUser_id());
+            session.setAttribute("uname", user.getUser_name());
+            session.setAttribute("uphone", user.getUser_phone());
+            session.setAttribute("uemail", user.getUser_email());
+            session.setAttribute("uadr", user.getUser_adr());
 //            session.setAttribute("category",1);
+            System.out.println(user.getUser_adr());
             registerRes.setStatus(102);
         }
         return registerRes;

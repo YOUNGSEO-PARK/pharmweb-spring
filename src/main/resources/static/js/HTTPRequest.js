@@ -44,7 +44,7 @@ $("#LoginBtn").on('click', () => { //.on 이벤트 트리거
             //로직 필요에 따라 변경
             if (data.status == 202) {
                 alert("약사님, 안녕하세요!")
-                document.location.href = '/index';
+                document.location.href = '/pharmacist';
             } else if (data.status == 203) {
                 alert("약사 로그인 실패! 아이디와 비밀번호를 다시 입력해주세요!")
             }

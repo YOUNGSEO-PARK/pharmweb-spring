@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:fragment="mapFragment">
+
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a3c604898245de14499182b5bd3b6f32
+&libraries=services"></script>
+
+    <script>
+        // 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
+        var infowindow = new kakao.maps.InfoWindow({zIndex:1});
+
+        var Lon = [];
+
+        function Getloc() {
+            $.ajax({
+                url: "/loc_location",
+                data: {
+                    name: $("#name").serialize(),
+                    wgs84Lat: $("#wgs84Lat").serialize(),
+                    wgs84Lon: $("#wgs84Lon").serialize()
+                },
+                type: "get",
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    var result = data.json;
+                    $.each(result, function (idx, val){
+                        console.log(idx + " " + val.wgs84Lat);
+                    });
+                    Lon.push(data);
+                },
+                error: function () {
+                    alert("error");
+                }
+            });
+        }
+
+        Getloc();
+        console.log(Lon); //>> Lon에 값이 잘 들어갔나 확인.
+        //console.log(Object.keys(Lon)) >> Lon의 Object값 확인.
+        //console.log(Lon["0"][1].lat) >> lat을 사용하기 위해서는 저렇게 사용.
+
+        var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+            mapOption = {
+                center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+                level: 3 // 지도의 확대 레벨
+            };
+
+        var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+        var PharmPositions = new Array();
+        for(var idx=0; idx<22953; idx++){
+            var data_lat = Lon["0"][idx].lat;
+            var data_lng = Lon["0"][idx].lon;
+            PharmPositions.push(new kakao.maps.LatLng(data_lat, data_lng));
+        }
+
+        var PharmTitle = new Array();
+        for(var idx=0; idx<22953; idx++){
+            var data_name = Lon["0"][idx].dutyName;
+            PharmTitle.push(data_name);
+        }
+        // 마커 이미지의 이미지 주소입니다
+        var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+
+        for (var i = 0; i < PharmPositions.length; i ++) {
+            // 마커 이미지의 이미지 크기 입니다
+            var imageSize = new kakao.maps.Size(24, 35);
+            // 마커 이미지를 생성합니다
+            var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+            // 마커를 생성합니다
+            var marker = new kakao.maps.Marker({
+                map: map, // 마커를 표시할 지도
+                position: PharmPositions[i], // 마커를 표시할 위치
+                title : PharmTitle[i], // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+                image : markerImage // 마커 이미지
+            });
+        }
+
+    </script>
+
+</th:block>
+</html>
