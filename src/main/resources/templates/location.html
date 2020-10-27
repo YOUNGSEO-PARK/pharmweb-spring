@@ -1,104 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lagn="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block th:replace="layout/01_link :: linkFragment"></th:block>
 
-<head>
-    <title>기운팜팜</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="fonts/icomoon/style.css">
-
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <link rel="stylesheet" href="css/jquery-ui.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-
-
-    <link rel="stylesheet" href="css/aos.css">
-
-    <link rel="stylesheet" href="css/style.css">
-    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
-
-    <style>
-        .wrap {position: absolute;left: 0;bottom: 40px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
-        .wrap * {padding: 0;margin: 0;}
-        .wrap .info {width: 286px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
-        .wrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
-        .info .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;}
-        .info .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
-        .info .close:hover {cursor: pointer;}
-        .info .body {position: relative;overflow: hidden;}
-        .info .desc {position: relative;margin: 13px 0 0 90px;height: 75px;}
-        .desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
-        .desc .jibun {font-size: 11px;color: #888;margin-top: -2px;}
-        .info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
-        .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
-        .info .link {color: #5085BB;}
-    </style>
-
-</head>
+<script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
 
 <body>
 
 <div class="site-wrap">
 
+    <th:block th:replace="layout/02_header :: headerFragment"></th:block>
 
-    <div class="site-navbar py-2">
-
-        <div class="search-wrap">
-            <div class="container">
-                <a href="#" class="search-close js-search-close"><span class="icon-close2"></span></a>
-                <form action="#" method="post">
-                    <input type="text" class="form-control" placeholder="검색어를 입력해주세요.">
-                </form>
+    <div class="bg-light py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 mb-0">
+                    <a href="index">Home</a><span class="mx-2 mb-0">/</span>
+                    <strong class="text-black">locate</strong>
+                </div>
             </div>
         </div>
+    </div>
 
+    <div class="site-section" style="padding-top:40px; padding-bottom: 40px;">
         <div class="container">
-            <div class="d-flex align-items-center justify-content-between">
-                <div class="logo">
-                    <div class="site-logo">
-                        <a href="index"><img src="images/logo2.jpg" alt="" width="250" height="80"></a>
-                    </div>
-                </div>
-                <div class="main-nav d-none d-lg-block">
-                    <nav class="site-navigation text-right text-md-center" role="navigation">
-                        <ul class="site-menu js-clone-nav d-none d-lg-block">
-                            <li class="has-children">
-                                <a href="#">Shop</a>
-                                <ul class="dropdown">
-                                    <li><a href="shop_heart">심장 &amp; 신경</a></li>
-                                    <li><a href="shop_ent">이비인후과</a></li>
-                                    <li><a href="shop_eye">안과</a></li>
-                                    <li><a href="shop_urology">비뇨기과 &amp; 항문</a></li>
-                                    <li><a href="shop_allergy">알레르기 &amp; 구충제</a></li>
-                                    <li><a href="shop_tooth">치과</a></li>
-                                    <li><a href="shop_vitamin">비타민</a></li>
-                                    <li><a href="shop_etc">그 외</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="custom">Custom</a></li>
-                            <li><a href="tips">Tips</a></li>
-                            <li class="active"><a href="location">Locate</a></li>
-                            <li><a href="login">Login</a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="icons">
-                    <a href="#" class="icons-btn d-inline-block js-search-open"><span class="icon-search"></span></a>
-                    <a href="mypage" class="icons-btn d-inline-block bag">
-                        <span class="icon-person"></span>
-                    </a>
-                    <a href="#" class="site-menu-toggle js-menu-toggle ml-3 d-inline-block d-lg-none"><span
-                            class="icon-menu"></span></a>
+            <div class="row">
+                <div class="title-section text-center col-12">
+                    <h2><strong class="text-primary"><center>MAP</center></strong></h2>
                 </div>
             </div>
-            <div id="map" style="width:100%;height:350px;"></div>
+        </div>
+    </div>
 
-            <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a3c604898245de14499182b5bd3b6f32
+
+    <div class="container" style="margin-bottom: 40px;">
+        <div id="map" style="width:90%px;height:750px; margin:10px;">
+    </div>
+
+
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a3c604898245de14499182b5bd3b6f32
 &libraries=services"></script>
 
             <script>
@@ -111,9 +50,7 @@
                     $.ajax({
                         url: "/loc_location",
                         data: {
-                            pharmname: $("#name").serialize(),
-                            pharmadr: $("#adr").serialize(),
-                            pharmtell: $("#tell").serialize(),
+                            name: $("#name").serialize(),
                             wgs84Lat: $("#wgs84Lat").serialize(),
                             wgs84Lon: $("#wgs84Lon").serialize()
                         },
@@ -146,127 +83,40 @@
 
                 var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
-                if (navigator.geolocation) {
-
-                    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
-                    navigator.geolocation.getCurrentPosition(function (position) {
-
-                        var lat = position.coords.latitude, // 위도
-                            lon = position.coords.longitude; // 경도
-
-                        var locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-                            //message = '<div style="padding:5px;">여기에 계신가요?!</div>'; // 인포윈도우에 표시될 내용입니다
-
-                        // 마커와 인포윈도우를 표시합니다
-                        displayMarker(locPosition);
-
-                    });
-
-                } else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
-
-                    var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),
-                        message = 'geolocation을 사용할수 없어요..'
-
-                    displayMarker(locPosition,message);
+                var PharmPositions = new Array();
+                for(var idx=0; idx<22953; idx++){
+                    var data_lat = Lon["0"][idx].lat;
+                    var data_lng = Lon["0"][idx].lon;
+                    PharmPositions.push(new kakao.maps.LatLng(data_lat, data_lng));
                 }
 
-                // 지도에 마커와 인포윈도우를 표시하는 함수입니다
-                function displayMarker(locPosition) {
+                var PharmTitle = new Array();
+                for(var idx=0; idx<22953; idx++){
+                    var data_name = Lon["0"][idx].dutyName;
+                    PharmTitle.push(data_name);
+                }
+                // 마커 이미지의 이미지 주소입니다
+                var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
 
+                for (var i = 0; i < PharmPositions.length; i ++) {
+                    // 마커 이미지의 이미지 크기 입니다
+                    var imageSize = new kakao.maps.Size(24, 35);
+                    // 마커 이미지를 생성합니다
+                    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
                     // 마커를 생성합니다
                     var marker = new kakao.maps.Marker({
-                        map: map,
-                        position: locPosition
+                        map: map, // 마커를 표시할 지도
+                        position: PharmPositions[i], // 마커를 표시할 위치
+                        title : PharmTitle[i], // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+                        image : markerImage // 마커 이미지
                     });
-
-                    // 지도 중심좌표를 접속위치로 변경합니다
-                    map.setCenter(locPosition);
-
-                    var ps = new kakao.maps.services.Places(map);
-
-                    var PharmPositions = new Array();
-                    for (var idx = 0; idx < 22953; idx++) {
-                        var data_lat = Lon["0"][idx].lat;
-                        var data_lng = Lon["0"][idx].lon;
-                        PharmPositions.push(new kakao.maps.LatLng(data_lat, data_lng));
-                    }
-
-                    var PharmTitle = new Array();
-                    for (var idx = 0; idx < 22953; idx++) {
-                        var data_name = Lon["0"][idx].name;
-                        PharmTitle.push(data_name);
-                    }
-
-                    var PharmAdr = new Array();
-                    for (var idx = 0; idx < 22953; idx++){
-                        var data_adr = Lon["0"][idx].adr;
-                        PharmAdr.push(data_adr);
-                    }
-
-                    var PharmTell = new Array();
-                    for(var idx = 0; idx < 22953; idx++){
-                        var data_tell = Lon["0"][idx].tell;
-                        PharmTell.push(data_tell);
-                    }
-
-                    // 마커 이미지의 이미지 주소입니다
-                    var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
-
-                    for (var i = 0; i < PharmPositions.length; i++) {
-                        // 마커 이미지의 이미지 크기 입니다
-                        var imageSize = new kakao.maps.Size(24, 35);
-                        // 마커 이미지를 생성합니다
-                        var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
-                        // 마커를 생성합니다
-                        var marker = new kakao.maps.Marker({
-                            map: map, // 마커를 표시할 지도
-                            position: PharmPositions[i], // 마커를 표시할 위치
-                            title: PharmTitle[i], // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-                            image: markerImage // 마커 이미지
-                        });
-
-
-                        var content = '<div class="wrap">' +
-                            '    <div class="info">' +
-                            '        <div class="title">' +
-                            '             maker.title'+
-                            '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' +
-                            '        </div>' +
-                            '        <div class="body">' +
-                            '            <div class="img">' +
-                            '                <img src="https://cfile181.uf.daum.net/image/250649365602043421936D" width="73" height="70">' +
-                            '           </div>' +
-                            '            <div class="desc">' +
-                            '                <div class="ellipsis">PharmAdr[i]</div>' +
-                            '                <div class="tell ellipsis">PharmTell[i]</div>' +
-                            '                <div><a href="https://www.kakaocorp.com/main" target="_blank" class="link">홈페이지</a></div>' +
-                            '            </div>' +
-                            '        </div>' +
-                            '    </div>' +
-                            '</div>';
-
-                        kakao.maps.event.addListener(marker, 'click', function() {
-                            overlay.setMap(map);
-                        });
-
-// 마커 위에 커스텀오버레이를 표시합니다
-// 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
-                        var overlay = new kakao.maps.CustomOverlay({
-                            content: content,
-                            map: map,
-                            position: marker.getPosition()
-                        });
-                        overlay.setMap(null);
-
-// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다
-                        function closeOverlay() {
-                            overlay.setMap(null);
-                        }
-
-                    }
                 }
 
             </script>
-        </div>
-    </div>
+    <th:block th:replace="layout/03_footer :: footerFragment"></th:block>
+
 </div>
+
+<th:block th:replace="layout/04_script :: scriptFragment"></th:block>
+</body>
+</html>
