@@ -29,7 +29,6 @@ public class ViewController {
             model.addAttribute("status", "Logout");
             model.addAttribute("url","/logout");
             model.addAttribute("mypage", "/mypage");
-            model.addAttribute("home", "/index");
         }else{
 
             model.addAttribute("status", "Login");
@@ -67,6 +66,35 @@ public class ViewController {
             model.addAttribute("mypage", "/login");
         }
     }
+
+    public void riderSession(Model model, HttpSession session){
+        String id = (String) session.getAttribute("id");
+        String rname = (String) session.getAttribute("rname");
+        String rphone = (String) session.getAttribute("rphone");
+        String radr = (String) session.getAttribute("radr");
+        String license = (String) session.getAttribute("license");
+
+        model.addAttribute("home", "/rider");
+
+        if(id!=null){
+
+            model.addAttribute("id", id);
+            model.addAttribute("rname", rname);
+            model.addAttribute("rphone", rphone);
+            model.addAttribute("radr", radr);
+            model.addAttribute("license", license);
+
+            model.addAttribute("status", "Logout");
+            model.addAttribute("url","/logout");
+            model.addAttribute("mypage", "/mypage_rider");
+        }else{
+
+            model.addAttribute("status", "Login");
+            model.addAttribute("url","/login");
+            model.addAttribute("mypage", "/login");
+        }
+    }
+
     @GetMapping("/")
     public String page(Model model, HttpSession session) {
 
@@ -77,7 +105,7 @@ public class ViewController {
     @GetMapping("/index")
     public String indexpage(Model model, HttpSession session) {
 
-        userSession(model,session);
+       userSession(model,session);
         return "index";
     }
 
@@ -266,7 +294,7 @@ public class ViewController {
     @GetMapping("/register_rider")
     public String register_riderpage(Model model, HttpSession session) {
 
-        userSession(model,session);
+        riderSession(model,session);
         return "register_rider";
     }
 
@@ -287,7 +315,7 @@ public class ViewController {
     @GetMapping("/mp_profile_rider")
     public String mp_profile_riderpage(Model model, HttpSession session) {
 
-        userSession(model,session);
+        riderSession(model,session);
         return "mp_profile_rider";
     }
 
@@ -301,7 +329,15 @@ public class ViewController {
     @GetMapping("/mypage_rider")
     public String mypage_riderpage(Model model, HttpSession session) {
 
-        userSession(model,session);
+        riderSession(model,session);
         return "mypage_rider";
     }
+
+    @GetMapping("/rider")
+    public String riderpage(Model model, HttpSession session) {
+
+        riderSession(model,session);
+        return "rider";
+    }
+
 }

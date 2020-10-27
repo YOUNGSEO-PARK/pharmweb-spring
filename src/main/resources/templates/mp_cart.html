@@ -25,14 +25,7 @@
 
     <div class="container">
         <div class="row justify-content-between">
-            <div class="col-lg-2 navibar">
-                <ul>
-                    <li><a href="mypage">개인정보</a></li>
-                    <li><a href="mp_cart">장바구니</a></li>
-                    <li><a href="mp_history">주문내역</a></li>
-                    <li><a href="mp_delete">회원탈퇴</a></li>
-                </ul>
-            </div>
+            <th:block th:replace="layout/06_mypage :: mypageFragment"></th:block>
             <div class="col-lg-10">
                 <div class="container">
                     <div class="row mb-5">

@@ -26,14 +26,9 @@
 
     <div class="container" style="padding-left:40px;">
         <div class="row justify-content-between">
-            <div class="col-lg-2 navibar">
-                <ul>
-                    <li><a href="mypage">개인정보</a></li>
-                    <li><a href="mp_cart">장바구니</a></li>
-                    <li><a href="mp_history">주문내역</a></li>
-                    <li><a href="mp_delete">회원탈퇴</a></li>
-                </ul>
-            </div>
+
+            <th:block th:replace="layout/06_mypage :: mypageFragment"></th:block>
+
             <div class="col-lg-10">
                 <div class="container" style="padding-left:40px;">
                     <div class=" form-group row" style="padding:50px; border:1px solid #f3f3f3;">
@@ -45,8 +40,7 @@
                                 <div class="form-group ">
                                     <label for="user_id" class="col-sm-5 control-label">아이디</label>
                                     <div class="col-lg-25">
-                                        <input class="form-control" type="text" id="user_id" placeholder="pampam22"
-                                               disabled>
+                                        <p th:text="${id}" class="form-control" type="text" id="user_id"></p>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -58,28 +52,27 @@
                                 <div class="form-group">
                                     <label for="user_name" class="col-sm-5 control-label">이름</label>
                                     <div class="col-lg-25">
-                                        <input class="form-control" type="text" id="user_name" placeholder="홍길동"
-                                               disabled>
+                                        <p th:text="${uname}"class="form-control" type="text" id="user_name"></p>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="user_phone" class="col-sm-5 control-label">핸드폰 번호</label>
+                                    <label for="user_phone" class="col-sm-5 control-label">휴대폰번호</label>
                                     <div class="col-lg-25">
                                         <input class="form-control" type="text" id="user_phone"
-                                               placeholder="010-0000-0000">
+                                               th:placeholder="${uphone}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="user_email" class="col-sm-5 control-label">이메일</label>
                                     <div class="col-lg-25">
                                         <input class="form-control" type="text" id="user_email"
-                                               placeholder="member1@email.com">
+                                               th:placeholder="${uemail}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="user_adr" class="col-sm-5 control-label">주소</label>
                                     <div class="col-lg-25">
-                                        <input class="form-control" type="text" id="user_adr" placeholder="서울특별시 OO구">
+                                        <input class="form-control" type="text" id="user_adr" th:placeholder="${uadr}">
                                     </div>
                                 </div>
                                 <div>
