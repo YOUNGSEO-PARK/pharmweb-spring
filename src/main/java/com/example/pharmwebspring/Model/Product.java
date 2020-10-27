@@ -10,4 +10,5 @@ public class Product {
     private int code;
     private String img_uri;
     private int price;
+    private String prod_info;
 }

@@ -8,5 +8,4 @@ import lombok.Setter;
 public class Code {
     private String code;
     private String category;
-    private String prod_name;
 }

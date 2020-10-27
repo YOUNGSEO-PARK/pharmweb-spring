@@ -72,11 +72,10 @@
             </div>
             <div class="row">
                 <div class="col-sm-6 col-lg-4 text-center item mb-4 item-v2">
-                    <span class="onsale">Sale</span>
-                    <a href="shop_single"> <img src="images/타이레놀.jpg" width="200" height="400" alt="Image"></a>
-                    <h3 class="text-dark"><a href="shop_single">타이레놀</a></h3>
+                    <a href="shop_single"> <img th:src="${img_uri}" width="200" height="400" alt="Image"></a>
+                    <h3 class="text-dark"><a href="shop_single" th:text="${prod_name}"></a></h3>
                     <p class="price">
-                        <del>5000원</del> &mdash; 3000원
+                        <del th:text="${price}"></del>
                     </p>
                 </div>
                 <div class="col-sm-6 col-lg-4 text-center item mb-4 item-v2">

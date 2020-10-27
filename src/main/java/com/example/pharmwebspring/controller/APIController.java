@@ -20,10 +20,10 @@ public class APIController {
     MemberService memberService;
 
     @PostMapping("/uregi")
-    public RegisterRes regUser(@RequestBody User regUser) {
+    public StatusRes regUser(@RequestBody User regUser) {
 
         // validation
-        RegisterRes registerRes = new RegisterRes();
+        StatusRes statusRes = new StatusRes();
 
         String users = memberService.getUserIDList(regUser.getUser_id());
 
@@ -31,20 +31,20 @@ public class APIController {
         if (users == null) {
 
             memberService.insertUser(regUser);
-            registerRes.setStatus(100); // 유저 회원가입 성공
+            statusRes.setStatus(100); // 유저 회원가입 성공
         } else {
 
-            registerRes.setStatus(101); // 유저 회원가입 실패
+            statusRes.setStatus(101); // 유저 회원가입 실패
         }
 
-        return registerRes;
+        return statusRes;
     }
 
     @PostMapping("/pregi")
-    public RegisterRes regPharmacy(@RequestBody Pharmacy regPharmacy) {
+    public StatusRes regPharmacy(@RequestBody Pharmacy regPharmacy) {
 
         // validation\
-        RegisterRes registerRes = new RegisterRes();
+        StatusRes statusRes = new StatusRes();
         System.out.println(regPharmacy);
 
         String pharms = memberService.getPharmIDList(regPharmacy.getPharm_id());
@@ -52,44 +52,44 @@ public class APIController {
         if (pharms == null) {
 
             memberService.insertPharmacy(regPharmacy);
-            registerRes.setStatus(200); // 약사 회원가입 성공
+            statusRes.setStatus(200); // 약사 회원가입 성공
         } else {
 
-            registerRes.setStatus(201); // 약사 회원가입 실패
+            statusRes.setStatus(201); // 약사 회원가입 실패
         }
-        return registerRes;
+        return statusRes;
     }
 
     @PostMapping("/rregi")
-    public RegisterRes regPharmacy(@RequestBody Rider regRider) {
+    public StatusRes regPharmacy(@RequestBody Rider regRider) {
 
         // validation\
-        RegisterRes registerRes = new RegisterRes();
+        StatusRes statusRes = new StatusRes();
         String pharms = memberService.getRiderIDList(regRider.getRider_id());
 
         System.out.print(regRider);
         if (pharms == null) {
 
             memberService.insertRider(regRider);
-            registerRes.setStatus(300); // 라이더 회원가입 성공
+            statusRes.setStatus(300); // 라이더 회원가입 성공
         } else {
 
-            registerRes.setStatus(301); // 라이더 회원가입 실패
+            statusRes.setStatus(301); // 라이더 회원가입 실패
         }
 
-        return registerRes;
+        return statusRes;
     }
 
     @PostMapping("/uidlogin") //sql -> 값 가져와서 성공 실패 보는
-    public RegisterRes LoginUser(HttpServletRequest request, @RequestBody Login login) {
+    public StatusRes LoginUser(HttpServletRequest request, @RequestBody Login login) {
 
-        RegisterRes registerRes = new RegisterRes();
+        StatusRes statusRes = new StatusRes();
         User user = memberService.checkUser(login);
         HttpSession session = request.getSession();
 
         if (user == null) {
 
-            registerRes.setStatus(103);
+            statusRes.setStatus(103);
         } else {
             session.setAttribute("id", user.getUser_id());
             session.setAttribute("uname", user.getUser_name());
@@ -98,21 +98,21 @@ public class APIController {
             session.setAttribute("uadr", user.getUser_adr());
 //            session.setAttribute("category",1);
 
-            registerRes.setStatus(102);
+            statusRes.setStatus(102);
         }
-        return registerRes;
+        return statusRes;
     }
 
     @PostMapping("/pidlogin") //sql -> 값 가져와서 성공 실패 보는
-    public RegisterRes LoginPharmacy(HttpServletRequest request, @RequestBody Login login) {
+    public StatusRes LoginPharmacy(HttpServletRequest request, @RequestBody Login login) {
 
-        RegisterRes registerRes = new RegisterRes();
+        StatusRes statusRes = new StatusRes();
         Pharmacy pharmacy = memberService.checkPharmacy(login);
         HttpSession session = request.getSession();
 
         if (pharmacy == null) {
 
-            registerRes.setStatus(203);
+            statusRes.setStatus(203);
         } else {
 
             session.setAttribute("id", pharmacy.getPharm_id());
@@ -122,21 +122,21 @@ public class APIController {
             session.setAttribute("padr", pharmacy.getPharm_adr());
             session.setAttribute("regino", pharmacy.getRegi_no());
 
-            registerRes.setStatus(202);
+            statusRes.setStatus(202);
         }
-        return registerRes;
+        return statusRes;
     }
 
     @PostMapping("/ridlogin") //sql -> 값 가져와서 성공 실패 보는
-    public RegisterRes LoginRider(HttpServletRequest request, @RequestBody Login login) {
+    public StatusRes LoginRider(HttpServletRequest request, @RequestBody Login login) {
 
-        RegisterRes registerRes = new RegisterRes();
+        StatusRes statusRes = new StatusRes();
         Rider rider = memberService.checkRider(login);
         HttpSession session = request.getSession();
 
         if (rider == null) {
 
-            registerRes.setStatus(303);
+            statusRes.setStatus(303);
         } else {
 
             session.setAttribute("id", rider.getRider_id());
@@ -145,13 +145,13 @@ public class APIController {
             session.setAttribute("radr", rider.getRider_adr());
             session.setAttribute("license", rider.getLicense_no());
 
-            registerRes.setStatus(302);
+            statusRes.setStatus(302);
         }
-        return registerRes;
+        return statusRes;
     }
 
     @PostMapping("/udelete")
-    public RegisterRes DeleteUser(HttpSession session, @RequestBody String pw) throws JSONException {
+    public StatusRes DeleteUser(HttpSession session, @RequestBody String pw) throws JSONException {
 
         Login login = new Login();
 
@@ -161,19 +161,46 @@ public class APIController {
         String login_pw = jObject.getString("login_pw");
         login.setLogin_pw(login_pw);
 
-        RegisterRes registerRes = new RegisterRes();
+        StatusRes statusRes = new StatusRes();
         User user = memberService.checkUser(login);
 
         if (user == null) {
 
-            registerRes.setStatus(401);
+            statusRes.setStatus(401);
         } else {
 
             memberService.deleteUser(login);
-            registerRes.setStatus(400);
+            statusRes.setStatus(400);
             session.invalidate();
         }
 
-        return registerRes;
+        return statusRes;
     }
+
+//    @PostMapping("ucart")
+//    public StatusRes InsertCart(HttpSession session, @ModelAttribute Cart cart){
+//
+//        String uid = (String) session.getAttribute("id");
+//        cart.setUser_id(uid);
+//
+//        int count = cartService.countCart(cart.getProd_name(), uid);
+//        count == 0 ? cartService.updateCart(cart) : cartService.insertCart(cart);
+//
+//        StatusRes statusRes = new StatusRes();
+//
+//        if(count == 0) {
+//
+//            cartService.insert(cart);
+//            statusRes.setStatus(104);
+//        }
+//        else{
+//
+//            cartService.updateCart(cart);
+//            statusRes.setStatus(104);
+//
+//        }
+//
+//        return statusRes;
+//    }
+
 }

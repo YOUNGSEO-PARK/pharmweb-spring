@@ -10,9 +10,9 @@ import lombok.Setter;
 //어노테이션 Foreign key?
 
 public class Cart {
-    private int count;
 
-    private int order_no;
     private String user_id;
+    private int order_no;
     private String prod_name;
+    private int count;
 }
