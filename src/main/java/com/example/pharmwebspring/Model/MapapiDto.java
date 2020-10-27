@@ -8,6 +8,8 @@ import lombok.Setter;
 public class MapapiDto {
 
     private String name;
+    private String adr;
+    private String tell;
     private Float wgs84Lat;
     private Float wgs84Lon;
 
@@ -18,6 +20,14 @@ public class MapapiDto {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getAdr(){return adr;}
+
+    public void setAdr(){this.adr = adr;}
+
+    public String getTell(){return tell;}
+
+    public void setTell(){this.tell = tell;}
 
     public float getLat(){ return wgs84Lat; }
 
