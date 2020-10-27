@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lagn="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block th:replace="layout/01_link :: linkFragment"></th:block>
+
+
+<body>
+
+<div class="site-wrap">
+
+
+    <th:block th:replace="layout/02_header :: headerFragment"></th:block>
+
+
+
+    <div class="py-4">
+        <div class="container">
+        </div>
+    </div>
+
+    <div class="site-section bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="title-section text-center col-12">
+                    <h2>라이더 🏍</h2>
+                </div>
+            </div>
+
+            <div class="site-section  overlay" style="background-color: white;" >
+                <div class="container">
+                    <div class=" form-group row" style="padding:20px; border:3px solid #75b239;">
+                        <div>
+                            <image src="images/person_1.jpg" width="250px" height="250px"></image>
+                        </div>
+                        <div style="padding-left: 100px;">
+                            <p class="text-black">주문번호 : 00000001</p>
+                            <br>
+                            <h5 class="text-black">주문자 이름 : OOO</h5>
+                            <h4 class="text-black"><b>주문자 주소 : 서울특별시 OO구</b></h4>
+                            <p class="text-black">주문내역 <br> - 그날엔 X 1 <br> - 락토핏 X 2 </p>
+                            <p class="text-black">약사의 한마디 : ~~~~~~~~~~~~</p>
+                            <div class="form-group row" >
+                                <div class="col-lg-6">
+                                    <input type="submit" class="btn btn-primary btn-lg btn-block" value="수거완료">
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="submit" class="btn btn-primary btn-lg btn-block" value="배달완료">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="site-section  overlay" style="background-color: white;" >
+                <div class="container">
+                    <div class=" form-group row" style="padding:20px; border:3px solid #75b239;">
+                        <div>
+                            <image src="images/person_1.jpg" width="250px" height="250px"></image>
+                        </div>
+                        <div style="padding-left: 100px;">
+                            <p class="text-black">주문번호 : 00000001</p>
+                            <br>
+                            <h5 class="text-black">주문자 이름 : OOO</h5>
+                            <h4 class="text-black"><b>주문자 주소 : 서울특별시 OO구</b></h4>
+                            <p class="text-black">주문내역 <br> - 그날엔 X 1 <br> - 락토핏 X 2 </p>
+                            <p class="text-black">약사의 한마디 : ~~~~~~~~~~~~</p>
+                            <div class="form-group row" >
+                                <div class="col-lg-6">
+                                    <input type="submit" class="btn btn-primary btn-lg btn-block" value="수거완료">
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="submit" class="btn btn-primary btn-lg btn-block" value="배달완료">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <th:block th:replace="layout/03_footer :: footerFragment"></th:block>
+
+</div>
+
+<th:block th:replace="layout/04_script :: scriptFragment"></th:block>
+
+</body>
+
+</html>
