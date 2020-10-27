@@ -37,68 +37,122 @@
     </div>
 
 
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a3c604898245de14499182b5bd3b6f32
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a3c604898245de14499182b5bd3b6f32
 &libraries=services"></script>
 
-            <script>
-                // 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
-                var infowindow = new kakao.maps.InfoWindow({zIndex:1});
+        <script>
+            // 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
+            var infowindow = new kakao.maps.InfoWindow({zIndex:1});
 
-                var Lon = [];
+            var Lon = [];
 
-                function Getloc() {
-                    $.ajax({
-                        url: "/loc_location",
-                        data: {
-                            name: $("#name").serialize(),
-                            wgs84Lat: $("#wgs84Lat").serialize(),
-                            wgs84Lon: $("#wgs84Lon").serialize()
-                        },
-                        type: "get",
-                        dataType: "json",
-                        async: false,
-                        success: function (data) {
-                            var result = data.json;
-                            $.each(result, function (idx, val){
-                                console.log(idx + " " + val.wgs84Lat);
-                            });
-                            Lon.push(data);
-                        },
-                        error: function () {
-                            alert("error");
-                        }
-                    });
-                }
+            function Getloc() {
+                $.ajax({
+                    url: "/loc_location",
+                    data: {
+                        pharmname: $("#name").serialize(),
+                        pharmadr: $("#adr").serialize(),
+                        pharmtell: $("#tell").serialize(),
+                        wgs84Lat: $("#wgs84Lat").serialize(),
+                        wgs84Lon: $("#wgs84Lon").serialize()
+                    },
+                    type: "get",
+                    dataType: "json",
+                    async: false,
+                    success: function (data) {
+                        var result = data.json;
+                        $.each(result, function (idx, val){
+                            console.log(idx + " " + val.wgs84Lat);
+                        });
+                        Lon.push(data);
+                    },
+                    error: function () {
+                        alert("error");
+                    }
+                });
+            }
 
-                Getloc();
-                console.log(Lon); //>> Lon에 값이 잘 들어갔나 확인.
-                //console.log(Object.keys(Lon)) >> Lon의 Object값 확인.
-                //console.log(Lon["0"][1].lat) >> lat을 사용하기 위해서는 저렇게 사용.
+            Getloc();
+            console.log(Lon); //>> Lon에 값이 잘 들어갔나 확인.
+            //console.log(Object.keys(Lon)) >> Lon의 Object값 확인.
+            //console.log(Lon["0"][1].lat) >> lat을 사용하기 위해서는 저렇게 사용.
 
-                var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-                    mapOption = {
-                        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-                        level: 3 // 지도의 확대 레벨
-                    };
+            var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+                mapOption = {
+                    center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+                    level: 3 // 지도의 확대 레벨
+                };
 
-                var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+            var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+            if (navigator.geolocation) {
+
+                // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+                navigator.geolocation.getCurrentPosition(function (position) {
+
+                    var lat = position.coords.latitude, // 위도
+                        lon = position.coords.longitude; // 경도
+
+                    var locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+                    //message = '<div style="padding:5px;">여기에 계신가요?!</div>'; // 인포윈도우에 표시될 내용입니다
+
+                    // 마커와 인포윈도우를 표시합니다
+                    displayMarker(locPosition);
+
+                });
+
+            } else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+
+                var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),
+                    message = 'geolocation을 사용할수 없어요..'
+
+                displayMarker(locPosition,message);
+            }
+
+            // 지도에 마커와 인포윈도우를 표시하는 함수입니다
+            function displayMarker(locPosition) {
+
+                // 마커를 생성합니다
+                var marker = new kakao.maps.Marker({
+                    map: map,
+                    position: locPosition
+                });
+
+                // 지도 중심좌표를 접속위치로 변경합니다
+                map.setCenter(locPosition);
+
+                var ps = new kakao.maps.services.Places(map);
 
                 var PharmPositions = new Array();
-                for(var idx=0; idx<22953; idx++){
+                for (var idx = 0; idx < 22953; idx++) {
                     var data_lat = Lon["0"][idx].lat;
                     var data_lng = Lon["0"][idx].lon;
                     PharmPositions.push(new kakao.maps.LatLng(data_lat, data_lng));
                 }
 
                 var PharmTitle = new Array();
-                for(var idx=0; idx<22953; idx++){
-                    var data_name = Lon["0"][idx].dutyName;
+                for (var idx = 0; idx < 22953; idx++) {
+                    var data_name = Lon["0"][idx].name;
                     PharmTitle.push(data_name);
                 }
+
+                var PharmAdr = new Array();
+                for (var idx = 0; idx < 22953; idx++){
+                    var data_adr = Lon["0"][idx].adr;
+                    PharmAdr.push(data_adr);
+                }
+
+                var PharmTell = new Array();
+                for(var idx = 0; idx < 22953; idx++){
+                    var data_tell = Lon["0"][idx].tell;
+                    PharmTell.push(data_tell);
+                }
+
                 // 마커 이미지의 이미지 주소입니다
                 var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
 
-                for (var i = 0; i < PharmPositions.length; i ++) {
+                for (var i = 0; i < PharmPositions.length; i++) {
+
                     // 마커 이미지의 이미지 크기 입니다
                     var imageSize = new kakao.maps.Size(24, 35);
                     // 마커 이미지를 생성합니다
@@ -107,12 +161,46 @@
                     var marker = new kakao.maps.Marker({
                         map: map, // 마커를 표시할 지도
                         position: PharmPositions[i], // 마커를 표시할 위치
-                        title : PharmTitle[i], // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-                        image : markerImage // 마커 이미지
+                        title: PharmTitle[i] + content, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+                        image: markerImage, // 마커 이미지
+                        //content: content,
+                        clickable : true
                     });
-                }
 
-            </script>
+
+
+
+
+// 마커를 표시할 위치입니다
+
+// 마커를 생성합니다
+
+// 아래 코드는 위의 마커를 생성하는 코드에서 clickable: true 와 같이
+// 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
+// marker.setClickable(true);
+
+// 마커를 지도에 표시합니다.
+                    marker.setMap(map);
+
+                    var iwContent = '<div style="padding:5px;">Hello World!</div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+                        iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
+
+// 인포윈도우를 생성합니다
+                    var infowindow = new kakao.maps.InfoWindow({
+                        content : iwContent,
+                        removable : iwRemoveable
+                    });
+
+// 마커에 클릭이벤트를 등록합니다
+                    kakao.maps.event.addListener(marker, 'click', function() {
+                        // 마커 위에 인포윈도우를 표시합니다
+                        infowindow.open(map, marker);
+                    });
+
+                }
+            }
+
+        </script>
     <th:block th:replace="layout/03_footer :: footerFragment"></th:block>
 
 </div>
