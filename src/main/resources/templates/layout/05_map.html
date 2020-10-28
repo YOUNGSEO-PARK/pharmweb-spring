@@ -19,7 +19,9 @@
                     pharmadr: $("#adr").serialize(),
                     pharmtell: $("#tell").serialize(),
                     wgs84Lat: $("#wgs84Lat").serialize(),
-                    wgs84Lon: $("#wgs84Lon").serialize()
+                    wgs84Lon: $("#wgs84Lon").serialize(),
+                    open_time: $("#dutyTime2s").serialize(),
+                    close_time: $("#dutyTIme2c").serialize()
                 },
                 type: "get",
                 dataType: "json",
@@ -111,6 +113,27 @@
                 PharmTell.push(data_tell);
             }
 
+            var PharmOTime = new Array();
+            for(var idx = 0; idx < 22953; idx++){
+                var data_otime = Lon["0"][idx].opentime;
+                var data_otimeh = data_otime.substr(0,1);
+                var data_otimet = data_otime.substr(1,2);
+                var data_opentime = data_otimeh + ' : ' +  data_otimet;
+                PharmOTime.push(data_opentime);
+            }
+
+
+            var PharmCTime = new Array();
+            for(var idx = 0; idx < 22953; idx++){
+                var data_ctime = Lon["0"][idx].closetime;
+                var data_ctimeh = data_ctime.substr(0,2);
+                var data_ctimet = data_ctime.substr(2,2);
+                var data_closetime = data_ctimeh + ' : ' + data_ctimet;
+                PharmCTime.push(data_closetime);
+            }
+
+            console.log(Lon);
+
             navigator.geolocation.getCurrentPosition(function (position) {
                 var pluslat = position.coords.latitude+0.01;
                 var pluslon = position.coords.longitude+0.01;
@@ -147,6 +170,8 @@
                             '            <div class="desc">' +
                             '                <div class="ellipsis">'+ PharmAdr[i] +'</div>' +
                             '                <div class="jibun ellipsis">'+ PharmTell[i] +'</div>' +
+                            '                <div class="jibun ellipsis">'+ 'openTime : ' + PharmOTime[i] +'</div>' +
+                            '                <div class="jibun ellipsis">'+ 'closeTime : ' + PharmCTime[i] +'</div>' +
                             '            </div>' +
                             '        </div>' +
                             '    </div>' +

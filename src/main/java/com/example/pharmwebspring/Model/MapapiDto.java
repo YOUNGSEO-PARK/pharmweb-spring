@@ -1,6 +1,9 @@
 package com.example.pharmwebspring.Model;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.sql.Time;
+
 @Getter
 @Setter
 public class MapapiDto {
@@ -10,6 +13,8 @@ public class MapapiDto {
     private String tell;
     private Float wgs84Lat;
     private Float wgs84Lon;
+    private String opentime;
+    private String closetime;
 
     public String getName() {
         return name;
@@ -27,6 +32,12 @@ public class MapapiDto {
     public void setTell(){this.tell = tell;}
 
     public float getLat(){ return wgs84Lat; }
+
+    public String getOpentime() {return opentime;}
+    public void setOpentime(String opentime){this. opentime = opentime;}
+
+    public String getClosetime() {return closetime;}
+    public void setClosetime(String closetime){this.closetime = closetime;}
 
     public void setLat(float wgs84Lat){
         this.wgs84Lat = wgs84Lat;

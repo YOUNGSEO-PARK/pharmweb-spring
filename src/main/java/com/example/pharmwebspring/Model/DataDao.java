@@ -30,6 +30,8 @@ public class DataDao {
                 dto.setTell(rs.getString("dutyTel1"));
                 dto.setLat(rs.getFloat("wgs84Lat"));
                 dto.setLon(rs.getFloat("wgs84Lon"));
+                dto.setOpentime(rs.getString("dutyTime2s"));
+                dto.setClosetime(rs.getString("dutyTime2c"));
                 list.add(dto);
             }
         } catch (Exception e) {
