@@ -1,6 +1,8 @@
 package com.example.pharmwebspring.controller;
 
 import com.example.pharmwebspring.Model.Order;
+import com.example.pharmwebspring.Service.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.websocket.OnClose;
@@ -90,6 +92,7 @@ public class RiderWebSocketController {
     }
 
     public static HashMap<Integer, Order> getOrders() {
+
         return orders;
     }
 }

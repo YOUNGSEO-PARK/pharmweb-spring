@@ -2,6 +2,8 @@ package com.example.pharmwebspring.controller;
 
 import com.example.pharmwebspring.Model.Order;
 import com.example.pharmwebspring.Model.Rider;
+import com.example.pharmwebspring.Service.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.websocket.OnClose;
@@ -17,6 +19,8 @@ import java.util.StringTokenizer;
 @Component
 @ServerEndpoint(value = "/pharmacistWebSocket")
 public class PharmacistWebSocketController {
+    static OrderService orderService;
+
     private int id;
     private Session session;
 
@@ -28,6 +32,11 @@ public class PharmacistWebSocketController {
         loginNumber = 0;
         orders = new HashMap<>();
         pharmacist = new HashMap<>();
+    }
+
+    @Autowired
+    public void setOrderService(OrderService service) {
+        orderService = service;
     }
 
     @OnOpen
@@ -66,6 +75,8 @@ public class PharmacistWebSocketController {
     }
 
     public void requestOrderList() {
+        orders = getOrders();
+        System.out.println("PASS");
         try {
             StringBuilder result = new StringBuilder();
             for (Map.Entry<Integer, Order> e : orders.entrySet()) {
@@ -88,7 +99,7 @@ public class PharmacistWebSocketController {
                         "                            </div>\n" +
                         "                            <div class=\"form-group row\" style=\"float: right\">\n" +
                         "                                <div class=\"col-lg-6\">\n" +
-                        "                                    <input type=\"submit\" class=\"btn btn-primary btn-lg btn-block\" value=\"Yes\" onclick=\"sendToRider(" + e.getValue().getOrder_no() + "," + e.getValue().getOrder_name() + ", " + e.getValue().getOrder_adr1() + ", " + e.getValue().getOrder_adr2() + "," + e.getValue().getOrder_prod() + ")\">\n" +
+                        "                                    <input type=\"submit\" class=\"btn btn-primary btn-lg btn-block\" value=\"Yes\" onclick=\"sendToRider(\'" + e.getValue().getOrder_no() + "\',\'" + e.getValue().getOrder_name() + "\', \'" + e.getValue().getOrder_adr1() + "\', \'" + e.getValue().getOrder_adr2() + "\',\'" + e.getValue().getOrder_prod() + "\')\">\n" +
                         "                                </div>\n" +
                         "                                <div class=\"col-lg-6\">\n" +
                         "                                    <input type=\"submit\" class=\"btn btn-primary btn-lg btn-block\" value=\"No\">\n" +
@@ -98,7 +109,7 @@ public class PharmacistWebSocketController {
                         "                    </div>\n" +
                         "                </div>");
             }
-
+            System.out.println(result.toString());
             session.getBasicRemote().sendText(result.toString());
         } catch (Exception e) {
             System.out.println("Exception ID : " + id);
@@ -114,7 +125,13 @@ public class PharmacistWebSocketController {
     }
 
     public static HashMap<Integer, Order> getOrders() {
-        //List<Order> list =
-        return orders;
+        List<Order> list = orderService.getOrderList();
+        System.out.println(list.toString());
+        HashMap<Integer, Order> hashMap = new HashMap<>();
+
+        for (int i = 0;i < list.size();++i) {
+            hashMap.put(i, list.get(i));
+        }
+        return hashMap;
     }
 }

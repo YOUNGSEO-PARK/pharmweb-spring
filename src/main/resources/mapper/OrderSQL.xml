@@ -8,9 +8,9 @@
         VALUE (#{order_no}, #{order_user_id}, #{order_name}, #{order_adr1}, #{order_adr2}, #{order_phone}, #{order_msg})
     </insert>
 
-<!--    <select id="getOrder" parameterType="orderList">-->
-<!--        select * from parmdb.order where order_user_id=#{order_user_id}-->
-<!--    </select>-->
+    <select id="getOrder" resultType="com.example.pharmwebspring.Model.Order">
+        select * from parmdb.order
+        </select>
 
 <!--    <select id="getProduct" parameterType="String" resultType="com.example.pharmwebspring.Model.Product">-->
 <!--        select * from parmdb.product where-->

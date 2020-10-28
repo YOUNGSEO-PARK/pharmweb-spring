@@ -4,11 +4,13 @@ import com.example.pharmwebspring.Model.Order;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 @Mapper
 public interface OrderDAO {
 
     void setOrder(Order order);
 
-    void getOrder(Order order);
+    List<Order> getOrder();
 }
