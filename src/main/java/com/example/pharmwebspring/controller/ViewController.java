@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,13 +16,16 @@ import java.util.List;
 @Controller
 public class ViewController {
 
-//    public String ShopProduct(Model model){
-//        List<Product> productList = new ArrayList<>();
-//
-//        productList.add(new Product("락토핏", 'C', "images/락토핏.jpg", 4000));
-//
-//        return
-//    }
+    public void ShopProduct(Product product){
+        List<Product> productList = new ArrayList<>();
+
+        String prod_name = product.getProd_name();
+        String img_uri = product.getImg_uri();
+        int price = product.getPrice();
+        String prod_info = product.getProd_info();
+
+
+    }
 
     public void userSession(Model model, HttpSession session){
         String id = (String) session.getAttribute("id");
@@ -164,19 +168,21 @@ public class ViewController {
         userSession(model,session);
         return "custom";
     }
-
     @Autowired
     private DataDao dataDao;
 
     @ResponseBody
     @RequestMapping(value = "/loc_location", method = RequestMethod.GET)
     public List<MapapiDto> location(){
+
         ArrayList<MapapiDto> list = dataDao.getDataAll();
         return list;
     }
 
     @GetMapping("/location")
-    public String locationpage(){
+    public String locationpage(Model model, HttpSession session){
+
+        userSession(model,session);
         return "location";
     }
 
@@ -362,4 +368,10 @@ public class ViewController {
         return "rider";
     }
 
+    @GetMapping("/contents_01")
+    public String contents_01page(Model model, HttpSession session) {
+
+        userSession(model, session);
+        return "contents_01";
+    }
 }

@@ -219,8 +219,7 @@ $("#userDeleteBtn").on('click', () => { //.on 이벤트 트리거
     }
 })
 
-//------------------------------success-fin-------------------------------------------------------------------
-
+//map
 var myCommon = {};
 myCommon.util = {
     // method : get/post , url : call url
@@ -252,3 +251,32 @@ myCommon.util = {
         });
     }
 };
+
+//------------------------------success-fin-------------------------------------------------------------------
+
+$("#CartBtn").on('click', () => { //.on 이벤트 트리거
+    var data = {};
+    $("form[name=regiform]").serializeArray().map(function (x) {
+        data[x.name] = x.value;
+    });
+    console.log(data)
+
+    $.ajax({
+        type: "POST", //fix
+        dataType: "json", //fix
+        contentType: "application/json; charset=utf-8;", //fix
+        url: "/api/shop_single",
+        data: JSON.stringify(data), //fix ; 객체->스트링
+    }).done(function (data) {
+
+        //로직 필요에 따라 변경
+        if (data.status == 104) {
+            alert("상품이 성공적으로 장바구니에 담겼습니다.")
+            document.location.href = '/shop_single';
+        } else if (data.status == 105) {
+            alert("이미 장바구니에 있는 제품입니다.");
+        } else if (data.status == 106) {
+            alert("장바구니에 추가하지 못했습니다.");
+        }
+    })
+})
