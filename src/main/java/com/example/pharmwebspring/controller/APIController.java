@@ -100,10 +100,13 @@ public class APIController {
     }
 
     @PostMapping("/insertorder")
-    public StatusRes insertOrder(@RequestBody Order order) {
+    public StatusRes insertOrder(HttpSession session, @RequestBody Order order) {
 
 
         StatusRes statusRes = new StatusRes();
+
+        order.setOrder_user_id((String) session.getAttribute("id"));
+
         orderService.insertOrder(order);
 
         String orders = order.getOrder_name();

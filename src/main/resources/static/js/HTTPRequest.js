@@ -336,6 +336,31 @@ myCommon.util = {
     }
 };
 
+$("#orderBtn").on('click', () => { //.on 이벤트 트리거
+    var data = {};
+    $("form[name=orderform]").serializeArray().map(function (x) {
+        data[x.name] = x.value;
+    });
+    console.log(data)
+
+    $.ajax({
+        type: "POST", //fix
+        dataType: "json", //fix
+        contentType: "application/json; charset=utf-8;", //fix
+        url: "/api/insertorder",
+        data: JSON.stringify(data), //fix ; 객체->스트링
+    }).done(function (data) {
+
+        //로직 필요에 따라 변경
+        if (data.status == 600) {
+            alert("주문 완료! 감사합니다!")
+            document.location.href = '/thankyou';
+        } else if (data.status == 601) {
+            alert("주문 실패! 다시 시도해주세요.")
+        }
+    })
+})
+
 //------------------------------success-fin-------------------------------------------------------------------
 
 $("#CartBtn").on('click', () => { //.on 이벤트 트리거
@@ -366,29 +391,3 @@ $("#CartBtn").on('click', () => { //.on 이벤트 트리거
 })
 
 
-
-
-$("#orderBtn").on('click', () => { //.on 이벤트 트리거
-    // var data = {};
-    $("form[name=orderform]").serializeArray().map(function (x) {
-        data[x.name] = x.value;
-    });
-    console.log(data)
-
-    $.ajax({
-        type: "POST", //fix
-        dataType: "json", //fix
-        contentType: "application/json; charset=utf-8;", //fix
-        url: "/api/insertorder",
-        data: JSON.stringify(data), //fix ; 객체->스트링
-    }).done(function (data) {
-
-        //로직 필요에 따라 변경
-        if (data.status == 600) {
-            alert("주문 완료!")
-            document.location.href = '/thankyou';
-        } else if (data.status == 601) {
-            alert("주문 실패!")
-        }
-    })
-})
