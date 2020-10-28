@@ -4,6 +4,7 @@ import com.example.pharmwebspring.DAO.CartDAO;
 import com.example.pharmwebspring.Model.*;
 import com.example.pharmwebspring.Service.CartService;
 import com.example.pharmwebspring.Service.MemberService;
+import com.example.pharmwebspring.Service.OrderService;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,10 @@ public class APIController {
 
     @Autowired
     MemberService memberService;
+    @Autowired
     CartService cartService;
+    @Autowired
+    OrderService orderService;
 
     @PostMapping("/udup")
     public StatusRes dupUser(@RequestBody User dupUser) {
@@ -59,7 +63,7 @@ public class APIController {
     }
 
     @PostMapping("/rdup")
-    public StatusRes dupRdier(@RequestBody User dupRider) {
+    public StatusRes dupRider(@RequestBody User dupRider) {
 
         // validation
         StatusRes statusRes = new StatusRes();
@@ -90,6 +94,27 @@ public class APIController {
         } else {
 
             statusRes.setStatus(101); // 유저 회원가입 실패
+        }
+
+        return statusRes;
+    }
+
+    @PostMapping("/insertorder")
+    public StatusRes insertOrder(@RequestBody Order order) {
+
+
+        StatusRes statusRes = new StatusRes();
+        orderService.insertOrder(order);
+
+        String orders = order.getOrder_name();
+        System.out.println(orders);
+
+        if (orders == null) {
+
+            statusRes.setStatus(601);
+        } else {
+
+            statusRes.setStatus(600);
         }
 
         return statusRes;

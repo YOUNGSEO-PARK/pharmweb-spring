@@ -16,16 +16,16 @@ import java.util.List;
 @Controller
 public class ViewController {
 
-    public void ShopProduct(Product product){
-        List<Product> productList = new ArrayList<>();
-
-        String prod_name = product.getProd_name();
-        String img_uri = product.getImg_uri();
-        int price = product.getPrice();
-        String prod_info = product.getProd_info();
-
-
-    }
+//    public void ShopProduct(Product product){
+//        List<Product> productList = new ArrayList<>();
+//
+//        String prod_name = product.getProd_name();
+//        String img_uri = product.getImg_uri();
+//        int price = product.getPrice();
+//        String prod_info = product.getProd_info();
+//
+//
+//    }
 
     public void userSession(Model model, HttpSession session){
         String id = (String) session.getAttribute("id");

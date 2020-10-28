@@ -31,45 +31,66 @@
                     </div>
                 </div>
             </div>
+
             <div class="row">
+
                 <div class="col-md-6 mb-5 mb-md-0">
+
                     <h2 class="h3 mb-3 text-black">주문서</h2>
-                    <div class="p-3 p-lg-5 border">
-                        <div class="form-group row">
-                            <div class="col-md-6">
-                                <label for="user_name" class="text-black">이름<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="user_name" name="user_name">
+                    <form name="orderform">
+                        <div class="p-3 p-lg-5 border">
+
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label for="order_no" class="text-black">주문번호<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="order_no" name="order_name">
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group row">
-                            <div class="col-md-12">
-                                <label for="c_address" class="text-black">주소 <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="c_address" name="c_address"
-                                       placeholder="시,군,구 (도로명)">
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label for="order_name" class="text-black">이름<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="order_name" name="order_name">
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="세부주소">
-                        </div>
-
-                        <div class="form-group row mb-5">
-                            <div class="col-md-12">
-                                <label for="c_phone" class="text-black">핸드폰 번호<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="c_phone" name="c_phone"
-                                       placeholder="-없이 작성해주세요.">
+                            <div class="form-group row">
+                                <div class="col-md-12">
+                                    <label for="order_adr1" class="text-black">주소 <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="order_adr1" name="order_adr1"
+                                           placeholder="시,군,구 (도로명)">
+                                </div>
                             </div>
+
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="order_adr2" name="order_adr2" placeholder="세부주소">
+                            </div>
+
+                            <div class="form-group row mb-5">
+                                <div class="col-md-12">
+                                    <label for="order_phone" class="text-black">핸드폰 번호<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="order_phone" name="order_phone"
+                                           placeholder="-없이 작성해주세요.">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="order_msg" class="text-black">주문 메세지</label>
+                                <input type="text" name="order_msg" id="order_msg" cols="30" rows="5" class="form-control"
+                                          placeholder="약사님께 전할 메세지가 있으시면 작성해주세요.">
+                            </div>
+
+
+                            <div class="form-group">
+                                <input type="button" class="btn btn-primary btn-lg btn-block" id="orderBtn" value="주문완료">
+                            </div>
+
                         </div>
 
-                        <div class="form-group">
-                            <label for="c_order_notes" class="text-black">주문 메세지</label>
-                            <textarea name="c_order_notes" id="c_order_notes" cols="30" rows="5" class="form-control"
-                                      placeholder="약사님께 전할 메세지가 있으시면 작성해주세요."></textarea>
-                        </div>
+                    </form>
 
-                    </div>
                 </div>
+
                 <div class="col-md-6">
 
                     <div class="row mb-5">
@@ -100,7 +121,7 @@
                                     </tr>
                                     </tbody>
                                 </table>
-
+                            </div>
                                 <div class="border mb-3">
                                     <h3 class="h6 mb-0"><a class="d-block" data-toggle="collapse" href="#collapsecheque"
                                                            role="button"
@@ -126,12 +147,7 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="form-group">
-                                    <button class="btn btn-primary btn-lg btn-block"
-                                            onclick="window.location='thankyou'">주문 완료
-                                    </button>
-                                </div>
+<!--btn-->
 
                             </div>
                         </div>
@@ -147,7 +163,7 @@
 </div>
 
 <th:block th:replace="layout/04_script :: scriptFragment"></th:block>
-
+<script src="js/HTTPRequest.js"></script>
 </body>
 
 </html>
