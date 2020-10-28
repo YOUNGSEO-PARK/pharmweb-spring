@@ -2,13 +2,11 @@ package com.example.pharmwebspring.controller;
 
 import com.example.pharmwebspring.Model.DataDao;
 import com.example.pharmwebspring.Model.MapapiDto;
-import com.example.pharmwebspring.Model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
@@ -284,11 +282,11 @@ public class ViewController {
         return "shop_urology";
     }
 
-    @GetMapping("/shop_vitamin")
-    public String shop_vitaminpage(Model model, HttpSession session) {
+    @GetMapping("/shop_flu")
+    public String shop_flupage(Model model, HttpSession session) {
 
         userSession(model,session);
-        return "shop_vitamin";
+        return "shop_flu";
     }
 
     @GetMapping("/thankyou")
