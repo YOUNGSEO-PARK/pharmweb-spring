@@ -32,6 +32,8 @@ public class DataDao {
             while (rs.next()) {
                 MapapiDto dto = new MapapiDto();
                 dto.setName(rs.getString("dutyName"));
+                dto.setAdr(rs.getString("dutyAddr"));
+                dto.setTell(rs.getString("dutyTel1"));
                 dto.setLat(rs.getFloat("wgs84Lat"));
                 dto.setLon(rs.getFloat("wgs84Lon"));
                 list.add(dto);
