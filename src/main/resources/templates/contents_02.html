@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block th:replace="layout/01_link :: linkFragment"></th:block>
+
+<style>
+    h4{
+        color: #75b239;
+    }
+    p{
+        color:#000000;
+    }
+</style>
+
+<body>
+
+<div class="site-wrap">
+
+
+    <th:block th:replace="layout/02_header :: headerFragment"></th:block>
+
+    <div class="bg-light py-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 mb-0"><a href="index.html">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Tips</strong></div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="title-section text-center col-12">
+                <h2><strong class="text-primary">임신 중 약 복용방법👨‍👩‍👦</strong></h2>
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="p-3 p-lg-5 border">
+                <p>"임신인 줄 모르고 약을 먹었어요. 아기가 괜찮을까요?" 약국을 하면 약물 복용에 주의해야 한다는 것은 이미 상식이다. 하지만 언제부터 어떻게 주의해야 하는 것일까? 임신 첫달부터 출산까지 절대로 약을 먹어서는 안된다는 것일까?</p>
+                <br>
+                <br>
+                <div>
+                    <h4>임신과 약품복용</h4>
+                    <p>일반적으로 인간은 어머니 뱃속에서 열 달을 살고 세상에 태어난다. 하지만 이 때의 열 달은 한 달을 28일로 쳐서 280일을 말하는 것이고 정자와 난자가 만나 수정란이 된 때로부터 266일정도에 지나지 않는다. 뿐만 아니라 이 수정란이 자궁벽에 정상적으로 착상되어야만 태아가 자라날 수 있다는 것을 감안하면 실제로 태아가 자라는 기간은 약 260일이라고 할 수 있다.</p>
+                    <p>만약 생리예정일 전에 약을 먹었는데 생리가 없어서 임신인 사실을 알게 되었다면 약 때문에 기형아가 태어날까를 걱정하지 않아도 된다. 왜나하면 임신을 하였다 해도 생리예정일 일주일 전까 지는 아직 수정란이 착상되지 않았고, 생리예정일을 앞둔 1주일동안은 수정란이 비록 착상되었다 해도 어머니로부터 본격적으로 영양을 공급받지는 많고 수정란 자체의 분열이 이루어지는 시기라 서 어머니가 약을 먹었더라도 태아에게는 거의 영향을 미치지 않기 때문이다.</p>
+                    <p>실제로 어머니가 복용한 약이 태아에게 가장 심각한 영향을 미치는 시기는 임신 후 27∼67일 (삼개 월)가량으로 이 시기는 태아의 세포분열이 왕성하게 일어나고 중요 장기가 형성되는 시기이므로 사소한 부작용으로도 기형이 되거나 유산이 될 위험이 가장 큰 시기이다.
+                        따라서 가임기 여성은 생리예정일을 전후하여서부터는 임신가능성을 생각하여 약물 복용에 주의를 기울여야 하겠으며 임신이 확인이 되었다면 이후 두어 달은 약물 복용에 특별히 신중을 기해야 한다.</p>
+                    <h4>약물이 태아에게 영향을 미치는 시기</h4>
+                    <p>수정란이 자궁에 착상하여 탯줄이 형성되면 그때부터 태아는 이 탯줄을 통해 어머니와 연결되고 탯줄 안의 혈관을 통해 어머니로부터 영양과 산소를 공급받는다. 따라서 어머니가 과일을 많이 먹으면 태아도 과일을 많이 먹는 것과 같으며 어머니가 술이나 담배를 하면 태아도 술이나 담배를 피우는 것과 같고 어머니가 약을 복용하면 태아도 약을 복용하는 것과 같아진다.</p>
+                    <p>하지만 어머니의 경우는 술이나 담배, 약물이 간을 거쳐 어느 정도 해독이 되는 반면 태아의 간은 이제 막 생겨나기 시작하거나 모양만 갖춰져 있어 술이나 담배, 약물의 독성을 해독하지 못하므로 어머니보다 태아에게 그 위험이 훨씬 복합적이고 크게 나타난다.
+                        특히 약물은 술이나 담배보다 훨씬 더 위험한데 어머니에게는 적당량이라해도 태아에게는 과잉으로 작용되기 때문이다. 태아에게 나쁜 영향을 미치는 약은 많이 있지만 특히 진정제, 진통제, 항생제, 감기약에 들어있는 항히스타민제등은 태아에게 치명적인 악영향을 미칠 수 있으므로 임신중에 약물을 복용해야 할 때 는 반드시 전문가와 상의할 일이다.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <th:block th:replace="layout/03_footer :: footerFragment"></th:block>
+
+</div>
+
+<th:block th:replace="layout/04_script :: scriptFragment"></th:block>
+
+</body>
+
+</html>
