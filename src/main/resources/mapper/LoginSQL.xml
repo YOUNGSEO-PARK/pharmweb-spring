@@ -53,6 +53,7 @@
         INSERT INTO parmdb.order (order_no, order_name, order_adr1, order_adr2, order_phone, order_msg)
         VALUE (#{order_no}, #{order_name}, #{order_adr1}, #{order_adr2}, #{order_phone}, #{order_msg})
     </insert>
+
 <!--    <select id="getProduct" parameterType="String" resultType="com.example.pharmwebspring.Model.Product">-->
 <!--        select * from parmdb.product where-->
 <!--    </select>-->

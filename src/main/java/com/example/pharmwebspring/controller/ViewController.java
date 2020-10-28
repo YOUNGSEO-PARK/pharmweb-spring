@@ -292,6 +292,7 @@ public class ViewController {
     @GetMapping("/thankyou")
     public String thankyoupage(Model model, HttpSession session) {
 
+        PharmacistWebSocketController.updateOrderList();
         userSession(model,session);
         return "thankyou";
     }

@@ -1,8 +1,8 @@
 package com.example.pharmwebspring.controller;
 
-import com.example.pharmwebspring.DAO.CartDAO;
+//import com.example.pharmwebspring.DAO.CartDAO;
 import com.example.pharmwebspring.Model.*;
-import com.example.pharmwebspring.Service.CartService;
+//import com.example.pharmwebspring.Service.CartService;
 import com.example.pharmwebspring.Service.MemberService;
 import com.example.pharmwebspring.Service.OrderService;
 import org.json.JSONException;
@@ -21,8 +21,8 @@ public class APIController {
 
     @Autowired
     MemberService memberService;
-    @Autowired
-    CartService cartService;
+//    @Autowired
+//    CartService cartService;
     @Autowired
     OrderService orderService;
 
@@ -258,33 +258,33 @@ public class APIController {
         return statusRes;
     }
 
-    @PostMapping("/ucart")
-    public StatusRes InsertCart(HttpSession session, @ModelAttribute Cart cart){
-
-        String uid = (String) session.getAttribute("id");
-        cart.setUser_id(uid);
-
-        int count = cartService.countCart(cart.getCart_prod_name(), uid);
-
-        StatusRes statusRes = new StatusRes();
-
-        if(count == 0) {
-
-            cartService.insertCart(cart);
-            statusRes.setStatus(104);
-        }
-        else if(count > 0){
-
-            cartService.updateCart(cart);
-            statusRes.setStatus(105);
-
-        }
-        else{
-
-            statusRes.setStatus(106);
-        }
-
-        return statusRes;
-    }
+//    @PostMapping("/ucart")
+//    public StatusRes InsertCart(HttpSession session, @ModelAttribute Cart cart){
+//
+//        String uid = (String) session.getAttribute("id");
+//        cart.setUser_id(uid);
+//
+//        int count = cartService.countCart(cart.getCart_prod_name(), uid);
+//
+//        StatusRes statusRes = new StatusRes();
+//
+//        if(count == 0) {
+//
+//            cartService.insertCart(cart);
+//            statusRes.setStatus(104);
+//        }
+//        else if(count > 0){
+//
+//            cartService.updateCart(cart);
+//            statusRes.setStatus(105);
+//
+//        }
+//        else{
+//
+//            statusRes.setStatus(106);
+//        }
+//
+//        return statusRes;
+//    }
 
 }
