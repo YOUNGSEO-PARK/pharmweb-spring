@@ -374,4 +374,33 @@ public class ViewController {
         userSession(model, session);
         return "contents_01";
     }
+
+    @GetMapping("/contents_02")
+    public String contents_02page(Model model, HttpSession session) {
+
+        userSession(model, session);
+        return "contents_02";
+    }
+
+    @GetMapping("/contents_03")
+    public String contents_03page(Model model, HttpSession session) {
+
+        userSession(model, session);
+        return "contents_03";
+    }
+
+    @GetMapping("/contents_04")
+    public String contents_04page(Model model, HttpSession session) {
+
+        userSession(model, session);
+        return "contents_04";
+    }
+
+    @GetMapping("/contents_05")
+    public String contents_05page(Model model, HttpSession session) {
+
+        userSession(model, session);
+        return "contents_05";
+    }
+
 }
