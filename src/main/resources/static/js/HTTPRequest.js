@@ -134,7 +134,6 @@ $("#userRegiBtn").on('click', () => { //.on 이벤트 트리거
             }
         })
     }
-
 })
 
 $("#pharmRegiBtn").on('click', () => { //.on 이벤트 트리거
@@ -156,7 +155,7 @@ $("#pharmRegiBtn").on('click', () => { //.on 이벤트 트리거
             //로직 필요에 따라 변경
             if (data.status == 200) {
                 alert("약사 회원가입 성공! 환영합니다!")
-                document.location.href = '/index';
+                document.location.href = '/pharmacist';
             } else if (data.status == 201) {
                 alert("약사 회원가입 실패! 아이디와 비밀번호를 다시 입력해주세요!")
             }
@@ -183,7 +182,7 @@ $("#riderRegiBtn").on('click', () => { //.on 이벤트 트리거
             //로직 필요에 따라 변경
             if (data.status == 300) {
                 alert("라이더 회원가입 성공! 환영합니다!")
-                document.location.href = '/index';
+                document.location.href = '/rider';
             } else if (data.status == 301) {
                 alert("라이더 회원가입 실패! 아이디와 비밀번호를 다시 입력해주세요!")
             }
