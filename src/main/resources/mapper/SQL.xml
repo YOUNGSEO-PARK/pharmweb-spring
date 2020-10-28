@@ -49,9 +49,9 @@
         delete from parmdb.user where user_id=#{login_id} and user_pw=#{login_pw}
     </delete>
 
-    <select id="getProduct" parameterType="String" resultType="com.example.pharmwebspring.Model.Product">
-        select * from parmdb.product where
-    </select>
+<!--    <select id="getProduct" parameterType="String" resultType="com.example.pharmwebspring.Model.Product">-->
+<!--        select * from parmdb.product where-->
+<!--    </select>-->
     
 <!--    <insert id="insertCart" parameterType="com.example.pharmwebspring.Model.Cart">-->
 <!--        INSERT INTO parmdb.cart (user_id, order_no, cart_img_uri, prod_name, count, cart_prod_price)-->

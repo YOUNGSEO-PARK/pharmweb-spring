@@ -22,15 +22,67 @@ public class APIController {
     MemberService memberService;
     CartService cartService;
 
+    @PostMapping("/udup")
+    public StatusRes dupUser(@RequestBody User dupUser) {
+
+        // validation
+        StatusRes statusRes = new StatusRes();
+        String users = memberService.getUserIDList(dupUser.getUser_id());
+
+        if (users == null) {
+
+            statusRes.setStatus(100); // 유저 회원가입 성공
+        } else {
+
+            statusRes.setStatus(101); // 유저 회원가입 실패
+        }
+
+        return statusRes;
+    }
+
+    @PostMapping("/pdup")
+    public StatusRes dupPharm(@RequestBody User dupPharm) {
+
+        // validation
+        StatusRes statusRes = new StatusRes();
+        String users = memberService.getUserIDList(dupPharm.getUser_id());
+
+        if (users == null) {
+
+            statusRes.setStatus(200);
+        } else {
+
+            statusRes.setStatus(201);
+        }
+
+        return statusRes;
+    }
+
+    @PostMapping("/rdup")
+    public StatusRes dupRdier(@RequestBody User dupRider) {
+
+        // validation
+        StatusRes statusRes = new StatusRes();
+        String users = memberService.getUserIDList(dupRider.getUser_id());
+
+        if (users == null) {
+
+            statusRes.setStatus(300);
+        } else {
+
+            statusRes.setStatus(301);
+        }
+
+        return statusRes;
+    }
+
     @PostMapping("/uregi")
     public StatusRes regUser(@RequestBody User regUser) {
 
         // validation
         StatusRes statusRes = new StatusRes();
-
         String users = memberService.getUserIDList(regUser.getUser_id());
 
-        System.out.print(regUser);
         if (users == null) {
 
             memberService.insertUser(regUser);
@@ -48,8 +100,6 @@ public class APIController {
 
         // validation\
         StatusRes statusRes = new StatusRes();
-        System.out.println(regPharmacy);
-
         String pharms = memberService.getPharmIDList(regPharmacy.getPharm_id());
 
         if (pharms == null) {
@@ -60,6 +110,7 @@ public class APIController {
 
             statusRes.setStatus(201); // 약사 회원가입 실패
         }
+
         return statusRes;
     }
 
@@ -70,7 +121,6 @@ public class APIController {
         StatusRes statusRes = new StatusRes();
         String pharms = memberService.getRiderIDList(regRider.getRider_id());
 
-        System.out.print(regRider);
         if (pharms == null) {
 
             memberService.insertRider(regRider);

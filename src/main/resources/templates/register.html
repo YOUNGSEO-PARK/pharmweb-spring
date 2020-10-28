@@ -20,6 +20,7 @@
             </div>
         </div>
     </div>
+
     <div class="site-section">
         <div class="container">
             <div class="row">
@@ -27,16 +28,17 @@
                     <h2 class="h3 mb-5 text-black">유저 회원가입</h2>
                 </div>
                 <div class="col-md-12">
+
                     <form name="regiform" action="#" method="post">
+
                         <div class="p-3 p-lg-5 border">
                             <div class="form-group" style="padding-left: 250px;">
                                 <div class="form-group row">
                                     <div class="col-md-8">
-                                        <label for="user_id" class="text-black">아이디 <span
-                                                class="text-danger">*</span></label>
+                                        <label for="user_id" class="text-black">아이디 <span class="text-danger">*</span></label>
                                         <input type="text" class="form-control" id="user_id" name="user_id"
                                                required="required">
-                                        <p class="btn" id ="userDuplicateBtn" style="float: right; color:#75b239; padding:0px; margin:0px;">
+                                        <p class="btn" id="userDuplicateBtn" style="float: right; color:#75b239; padding:0px; margin:0px;">
                                             중복확인</p>
                                     </div>
                                 </div>
@@ -89,7 +91,7 @@
                                     </div>
                                 </div>
                             </div>
-
+                        </div>
                     </form>
                 </div>
 
@@ -102,5 +104,6 @@
 </div>
 
 <th:block th:replace="layout/04_script :: scriptFragment"></th:block>
+<script src="js/HTTPRequest.js"></script>
 </body>
 </html>
