@@ -55,9 +55,9 @@
         container.innerHTML = event.data
     }
 
-    function sendToRider(number, name, adr1, adr2, prod) {
+    function sendToRider(number, id, name, adr1, adr2, prod, s) {
         const msg = document.getElementById(number).value
-        websocket.send(number + "/" + name + "/" + adr1 + "/" + adr2 + "/" + prod + "/" + msg)
+        websocket.send(number + "/"+ id + "/" + name + "/" + adr1 + "/" + adr2 + "/" + prod+ "/" + s)
     }
 </script>
 </html>

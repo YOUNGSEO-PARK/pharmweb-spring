@@ -20,7 +20,7 @@ public class RiderWebSocketController {
     private Session session;
 
     private static int loginNumber;
-    public static HashMap<Integer, Order> orders;
+    public static HashMap<String, Order> orders;
     public static HashMap<Integer, RiderWebSocketController> riders;
 
     static {
@@ -46,35 +46,50 @@ public class RiderWebSocketController {
 
     @OnMessage
     public void onMessage(String message) {
-
+        System.out.println("수거완료");
     }
 
     public void requestOrderList() {
         try {
             StringBuilder result = new StringBuilder();
-            for (Map.Entry<Integer, Order> e : orders.entrySet()) {
+            for (Map.Entry<String, Order> e : orders.entrySet()) {
                 result.append("<div class=\"container\">\n" +
                         "                    <div class=\" form-group row\" style=\"margin-bottom:20px; padding:20px; border:3px solid #75b239;\">\n" +
+
                         "                        <div>\n" +
                         "                            <image src=\"images/person_1.jpg\" width=\"200px\" height=\"200px\"></image>\n" +
                         "                        </div>\n" +
+
                         "                        <div style=\"padding-left: 100px;\">\n" +
                         "                            <p class=\"text-black\"><b>주문번호 : " + e.getValue().getOrder_no() +"</b></p>\n" +
                         "                            <br>\n" +
+                        "                            <h5 class=\"text-black\">주문자 아이디 : " + e.getValue().getOrder_user_id() + "</h5>\n" +
                         "                            <h5 class=\"text-black\">주문자 이름 : " + e.getValue().getOrder_name() + "</h5>\n" +
                         "                            <h4 class=\"text-black\"><b>주문자 주소 : " + e.getValue().getOrder_adr1() + " " + e.getValue().getOrder_adr2() + " </b></h4>\n" +
-                        "                            <p class=\"text-black\">주문내역 <br> " + e.getValue().getOrder_prod() + " </p>\n" +
-                        "<div class=\"form-group row\" >"+
+                        "                            <p class=\"text-black\">주문내역 <br> " + e.getValue().getOrder_prod() + " </p>\n");
+
+                if(e.getValue().getOrder_status().equals("1")){
+
+                    String str =
                         "<div class=\"col-lg-6\">"+
-                        "<input type=\"submit\" class=\"btn btn-primary btn-lg btn-block\" value=\"수거완료\">"+
+
+                        "<input type=\"button\" class=\"btn btn-primary btn-lg btn-block\" value=\"수거완료\">"+
                         "</div>"+
-                        "<div class=\"col-lg-6\">"+
-                        "<input type=\"submit\" class=\"btn btn-primary btn-lg btn-block\" value=\"배달완료\">"+
-                        "</div>"+
-                        "</div>"+
-                        "                        </div>\n" +
-                        "                    </div>\n" +
-                        "                </div>");
+                                "</div>\n"+
+                                "</div>\n"+
+                                "</div>\n";
+                    result.append(str);
+                } else {
+                    String str = "<div class=\"col-lg-6\">"+
+                            "<input type=\"button\" class=\"btn btn-primary btn-lg btn-block\" value=\"배달완료\">"+
+                            "</div>"+
+                            "                </div>"+
+                            "                </div>"+
+                            "                </div>";
+                    result.append(str);
+                }
+
+
             }
 
             session.getBasicRemote().sendText(result.toString());
@@ -91,7 +106,7 @@ public class RiderWebSocketController {
         }
     }
 
-    public static HashMap<Integer, Order> getOrders() {
+    public static HashMap<String, Order> getOrders() {
 
         return orders;
     }

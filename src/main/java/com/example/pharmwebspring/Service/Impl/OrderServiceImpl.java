@@ -16,6 +16,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void insertOrder(Order order) {
+
         dao.setOrder(order);
     }
 
@@ -23,5 +24,10 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> getOrderList(){
 
         return dao.getOrder();
+    }
+
+    @Override
+    public void updateStatus(Order order){
+        dao.updateOrderStatus(order);
     }
 }

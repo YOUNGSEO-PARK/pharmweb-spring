@@ -4,14 +4,17 @@
 <mapper namespace="com.example.pharmwebspring.DAO.OrderDAO">
 
     <insert id="setOrder" parameterType="com.example.pharmwebspring.Model.Order">
-        INSERT INTO parmdb.order (order_no, order_user_id, order_name, order_adr1, order_adr2, order_phone, order_msg)
-        VALUE (#{order_no}, #{order_user_id}, #{order_name}, #{order_adr1}, #{order_adr2}, #{order_phone}, #{order_msg})
+        INSERT INTO parmdb.order (order_no, order_user_id, order_name, order_adr1, order_adr2, order_phone, order_msg, order_status)
+        VALUE (#{order_no}, #{order_user_id}, #{order_name}, #{order_adr1}, #{order_adr2}, #{order_phone}, #{order_msg}, #{order_status})
     </insert>
 
     <select id="getOrder" resultType="com.example.pharmwebspring.Model.Order">
         select * from parmdb.order
         </select>
 
+    <update id="updateOrderStatus" parameterType="com.example.pharmwebspring.Model.Order" >
+        update parmdb.order set order_status = #{order_status} where order_no=#{order_no}
+    </update>
 <!--    <select id="getProduct" parameterType="String" resultType="com.example.pharmwebspring.Model.Product">-->
 <!--        select * from parmdb.product where-->
 <!--    </select>-->

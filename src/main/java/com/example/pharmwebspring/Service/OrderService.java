@@ -9,4 +9,6 @@ public interface OrderService {
     void insertOrder(Order order);
 
     List<Order> getOrderList();
+
+    void updateStatus(Order order);
 }
