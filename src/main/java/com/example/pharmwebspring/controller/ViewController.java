@@ -7,10 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
+import com.example.pharmwebspring.Service.ProductService;
 
 @Controller
 public class ViewController {
@@ -205,6 +208,19 @@ public class ViewController {
         userSession(model,session);
         return "location";
     }
+    @Inject
+    ProductService productService;
+    @RequestMapping("/shop") //세부적인 url mapping
+    public ModelAndView shoppage(ModelAndView mav) {
+        mav.setViewName("/shop"); //이동할 페이지 이름 (product_list.jsp 파일로 이동)
+        mav.addObject("list", productService.listProduct());  //데이터 저장
+
+        //서비스에서 상품 리스트를 받아와 list라는 이름의 변수에 저장
+
+        //service -> model -> mybatis -> 리스트를 받아옴
+
+        return mav; //페이지 이동
+    }
 
     @GetMapping("/mp_cart")
     public String mp_cartpage(Model model, HttpSession session) {
@@ -239,13 +255,6 @@ public class ViewController {
 
         userSession(model,session);
         return "mypage";
-    }
-
-    @GetMapping("/shop")
-    public String shoppage(Model model, HttpSession session) {
-
-        userSession(model,session);
-        return "shop";
     }
 
     @GetMapping("/shop_allergy")
