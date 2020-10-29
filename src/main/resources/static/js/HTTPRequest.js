@@ -294,7 +294,7 @@ $("#userDeleteBtn").on('click', () => { //.on 이벤트 트리거
         }).done(function (data) {
             //로직 필요에 따라 변경
             if (data.status == 400) {
-                alert("회원탈퇴가 완료되었습니다. 이용해주셔서 감사합니다.")
+                alert("유저 회원탈퇴가 완료되었습니다. 이용해주셔서 감사합니다.")
                 document.location.href = '/index';
             } else if (data.status == 401) {
                 alert("비밀번호 입력 오류입니다. 비밀번호를 다시 입력해주세요.")
@@ -357,6 +357,86 @@ $("#orderBtn").on('click', () => { //.on 이벤트 트리거
             document.location.href = '/thankyou';
         } else if (data.status == 601) {
             alert("주문 실패! 다시 시도해주세요.")
+        }
+    })
+})
+
+
+
+$("#upwCheckBtn").on('click', () => { //.on 이벤트 트리거
+    console.log(data)
+
+    var data = {};
+    $("form[name=umpform]").serializeArray().map(function (x) {
+        data[x.name] = x.value;
+    });
+    console.log(data)
+
+    $.ajax({
+        type: "POST", //fix
+        dataType: "json", //fix
+        contentType: "application/json; charset=utf-8;", //fix
+        url: "/api/upwcheck",
+        data: JSON.stringify(data), //fix ; 객체->스트링
+    }).done(function (data) {
+
+        //로직 필요에 따라 변경
+        if (data.status == 107) {
+            document.location.href = '/mp_profile';
+        } else if (data.status == 108) {
+            alert("비밀번호가 틀렸습니다.")
+        }
+    })
+})
+
+$("#ppwCheckBtn").on('click', () => { //.on 이벤트 트리거
+    console.log(data)
+
+    var data = {};
+    $("form[name=pmpform]").serializeArray().map(function (x) {
+        data[x.name] = x.value;
+    });
+    console.log(data)
+
+    $.ajax({
+        type: "POST", //fix
+        dataType: "json", //fix
+        contentType: "application/json; charset=utf-8;", //fix
+        url: "/api/ppwcheck",
+        data: JSON.stringify(data), //fix ; 객체->스트링
+    }).done(function (data) {
+
+        //로직 필요에 따라 변경
+        if (data.status == 207) {
+            document.location.href = '/mp_profile_pharm';
+        } else if (data.status == 208) {
+            alert("약사님, 비밀번호가 틀렸습니다.")
+        }
+    })
+})
+
+$("#rpwCheckBtn").on('click', () => { //.on 이벤트 트리거
+    console.log(data)
+
+    var data = {};
+    $("form[name=rmpform]").serializeArray().map(function (x) {
+        data[x.name] = x.value;
+    });
+    console.log(data)
+
+    $.ajax({
+        type: "POST", //fix
+        dataType: "json", //fix
+        contentType: "application/json; charset=utf-8;", //fix
+        url: "/api/rpwcheck",
+        data: JSON.stringify(data), //fix ; 객체->스트링
+    }).done(function (data) {
+
+        //로직 필요에 따라 변경
+        if (data.status == 307) {
+            document.location.href = '/mp_profile_rider';
+        } else if (data.status == 308) {
+            alert("라이더님, 비밀번호가 틀렸습니다.")
         }
     })
 })

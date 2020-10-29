@@ -3,17 +3,26 @@ package com.example.pharmwebspring.Model;
 public class Order {
     private int order_no;
     private String order_name;
-    private String order_phone;
     private String order_adr1;
     private String order_adr2;
-    private String order_msg;
+    private String order_phone;
+    private String order_pharm;
     private String order_prod;
+    private String order_msg;
     private String order_user_id;
     private String order_status;
 
     public int getOrder_no() {
 
         return order_no;
+    }
+
+    public String getOrder_pharm() {
+        return order_pharm;
+    }
+
+    public void setOrder_pharm(String order_pharm) {
+        this.order_pharm = order_pharm;
     }
 
     public void setOrder_no(int order_no) {

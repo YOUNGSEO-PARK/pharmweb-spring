@@ -50,16 +50,20 @@
                                         <p th:text="${id}" class="form-control"></p>
                                     </div>
                                 </div>
+
+                                <form name="pmpform" class="form-horizontal">
                                 <div class="form-group">
-                                    <label for="pharm_pw" class="col-sm-5 control-label">비밀번호</label>
+                                    <label class="login_pw">비밀번호</label>
                                     <div class="col-lg-25">
-                                        <input class="form-control" id="pharm_pw" type="password">
+                                        <input class="form-control" id="login_pw" name="login_pw" type="password">
                                     </div>
                                     <div style="float:right;">
-                                        <p class="mb-0"><a href="mp_profile_pharm" class="justify-content-between">수정하기</a>
+                                        <p class="mb-0" id="ppwCheckBtn" style="color:#75b239" href=#>수정하기</a>
                                         </p>
                                     </div>
                                 </div>
+                            </form>
+
                                 <div class="form-group">
                                     <label class="col-sm-5 control-label">약국이름</label>
                                     <div class="col-lg-25">

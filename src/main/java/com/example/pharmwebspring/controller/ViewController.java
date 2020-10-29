@@ -14,38 +14,6 @@ import java.util.List;
 
 @Controller
 public class ViewController {
-//    @Autowired
-//    OrderService orderService;
-
-//    public void ShopProduct(Product product){
-//        List<Product> productList = new ArrayList<>();
-//
-//        String prod_name = product.getProd_name();
-//        String img_uri = product.getImg_uri();
-//        int price = product.getPrice();
-//        String prod_info = product.getProd_info();
-//
-//
-//    }
-    public void getOrderList(Model model, HttpSession session){
-        String ono = (String) session.getAttribute("ono");
-//        String id = (String) session.getAttribute("id");
-//        String oname = (String) session.getAttribute("oname");
-//        String oadr1 = (String) session.getAttribute("oadr1");
-//        String oadr2 = (String) session.getAttribute("oadr2");
-//        String ophone = (String) session.getAttribute("ophone");
-//        String oprod = (String) session.getAttribute("oprod");
-//        String status = (String) session.getAttribute("status");
-//
-        model.addAttribute("ono", ono);
-//        model.addAttribute("oid", id);
-//        model.addAttribute("oname", oname);
-//        model.addAttribute("oadr1", oadr1);
-//        model.addAttribute("oadr2", oadr2);
-//        model.addAttribute("ophone", ophone);
-//        model.addAttribute("oprod", oprod);
-//        model.addAttribute("status", status);
-    }
 
     public void userSession(Model model, HttpSession session){
         String id = (String) session.getAttribute("id");
@@ -423,12 +391,4 @@ public class ViewController {
         userSession(model, session);
         return "contents_05";
     }
-//    @GetMapping("_pharmacist")
-//    public String _pharmacistpage(Model model, HttpSession session) {
-//
-//        pharmSession(model, session);
-//        getOrderList(model, session);
-//        return "_pharmacist";
-//    }
-
 }

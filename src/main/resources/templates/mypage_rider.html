@@ -50,16 +50,20 @@
                                         <p th:text="${id}" class="form-control"></p>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-sm-5 control-label">비밀번호</label>
-                                    <div class="col-lg-25">
-                                        <input class="form-control" type="password">
+
+                                <form name="rmpform" class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="login_pw">비밀번호</label>
+                                        <div class="col-lg-25">
+                                            <input class="form-control" id="login_pw" name="login_pw" type="password">
+                                        </div>
+                                        <div style="float:right;">
+                                            <p class="mb-0" id="rpwCheckBtn" style="color:#75b239" href=#>수정하기</a>
+                                            </p>
+                                        </div>
                                     </div>
-                                    <div style="float:right;">
-                                        <p class="mb-0"><a href="mp_profile_rider" class="justify-content-between">수정하기</a>
-                                        </p>
-                                    </div>
-                                </div>
+                                </form>
+
                                 <div class="form-group">
                                     <label class="col-sm-5 control-label">이름</label>
                                     <div class="col-lg-25">
