@@ -1,7 +1,7 @@
 package com.example.pharmwebspring.Model;
 
 public class Order {
-    private String order_no;
+    private int order_no;
     private String order_name;
     private String order_phone;
     private String order_adr1;
@@ -11,13 +11,12 @@ public class Order {
     private String order_user_id;
     private String order_status;
 
-    public String getOrder_no() {
+    public int getOrder_no() {
 
         return order_no;
     }
 
-    public void setOrder_no(String order_no) {
-
+    public void setOrder_no(int order_no) {
         this.order_no = order_no;
     }
 
@@ -42,6 +41,7 @@ public class Order {
     }
 
     public String getOrder_adr1() {
+
         return order_adr1;
     }
 

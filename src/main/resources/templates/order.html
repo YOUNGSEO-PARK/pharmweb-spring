@@ -42,10 +42,17 @@
                     <form name="orderform" action="#" method="post">
                         <div class="p-3 p-lg-5 border">
 
+<!--                            <div class="form-group row">-->
+<!--                                <div class="col-md-6">-->
+<!--                                    <label for="order_no" class="text-black">주문번호<span class="text-danger">*</span></label>-->
+<!--                                    <p th:text="${ono}" class="form-control" id="order_no" name="order_no"></p>-->
+<!--                                </div>-->
+<!--                            </div>-->
+
                             <div class="form-group row">
                                 <div class="col-md-6">
-                                    <label for="order_no" class="text-black">주문번호<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="order_no" name="order_no">
+                                    <label for="order_user_id" class="text-black">주문자 아이디<span class="text-danger">*</span></label>
+                                    <p th:text="${id}" class="form-control" id="order_user_id" name="order_user_id"></p>
                                 </div>
                             </div>
 

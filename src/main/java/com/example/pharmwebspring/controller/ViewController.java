@@ -27,9 +27,9 @@ public class ViewController {
 //
 //
 //    }
-//    public void getOrderList(Model model, HttpSession session){
-//        String ono = (String) session.getAttribute("ono");
-//        String oid = (String) session.getAttribute("oid");
+    public void getOrderList(Model model, HttpSession session){
+        String ono = (String) session.getAttribute("ono");
+//        String id = (String) session.getAttribute("id");
 //        String oname = (String) session.getAttribute("oname");
 //        String oadr1 = (String) session.getAttribute("oadr1");
 //        String oadr2 = (String) session.getAttribute("oadr2");
@@ -37,15 +37,15 @@ public class ViewController {
 //        String oprod = (String) session.getAttribute("oprod");
 //        String status = (String) session.getAttribute("status");
 //
-//        model.addAttribute("ono", ono);
-//        model.addAttribute("oid", oid);
+        model.addAttribute("ono", ono);
+//        model.addAttribute("oid", id);
 //        model.addAttribute("oname", oname);
 //        model.addAttribute("oadr1", oadr1);
 //        model.addAttribute("oadr2", oadr2);
 //        model.addAttribute("ophone", ophone);
 //        model.addAttribute("oprod", oprod);
 //        model.addAttribute("status", status);
-//    }
+    }
 
     public void userSession(Model model, HttpSession session){
         String id = (String) session.getAttribute("id");

@@ -58,12 +58,13 @@ public class PharmacistWebSocketController {
     @OnMessage
     public void onMessage(String message) {
         StringTokenizer tokenizer = new StringTokenizer(message, "/");
-        String order_no = tokenizer.nextToken();
+        int order_no = Integer.parseInt(tokenizer.nextToken());
         String order_user_id = tokenizer.nextToken();
         String order_name = tokenizer.nextToken();
         String order_adr1 = tokenizer.nextToken();
         String order_adr2 = tokenizer.nextToken();
         String order_prod = tokenizer.nextToken();
+        String order_msg = tokenizer.nextToken();
         String order_status = tokenizer.nextToken();
 //        String msg = tokenizer.nextToken();
 
@@ -73,6 +74,8 @@ public class PharmacistWebSocketController {
         order.setOrder_name(order_name);
         order.setOrder_adr1(order_adr1);
         order.setOrder_adr2(order_adr2);
+        order.setOrder_prod(order_prod);
+        order.setOrder_msg(order_msg);
         order.setOrder_status(order_status);
 
         // status 업데이트하는 쿼리
@@ -83,7 +86,7 @@ public class PharmacistWebSocketController {
         updateOrderList();
 
         //order.setOrder_prod(prod);
-        RiderWebSocketController.orders.put(order_no, order);
+        RiderWebSocketController.orders.put(String.valueOf(order_no), order);
         RiderWebSocketController.updateOrderList();
         System.out.println(message);
     }
@@ -108,10 +111,13 @@ public class PharmacistWebSocketController {
                         "                            <p class=\"text-black\">주문자 아이디 : " + e.getValue().getOrder_user_id() + "</p>\n" +
                         "                            <p class=\"text-black\">주문자 이름 : " + e.getValue().getOrder_name() + "</p>\n" +
                         "                            <p class=\"text-black\">주문자 주소 : " + e.getValue().getOrder_adr1() + " " + e.getValue().getOrder_adr2() + " </p>\n" +
-                        "                            <p class=\"text-black\">주문내역 <br> " + e.getValue().getOrder_prod() + " </p>\n" +
+                        "                            <p class=\"text-black\">주문자 휴대폰 번호 : " + e.getValue().getOrder_phone() +" </p>\n" +
+                        "                            <h6 class=\"text-black\">주문자 메세지 : " + e.getValue().getOrder_msg() + " </h6>\n" +
+                        "                            <p class=\"text-black\"><br>주문내역 <br> " + e.getValue().getOrder_prod() + " </p>\n" +
+
                         "                            <div class=\"form-group\">\n" +
                         "                                <label for=\"p_order_note1\" class=\"text-black\">약사의 한 마디</label>\n" +
-                        "                                <textarea id=\"" + e.getValue().getOrder_no() +"\" name=\"p_order_note1\" id=\"p_order_note1\" cols=\"80\" rows=\"5\"\n" +
+                        "                                <textarea id=\"" + "\" name=\"p_order_note1\" id=\"p_order_note1\" cols=\"80\" rows=\"5\"\n" +
                         "                                          class=\"form-control\"\n" +
                         "                                          placeholder=\"환자에게 전할 말이 있으시면 작성해주세요.\"></textarea>\n" +
                         "                            </div>\n");
@@ -127,7 +133,8 @@ public class PharmacistWebSocketController {
                                                                                                                         + "\' , \'" + e.getValue().getOrder_name()
                                                                                                                         + "\', \'" + e.getValue().getOrder_adr1()
                                                                                                                         + "\', \'" + e.getValue().getOrder_adr2()
-                                                                                                                        + "\',\'" + e.getValue().getOrder_prod() + "\')\">\n" +
+                                                                                                                        + "\',\'" + e.getValue().getOrder_prod()
+                                                                                                                        + "\',\'" + e.getValue().getOrder_msg() + "\')\">\n" +
                         "                                </div>\n"+
                                 "<div class=\"col-lg-6\">\n" +
                                 "                                    <input type=\"button\" class=\"btn btn-primary btn-lg btn-block\" value=\"배달 불가\">\n" +

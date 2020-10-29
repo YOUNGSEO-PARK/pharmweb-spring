@@ -13,6 +13,8 @@ import javax.websocket.server.ServerEndpoint;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.example.pharmwebspring.controller.PharmacistWebSocketController.orderService;
+
 @Component
 @ServerEndpoint(value = "/riderWebSocket")
 public class RiderWebSocketController {
@@ -46,7 +48,16 @@ public class RiderWebSocketController {
 
     @OnMessage
     public void onMessage(String message) {
-        System.out.println("수거완료");
+        System.out.println("메시지 받아라 : " + message);
+//        Order order = new Order();
+//        // status 업데이트하는 쿼리
+//        order.setOrder_no(message);
+//        order.setOrder_status("2");
+//        orderService.updateStatus(order);
+//        updateOrderList();
+
+        orders.get(message).setOrder_status("2");
+        requestOrderList();
     }
 
     public void requestOrderList() {
@@ -66,21 +77,25 @@ public class RiderWebSocketController {
                         "                            <h5 class=\"text-black\">주문자 아이디 : " + e.getValue().getOrder_user_id() + "</h5>\n" +
                         "                            <h5 class=\"text-black\">주문자 이름 : " + e.getValue().getOrder_name() + "</h5>\n" +
                         "                            <h4 class=\"text-black\"><b>주문자 주소 : " + e.getValue().getOrder_adr1() + " " + e.getValue().getOrder_adr2() + " </b></h4>\n" +
-                        "                            <p class=\"text-black\">주문내역 <br> " + e.getValue().getOrder_prod() + " </p>\n");
+                        "                            <p class=\"text-black\">주문내역 <br> " + e.getValue().getOrder_prod() + " </p>\n" +
+                        "                            <p class=\"text-black\">주문자 휴대폰 번호 : " + e.getValue().getOrder_phone() +" </p>\n" +
+                        "                            <h6 class=\"text-black\">주문자 메세지 : " + e.getValue().getOrder_msg() + " </h6>\n" +
+
+                "                            <h6 class=\"text-black\">약사의 한 마디 : " + e.getValue().getOrder_msg() + "</h6>\n");
 
                 if(e.getValue().getOrder_status().equals("1")){
 
                     String str =
-                        "<div class=\"col-lg-6\">"+
+                        "<div \"width:150px; margin-right: 40px;\">"+
 
-                        "<input type=\"button\" class=\"btn btn-primary btn-lg btn-block\" value=\"수거완료\">"+
+                        "<input type=\"button\" class=\"btn btn-primary btn-lg btn-block\" value=\"수거완료\" onclick=\"func(\'"+e.getValue().getOrder_no()+"\')\">"+
                         "</div>"+
                                 "</div>\n"+
                                 "</div>\n"+
                                 "</div>\n";
                     result.append(str);
-                } else {
-                    String str = "<div class=\"col-lg-6\">"+
+                } else if(e.getValue().getOrder_status().equals("2")){
+                    String str = "<div \"width:150px; margin-right: 40px;\">"+
                             "<input type=\"button\" class=\"btn btn-primary btn-lg btn-block\" value=\"배달완료\">"+
                             "</div>"+
                             "                </div>"+
