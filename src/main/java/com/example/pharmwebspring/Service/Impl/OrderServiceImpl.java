@@ -6,6 +6,8 @@ import com.example.pharmwebspring.Service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class OrderServiceImpl implements OrderService {
 
@@ -14,6 +16,18 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void insertOrder(Order order) {
+
         dao.setOrder(order);
+    }
+
+    @Override
+    public List<Order> getOrderList(){
+
+        return dao.getOrder();
+    }
+
+    @Override
+    public void updateStatus(Order order){
+        dao.updateOrderStatus(order);
     }
 }

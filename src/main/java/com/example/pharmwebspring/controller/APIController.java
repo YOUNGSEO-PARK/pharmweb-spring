@@ -1,8 +1,8 @@
 package com.example.pharmwebspring.controller;
 
-import com.example.pharmwebspring.DAO.CartDAO;
+//import com.example.pharmwebspring.DAO.CartDAO;
 import com.example.pharmwebspring.Model.*;
-import com.example.pharmwebspring.Service.CartService;
+//import com.example.pharmwebspring.Service.CartService;
 import com.example.pharmwebspring.Service.MemberService;
 import com.example.pharmwebspring.Service.OrderService;
 import org.json.JSONException;
@@ -21,8 +21,8 @@ public class APIController {
 
     @Autowired
     MemberService memberService;
-    @Autowired
-    CartService cartService;
+//    @Autowired
+//    CartService cartService;
     @Autowired
     OrderService orderService;
 
@@ -35,10 +35,10 @@ public class APIController {
 
         if (users == null) {
 
-            statusRes.setStatus(100); // 유저 회원가입 성공
+            statusRes.setStatus(100);
         } else {
 
-            statusRes.setStatus(101); // 유저 회원가입 실패
+            statusRes.setStatus(101);
         }
 
         return statusRes;
@@ -100,10 +100,14 @@ public class APIController {
     }
 
     @PostMapping("/insertorder")
-    public StatusRes insertOrder(@RequestBody Order order) {
+    public StatusRes insertOrder(HttpSession session, @RequestBody Order order) {
 
 
         StatusRes statusRes = new StatusRes();
+
+        order.setOrder_user_id((String) session.getAttribute("id"));
+        order.setOrder_status("0");
+
         orderService.insertOrder(order);
 
         String orders = order.getOrder_name();
@@ -119,6 +123,34 @@ public class APIController {
 
         return statusRes;
     }
+//
+//    @PostMapping("/getorder")
+//    public StatusRes getOrder(HttpServletRequest request, @RequestBody Order order) {
+//
+//
+//        StatusRes statusRes = new StatusRes();
+//
+//        orderService.getOrderList();
+//        HttpSession session = request.getSession();
+//
+//        session.setAttribute("ono", order.getOrder_no());
+//        session.setAttribute("oid", order.getOrder_user_id());
+//        session.setAttribute("oname", order.getOrder_name());
+//        session.setAttribute("oadr1", order.getOrder_adr1());
+//        session.setAttribute("oadr2", order.getOrder_adr2());
+//        session.setAttribute("ophone",order.getOrder_phone());
+//        session.setAttribute("oprod",order.getOrder_prod());
+//        session.setAttribute("status", order.getOrder_status());
+//
+//        if("ono" ==null){
+//            statusRes.setStatus(701);
+//        }
+//        else{
+//            statusRes.setStatus(700);
+//        }
+//
+//        return statusRes;
+//    }
 
     @PostMapping("/pregi")
     public StatusRes regPharmacy(@RequestBody Pharmacy regPharmacy) {
@@ -130,10 +162,10 @@ public class APIController {
         if (pharms == null) {
 
             memberService.insertPharmacy(regPharmacy);
-            statusRes.setStatus(200); // 약사 회원가입 성공
+            statusRes.setStatus(200);
         } else {
 
-            statusRes.setStatus(201); // 약사 회원가입 실패
+            statusRes.setStatus(201);
         }
 
         return statusRes;
@@ -228,6 +260,25 @@ public class APIController {
         return statusRes;
     }
 
+
+//    @PostMapping("/pharmdeliver")
+//    public StatusRes PharmDeliver(HttpServletRequest request, @RequestBody Order order){
+//
+//        StatusRes statusRes = new StatusRes();
+//        HttpSession session = request.getSession();
+//
+//        if (order == null) {
+//
+//            statusRes.setStatus(700);
+//        } else {
+//
+//            session.setAttribute("id", order.getOrder_no());
+//
+//            statusRes.setStatus(302);
+//        }
+//        return statusRes;
+//    }
+
     @PostMapping("/udelete")
     public StatusRes DeleteUser(HttpSession session, @RequestBody String pw) throws JSONException {
 
@@ -255,33 +306,33 @@ public class APIController {
         return statusRes;
     }
 
-    @PostMapping("/ucart")
-    public StatusRes InsertCart(HttpSession session, @ModelAttribute Cart cart){
-
-        String uid = (String) session.getAttribute("id");
-        cart.setUser_id(uid);
-
-        int count = cartService.countCart(cart.getCart_prod_name(), uid);
-
-        StatusRes statusRes = new StatusRes();
-
-        if(count == 0) {
-
-            cartService.insertCart(cart);
-            statusRes.setStatus(104);
-        }
-        else if(count > 0){
-
-            cartService.updateCart(cart);
-            statusRes.setStatus(105);
-
-        }
-        else{
-
-            statusRes.setStatus(106);
-        }
-
-        return statusRes;
-    }
+//    @PostMapping("/ucart")
+//    public StatusRes InsertCart(HttpSession session, @ModelAttribute Cart cart){
+//
+//        String uid = (String) session.getAttribute("id");
+//        cart.setUser_id(uid);
+//
+//        int count = cartService.countCart(cart.getCart_prod_name(), uid);
+//
+//        StatusRes statusRes = new StatusRes();
+//
+//        if(count == 0) {
+//
+//            cartService.insertCart(cart);
+//            statusRes.setStatus(104);
+//        }
+//        else if(count > 0){
+//
+//            cartService.updateCart(cart);
+//            statusRes.setStatus(105);
+//
+//        }
+//        else{
+//
+//            statusRes.setStatus(106);
+//        }
+//
+//        return statusRes;
+//    }
 
 }
