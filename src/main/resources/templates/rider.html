@@ -47,7 +47,6 @@
     }
     websocket.onmessage = function (event) {
         const container = document.getElementById("site-section")
-
         container.innerHTML = event.data
     }
     function func(order_no) {

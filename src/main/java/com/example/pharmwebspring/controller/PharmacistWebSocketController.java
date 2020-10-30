@@ -64,8 +64,9 @@ public class PharmacistWebSocketController {
         String order_name = tokenizer.nextToken();
         String order_adr1 = tokenizer.nextToken();
         String order_adr2 = tokenizer.nextToken();
-        String order_prod = tokenizer.nextToken();
+        String order_phone = tokenizer.nextToken();
         String order_msg = tokenizer.nextToken();
+        String order_prod = tokenizer.nextToken();
         String order_status = tokenizer.nextToken();
 //        String msg = tokenizer.nextToken();
 
@@ -75,8 +76,9 @@ public class PharmacistWebSocketController {
         order.setOrder_name(order_name);
         order.setOrder_adr1(order_adr1);
         order.setOrder_adr2(order_adr2);
-        order.setOrder_prod(order_prod);
+        order.setOrder_phone(order_phone);
         order.setOrder_msg(order_msg);
+        order.setOrder_prod(order_prod);
         order.setOrder_status(order_status);
 
         // status 업데이트하는 쿼리
@@ -121,7 +123,7 @@ public class PharmacistWebSocketController {
                                                         String str =
                                                                  "<div class=\"form-group\">\n" +
                                                                 "                                <label for=\"p_order_note1\" class=\"text-black\">약사의 한 마디</label>\n" +
-                                                                "                                <textarea id=\"" + "\" name=\"p_order_note1\" id=\"p_order_note1\" cols=\"80\" rows=\"5\"\n" +
+                                                                "                                <textarea id=\"" + "\" name=\"p_order_note1\" id=\"pharm_msg\" cols=\"80\" rows=\"5\"\n" +
                                                                 "                                          class=\"form-control\"\n" +
                                                                 "                                          placeholder=\"환자에게 전할 말이 있으시면 작성해주세요.\"></textarea>\n" +
                                                                 "                            </div>" +
@@ -133,8 +135,9 @@ public class PharmacistWebSocketController {
                                                                                                                         + "\' , \'" + e.getValue().getOrder_name()
                                                                                                                         + "\', \'" + e.getValue().getOrder_adr1()
                                                                                                                         + "\', \'" + e.getValue().getOrder_adr2()
-                                                                                                                        + "\',\'" + e.getValue().getOrder_prod()
-                                                                                                                        + "\',\'" + e.getValue().getOrder_msg() + "\')\">\n" +
+                                                                                                                        + "\',\'" + e.getValue().getOrder_phone()
+                                                                                                                        + "\',\'" + e.getValue().getOrder_msg()
+                                                                                                                        + "\',\'" + e.getValue().getOrder_prod() + "\')\">\n" +
                         "                                </div>\n"+
                                 "<div class=\"col-lg-6\">\n" +
                                 "                                    <input type=\"button\" class=\"btn btn-primary btn-lg btn-block\" value=\"배달 불가\">\n" +

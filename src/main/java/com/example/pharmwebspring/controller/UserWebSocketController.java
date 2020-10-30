@@ -79,6 +79,7 @@ public class UserWebSocketController {
                         "                                            <img src=\"images/product_02.png\" alt=\"Image\" class=\"img-fluid\">\n" +
                         "                                        </td>\n" +
                         "                                        <td>\n" +
+                                "                                    <p>주문자 아이디 :" + e.getValue().getOrder_user_id() + " </p>\n" +
                         "                                            <p>주문번호 :" + e.getValue().getOrder_no() + " </p>\n" +
                         "                                            <p>상품명 :" + e.getValue().getOrder_prod() + " </p>\n" +
                         "                                            <p>가격 : 29000원</p>\n" +
@@ -100,25 +101,34 @@ public class UserWebSocketController {
                     String str =
                             "</td>\n" +
                                     "                                        <td>주문 완료</td>\n" +
-                                    "                                    </tr>";
+                                    "                                    " +
+                                    " <td><input type=\"button\" class=\"btn btn-primary btn-lg btn-block\" value=\"환불 신청\" onclick=\"youngseo(" +
+                                    e.getValue().getOrder_no() +
+                                    ")\"> </td></tr>";
                     result.append(str);
                 }else if(e.getValue().getOrder_status().equals("1")){
 
                     String str =
                             "</td>\n" +
                                     "                                        <td>배송 대기</td>\n" +
-                                    "                                    </tr>";
+                                    "                                    " +
+                                    " <td><input type=\"button\" class=\"btn btn-primary btn-lg btn-block\" value=\"환불 신청\" onclick=\"youngseo(" +
+                                    e.getValue().getOrder_no() +
+                                    ")\"> </td></tr>";
                     result.append(str);
                 } else if(e.getValue().getOrder_status().equals("2")){
                     String str =  "</td>\n" +
                             "                                        <td>배송 중</td>\n" +
-                            "                                    </tr>";
+                            "                                    " +
+                            " <td><input type=\"button\" class=\"btn btn-primary btn-lg btn-block\" value=\"환불 신청\" onclick=\"youngseo(" +
+                            e.getValue().getOrder_no() +
+                            ")\"> </td></tr>";
                     result.append(str);
                 } else if(e.getValue().getOrder_status().equals("3")){
                     String str =  "</td>\n" +
                             "                                        <td>배송 완료</td>\n" +
                             "                                    " +
-                            " <td><input type=\"button\" class=\"btn btn-primary btn-lg btn-block\" value=\"배송확인\" onclick=\"youngseo(" +
+                            " <td><input type=\"button\" class=\"btn btn-primary btn-lg btn-block\" style =\"\" value=\"수령 확인\" onclick=\"youngseo(" +
                             e.getValue().getOrder_no() +
                             ")\"> </td></tr>";
                     result.append(str);
