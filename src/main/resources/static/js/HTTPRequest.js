@@ -361,7 +361,9 @@ $("#orderBtn").on('click', () => { //.on 이벤트 트리거
     })
 })
 
-
+$("#CartBtn").on('click', () => {
+    location.herf="/insert.do";
+});
 
 $("#upwCheckBtn").on('click', () => { //.on 이벤트 트리거
 

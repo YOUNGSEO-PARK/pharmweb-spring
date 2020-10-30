@@ -9,4 +9,7 @@
         select * from parmdb.product;
 <!-- id의 내림차순으로 검색한다. (id의 오름차순으로 검색 - 1,2,3,4,.....10) -->
 </select>
+        <select id="detailProduct" resultType="com.example.pharmwebspring.Model.Product">
+                select * from product where prod_name=#{prod_name}
+        </select>
 </mapper>

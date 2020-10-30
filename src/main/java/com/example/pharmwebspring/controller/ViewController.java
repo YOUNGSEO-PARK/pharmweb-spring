@@ -1,7 +1,9 @@
 package com.example.pharmwebspring.controller;
 
+import com.example.pharmwebspring.Model.Cart;
 import com.example.pharmwebspring.Model.DataDao;
 import com.example.pharmwebspring.Model.MapapiDto;
+import com.example.pharmwebspring.Service.CartService;
 import com.example.pharmwebspring.Service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +14,10 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import com.example.pharmwebspring.Service.ProductService;
 
 @Controller
@@ -189,6 +194,40 @@ public class ViewController {
         return mav; //페이지 이동
     }
 
+    @Inject
+    CartService cartService;
+    @RequestMapping("insert.do")
+    public String insert(@ModelAttribute Cart cart, HttpSession session){
+        String user_id=(String)session.getAttribute("user_id");
+        if(user_id==null){
+            return "/index";
+        }
+        cart.setUser_id(user_id);
+        cartService.insert(cart);
+        return "/mp_cart";
+    }
+
+    /*@RequestMapping("/cart")
+    public ModelAndView list(HttpSession session, ModelAndView mav){
+        Map<String, Object> map=new HashMap<>();
+        String user_id=(String)session.getAttribute("user_id");
+
+        if(user_id!= null){
+            List<Cart> list = CartService.listCart(user_id);
+            int sumMoney=CartService.sumMoney(user_id);
+
+            map.put("sumMoney", sumMoney);
+            map.put("list", list);
+            map.put("count_p", list.size());
+
+            mav.setViewName("/cart");
+            mav.addObject("map", map);
+
+            return mav;
+        }else{
+            return new ModelAndView("/index","",null);
+        }
+    }*/
     @GetMapping("/mp_cart")
     public String mp_cartpage(Model model, HttpSession session) {
 
@@ -259,11 +298,16 @@ public class ViewController {
         return "shop_heart";
     }
 
-    @GetMapping("/shop_single")
-    public String shop_singlepage(Model model, HttpSession session) {
+    @RequestMapping("/shop_single?{prod_name}")
+    public ModelAndView shop_singlepage(
+            @PathVariable("prod_name")
+            String prod_name,
+            ModelAndView mav) {
 
-        userSession(model,session);
-        return "shop_single";
+        mav.setViewName("/shop_single");
+        mav.addObject("dto",productService.product(prod_name));
+
+        return mav;
     }
 
     @GetMapping("/shop_tooth")

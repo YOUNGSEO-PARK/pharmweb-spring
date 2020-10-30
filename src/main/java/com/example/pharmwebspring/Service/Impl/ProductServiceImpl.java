@@ -20,5 +20,10 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> listProduct() {
         return productDao.listProduct(); //데이터베이스에 저장된 상품 리스트를 리턴한다.
     }
+
+    @Override
+    public Product product(String prod_name){
+        return productDao.detailProduct(prod_name);
+    }
 }
 
