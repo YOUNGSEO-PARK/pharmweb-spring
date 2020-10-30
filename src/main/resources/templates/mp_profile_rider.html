@@ -54,7 +54,7 @@
                                 <div class="form-group">
                                     <label for="rider_pw" class="col-sm-5 control-label">비밀번호</label>
                                     <div class="col-lg-25">
-                                        <input class="form-control" id="rider_pw" type="password">
+                                        <input class="form-control" id="rider_pw" name="rider_pw" type="password">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -81,7 +81,7 @@
                                     <label for="license_no" class="col-sm-5 control-label">운전면허증 번호</label>
                                     <div class="col-lg-25">
                                         <input class="form-control" type="text" id="license_no"
-                                               th:placeholder="${license}">
+                                               th:text="${license}">
                                     </div>
                                 </div>
                                 <div>
