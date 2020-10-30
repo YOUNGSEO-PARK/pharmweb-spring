@@ -8,10 +8,15 @@ import com.example.pharmwebspring.Service.OrderService;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import com.example.pharmwebspring.Service.ProductService;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
 
 @RestController
 
@@ -30,6 +35,8 @@ public class APIController {
     @PostMapping("/udup")
     public StatusRes dupUser(@RequestBody User dupUser) {
 
+        // validation
+        StatusRes statusRes = new StatusRes();
         String users = memberService.getUserIDList(dupUser.getUser_id());
 
         if (users == null) {
@@ -46,6 +53,8 @@ public class APIController {
     @PostMapping("/pdup")
     public StatusRes dupPharm(@RequestBody User dupPharm) {
 
+        // validation
+        StatusRes statusRes = new StatusRes();
         String users = memberService.getUserIDList(dupPharm.getUser_id());
 
         if (users == null) {
@@ -62,6 +71,8 @@ public class APIController {
     @PostMapping("/rdup")
     public StatusRes dupRider(@RequestBody User dupRider) {
 
+        // validation
+        StatusRes statusRes = new StatusRes();
         String users = memberService.getUserIDList(dupRider.getUser_id());
 
         if (users == null) {
@@ -78,6 +89,8 @@ public class APIController {
     @PostMapping("/uregi")
     public StatusRes regUser(@RequestBody User regUser) {
 
+        // validation
+        StatusRes statusRes = new StatusRes();
         String users = memberService.getUserIDList(regUser.getUser_id());
 
         if (users == null) {
@@ -95,12 +108,16 @@ public class APIController {
     @PostMapping("/insertorder")
     public StatusRes insertOrder(HttpSession session, @RequestBody Order order) {
 
+
+        StatusRes statusRes = new StatusRes();
+
         order.setOrder_user_id((String) session.getAttribute("id"));
         order.setOrder_status("0");
 
         orderService.insertOrder(order);
 
         String orders = order.getOrder_name();
+        System.out.println(orders);
 
         if (orders == null) {
 
@@ -113,9 +130,39 @@ public class APIController {
         return statusRes;
     }
 
+    @PostMapping("/getorder")
+    public StatusRes getOrder(HttpServletRequest request, @RequestBody Order order) {
+
+
+        StatusRes statusRes = new StatusRes();
+
+        orderService.getOrderList();
+        HttpSession session = request.getSession();
+
+        session.setAttribute("ono", order.getOrder_no());
+        session.setAttribute("oid", order.getOrder_user_id());
+//        session.setAttribute("oname", order.getOrder_name());
+//        session.setAttribute("oadr1", order.getOrder_adr1());
+//        session.setAttribute("oadr2", order.getOrder_adr2());
+//        session.setAttribute("ophone",order.getOrder_phone());
+//        session.setAttribute("oprod",order.getOrder_prod());
+//        session.setAttribute("status", order.getOrder_status());
+
+//        if("ono" == null){
+//            statusRes.setStatus(701);
+//        }
+//        else{
+//            statusRes.setStatus(700);
+//        }
+
+        return statusRes;
+    }
+
     @PostMapping("/pregi")
     public StatusRes regPharmacy(@RequestBody Pharmacy regPharmacy) {
 
+        // validation\
+        StatusRes statusRes = new StatusRes();
         String pharms = memberService.getPharmIDList(regPharmacy.getPharm_id());
 
         if (pharms == null) {
@@ -133,6 +180,8 @@ public class APIController {
     @PostMapping("/rregi")
     public StatusRes regPharmacy(@RequestBody Rider regRider) {
 
+        // validation\
+        StatusRes statusRes = new StatusRes();
         String pharms = memberService.getRiderIDList(regRider.getRider_id());
 
         if (pharms == null) {
@@ -150,6 +199,7 @@ public class APIController {
     @PostMapping("/uidlogin") //sql -> 값 가져와서 성공 실패 보는
     public StatusRes LoginUser(HttpServletRequest request, @RequestBody Login login) {
 
+        StatusRes statusRes = new StatusRes();
         User user = memberService.checkUser(login);
         HttpSession session = request.getSession();
 
@@ -162,6 +212,7 @@ public class APIController {
             session.setAttribute("uphone", user.getUser_phone());
             session.setAttribute("uemail", user.getUser_email());
             session.setAttribute("uadr", user.getUser_adr());
+//            session.setAttribute("category",1);
 
             statusRes.setStatus(102);
         }
@@ -171,6 +222,7 @@ public class APIController {
     @PostMapping("/pidlogin") //sql -> 값 가져와서 성공 실패 보는
     public StatusRes LoginPharmacy(HttpServletRequest request, @RequestBody Login login) {
 
+        StatusRes statusRes = new StatusRes();
         Pharmacy pharmacy = memberService.checkPharmacy(login);
         HttpSession session = request.getSession();
 
@@ -194,6 +246,7 @@ public class APIController {
     @PostMapping("/ridlogin") //sql -> 값 가져와서 성공 실패 보는
     public StatusRes LoginRider(HttpServletRequest request, @RequestBody Login login) {
 
+        StatusRes statusRes = new StatusRes();
         Rider rider = memberService.checkRider(login);
         HttpSession session = request.getSession();
 
@@ -217,7 +270,7 @@ public class APIController {
 //    @PostMapping("/pharmdeliver")
 //    public StatusRes PharmDeliver(HttpServletRequest request, @RequestBody Order order){
 //
-//
+//        StatusRes statusRes = new StatusRes();
 //        HttpSession session = request.getSession();
 //
 //        if (order == null) {
@@ -243,6 +296,7 @@ public class APIController {
         String login_pw = jObject.getString("login_pw");
         login.setLogin_pw(login_pw);
 
+        StatusRes statusRes = new StatusRes();
         User user = memberService.checkUser(login);
 
         if (user == null) {
