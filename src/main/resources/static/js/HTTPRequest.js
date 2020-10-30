@@ -364,13 +364,11 @@ $("#orderBtn").on('click', () => { //.on 이벤트 트리거
 
 
 $("#upwCheckBtn").on('click', () => { //.on 이벤트 트리거
-    console.log(data)
 
     var data = {};
     $("form[name=umpform]").serializeArray().map(function (x) {
         data[x.name] = x.value;
     });
-    console.log(data)
 
     $.ajax({
         type: "POST", //fix
@@ -391,14 +389,10 @@ $("#upwCheckBtn").on('click', () => { //.on 이벤트 트리거
 
 $("#ppwCheckBtn").on('click', () => { //.on 이벤트 트리거
 
-
     var data = {};
     $("form[name=pmpform]").serializeArray().map(function (x) {
         data[x.name] = x.value;
     });
-    data={
-       "login_pw" :  $("#login_pw").val()
-    }
 
     $.ajax({
         type: "POST", //fix
@@ -418,15 +412,12 @@ $("#ppwCheckBtn").on('click', () => { //.on 이벤트 트리거
 })
 
 $("#rpwCheckBtn").on('click', () => { //.on 이벤트 트리거
-    console.log(data)
 
     var data = {};
     $("form[name=rmpform]").serializeArray().map(function (x) {
         data[x.name] = x.value;
     });
-    data={
-        "login_pw" :  $("#login_pw").val()
-    }
+
     $.ajax({
         type: "POST", //fix
         dataType: "json", //fix

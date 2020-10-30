@@ -343,8 +343,6 @@ public class APIController {
 
         login.setLogin_id((String) session.getAttribute("id"));
 
-        System.out.println(login.getLogin_id()+' '+ login.getLogin_pw());
-
         JSONObject jObject = new JSONObject(pharmpw);
         String login_pw = jObject.getString("login_pw");
         login.setLogin_pw(login_pw);

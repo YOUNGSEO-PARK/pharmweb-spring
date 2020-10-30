@@ -93,7 +93,6 @@ public class PharmacistWebSocketController {
 
     public void requestOrderList() {
         orders = getOrders();
-        StatusRes statusRes = new StatusRes();
 
         System.out.println("PASS");
         try {
