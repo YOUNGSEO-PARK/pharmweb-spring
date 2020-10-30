@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.pharmwebspring.DAO.CartDAO">
+    <!-- 장바구니에 담기 -->
+    <insert id="insert">
+        insert into cart (cart_no, user_id, prod_name, count_p)
+        values
+          (SELECT seq_cart('file') , #{user_id}, #{prod_name}, #{count_p} )
+
+         //장바구니 담기 버튼을 누를때 실행되는 쿼리문
+         //cart_id와 userid, product_id, amount 값을 저장한다.
+         //cart_id는 하나씩 증가되어야하기때문에 시퀀스값으로 지정한다.
+    </insert>
+
+    <select id="listCart" resultType="com.example.pharmwebspring.Model.Cart">
+        select cart_no, p.prod_name, c.user_id, user_name, prod_name, price, img_url
+        from user u, cart c, product p where u.user_id=c.user_id and c.prod_name=p.prod_name amd c.user_id=#{user_id} order by cart_no
+    </select>
+
+    <select id="sumMoney" resultType="int">
+        select nvl(sum(price*count_p),0) from cart c, product p
+        where c.prod_name=p.prod_name and user_id=#{user_id}
+    </select>
+</mapper>
