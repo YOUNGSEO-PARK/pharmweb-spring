@@ -73,6 +73,7 @@ public class UserWebSocketController {
         try {
             orders = getOrders();
             StringBuilder result = new StringBuilder();
+
             for (Map.Entry<Integer, Order> e : orders.entrySet()) {
                 result.append("<tr>\n" +
                         "                                        <td>\n" +
@@ -91,7 +92,7 @@ public class UserWebSocketController {
                         "\n" +
                         "                                                <div class=\"collapse\" id=\"collapsepaypal\">\n" +
                         "                                                    <div class=\"py-2 px-4\">\n" +
-                        "                                                        <p class=\"mb-0\">따뜻한 물을 자주 마시는게 좋습니다.</p>\n" +
+                        "                                                        <p class=\"mb-0\">" + e.getValue().getOrder_pmsg() + "</p>\n" +
                         "                                                    </div>\n" +
                         "                                                </div>\n" +
                         "                                            </div>\n");
@@ -128,7 +129,7 @@ public class UserWebSocketController {
                     String str =  "</td>\n" +
                             "                                        <td>배송 완료</td>\n" +
                             "                                    " +
-                            " <td><input type=\"button\" class=\"btn btn-primary btn-lg btn-block\" style =\"\" value=\"수령 확인\" onclick=\"youngseo(" +
+                            " <td><input type=\"button\" class=\"btn btn-primary btn-lg btn-block\" value=\"수령 확인\" onclick=\"youngseo(" +
                             e.getValue().getOrder_no() +
                             ")\"> </td></tr>";
                     result.append(str);
@@ -145,12 +146,15 @@ public class UserWebSocketController {
     }
 
     public static void updateOrderList() {
+
         orders = getOrders();
+
         for (UserWebSocketController userWebSocketController : users.values()) {
             userWebSocketController.requestOrderList();
         }
     }
     public static HashMap<Integer, Order> getOrders() {
+
         List<Order> list = orderService.getOrderList();
         System.out.println(list.toString());
         HashMap<Integer, Order> hashMap = new HashMap<>();

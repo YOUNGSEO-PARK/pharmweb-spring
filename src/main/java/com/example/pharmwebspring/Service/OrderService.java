@@ -12,5 +12,7 @@ public interface OrderService {
 
     void updateStatus(Order order);
 
+    void updateOrderPmsg(Order order);
+
     void deleteOrder(Order order);
 }

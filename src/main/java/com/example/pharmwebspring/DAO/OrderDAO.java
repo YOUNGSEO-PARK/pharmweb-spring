@@ -18,4 +18,5 @@ public interface OrderDAO {
 
     void deleteOrder(Order order);
 
+    void updateOrderPmsg(Order order);
 }
