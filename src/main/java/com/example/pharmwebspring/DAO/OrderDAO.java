@@ -15,4 +15,7 @@ public interface OrderDAO {
     List<Order> getOrder();
 
     void updateOrderStatus(Order order);
+
+    void deleteOrder(Order order);
+
 }

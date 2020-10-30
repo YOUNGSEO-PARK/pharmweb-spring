@@ -134,7 +134,6 @@ public class ViewController {
 
     @GetMapping("/login")
     public String loginpage(Model model, HttpSession session) {
-
         userSession(model,session);
         return "login";
     }

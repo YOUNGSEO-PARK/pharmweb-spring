@@ -11,4 +11,6 @@ public interface OrderService {
     List<Order> getOrderList();
 
     void updateStatus(Order order);
+
+    void deleteOrder(Order order);
 }

@@ -5,12 +5,14 @@ import com.example.pharmwebspring.Service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.naming.InterruptedNamingException;
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static com.example.pharmwebspring.controller.PharmacistWebSocketController.orderService;
@@ -48,15 +50,29 @@ public class RiderWebSocketController {
 
     @OnMessage
     public void onMessage(String message) {
+        if (message.charAt(0) == ':') {
+            String realMessage = message.substring(1);
+            Order order = new Order();
+            order.setOrder_no(Integer.parseInt(realMessage));
+            order.setOrder_status("3");
+            orders.get(realMessage).setOrder_status("3");
+            orderService.updateStatus(order);
+            PharmacistWebSocketController.updateOrderList();
+            UserWebSocketController.updateOrderList();
+            return;
+        }
         System.out.println("메시지 받아라 : " + message);
-//        Order order = new Order();
-//        // status 업데이트하는 쿼리
-//        order.setOrder_no(message);
-//        order.setOrder_status("2");
-//        orderService.updateStatus(order);
-//        updateOrderList();
-
+        Order order = new Order();
+        // status 업데이트하는 쿼리
+        order.setOrder_no(Integer.parseInt(message));
+        order.setOrder_status("2");
         orders.get(message).setOrder_status("2");
+
+        orderService.updateStatus(order);
+        updateOrderList();
+
+        PharmacistWebSocketController.updateOrderList();
+        UserWebSocketController.updateOrderList();
         requestOrderList();
     }
 
@@ -96,7 +112,9 @@ public class RiderWebSocketController {
                     result.append(str);
                 } else if(e.getValue().getOrder_status().equals("2")){
                     String str = "<div \"width:150px; margin-right: 40px;\">"+
-                            "<input type=\"button\" class=\"btn btn-primary btn-lg btn-block\" value=\"배달완료\">"+
+                            "<input type=\"button\" class=\"btn btn-primary btn-lg btn-block\" value=\"배달완료\" onclick=\"fin(" +
+                            + e.getValue().getOrder_no() +
+                    ")\">"+
                             "</div>"+
                             "                </div>"+
                             "                </div>"+
@@ -122,7 +140,6 @@ public class RiderWebSocketController {
     }
 
     public static HashMap<String, Order> getOrders() {
-
         return orders;
     }
 }

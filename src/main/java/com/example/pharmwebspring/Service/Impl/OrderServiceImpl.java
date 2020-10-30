@@ -28,6 +28,12 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void updateStatus(Order order){
+
         dao.updateOrderStatus(order);
+    }
+
+    @Override
+    public void deleteOrder(Order order) {
+        dao.deleteOrder(order);
     }
 }

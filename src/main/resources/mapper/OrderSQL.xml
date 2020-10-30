@@ -15,6 +15,10 @@
     <update id="updateOrderStatus" parameterType="com.example.pharmwebspring.Model.Order" >
         update parmdb.order set order_status = #{order_status} where order_no=#{order_no}
     </update>
+
+    <delete id="deleteOrder" parameterType="com.example.pharmwebspring.Model.Order">
+        delete from parmdb.order where order_no=#{order_no}
+    </delete>
 <!--    <select id="getProduct" parameterType="String" resultType="com.example.pharmwebspring.Model.Product">-->
 <!--        select * from parmdb.product where-->
 <!--    </select>-->

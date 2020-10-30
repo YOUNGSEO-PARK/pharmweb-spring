@@ -22,12 +22,12 @@
                 </div>
             </div>
 
-            <div id="site-section" class="site-section  overlay" style="max-height: 1000px; background-color: white; padding:40px 20px; overflow:scroll; overflow-x:hidden">
+            <div id="site-section" class="site-section overlay" style="max-height: 1000px; background-color: white; padding:40px 20px; overflow:scroll; overflow-x:hidden">
 
             </div>
-
         </div>
     </div>
+
     <th:block th:replace="layout/03_footer :: footerFragment"></th:block>
 
 </div>
@@ -52,6 +52,10 @@
     }
     function func(order_no) {
         websocket.send(order_no)
+    }
+
+    function fin(order_no) {
+        websocket.send(":" + order_no)
     }
 </script>
 </html>

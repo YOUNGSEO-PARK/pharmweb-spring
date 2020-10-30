@@ -36,6 +36,7 @@
                 <div class="container">
                     <div class="row mb-5">
                         <form class="col-md-12" method="post">
+
                             <div class="site-blocks-table">
                                 <table class="table table-bordered">
                                     <thead>
@@ -45,32 +46,16 @@
                                         <th width="150;">주문상태</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>
-                                            <img src="images/product_02.png" alt="Image" class="img-fluid">
-                                        </td>
-                                        <td>
-                                            <p>상품명 : 이부로펜 외2</p>
-                                            <p>가격 : 29000원</p>
-                                            <p>일시 : 2020.10.29 16:05시</p>
-                                            <br>
-                                            <div class="border mb-2">
-                                                <h3 class="h6 mb-0"><a class="d-block" style="padding:20px;" data-toggle="collapse" href="#collapsepaypal" role="button"
-                                                                       aria-expanded="false" aria-controls="collapsepaypal">약사의 말 한마디</a></h3>
 
-                                                <div class="collapse" id="collapsepaypal">
-                                                    <div class="py-2 px-4">
-                                                        <p class="mb-0">따듯한 물을 자주 마시는게 좋습니다.</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>배송중</td>
-                                    </tr>
+                                    <tbody id="site-section">
+
+                                    <!--소켓-->
+
                                     </tbody>
+
                                 </table>
                             </div>
+
                         </form>
                     </div>
                 </div>
@@ -88,5 +73,24 @@
 <th:block th:replace="layout/04_script :: scriptFragment"></th:block>
 
 </body>
+<script>
+    const uri = "ws://localhost:8080/userWebSocket"
+    const websocket = new WebSocket(uri)
 
+    websocket.onopen = function (event) {
+        websocket.send(":" + sessionStorage.getItem("id"))
+    }
+    websocket.onclose = function (event) {
+
+    }
+    websocket.onmessage = function (event) {
+        const container = document.getElementById("site-section")
+
+        container.innerHTML = event.data
+    }
+
+    function youngseo(order_no) {
+        websocket.send(order_no)
+    }
+</script>
 </html>

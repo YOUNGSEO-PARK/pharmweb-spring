@@ -37,6 +37,7 @@ public class PharmacistWebSocketController {
 
     @Autowired
     public void setOrderService(OrderService service) {
+
         orderService = service;
     }
 
@@ -88,6 +89,7 @@ public class PharmacistWebSocketController {
         //order.setOrder_prod(prod);
         RiderWebSocketController.orders.put(String.valueOf(order_no), order);
         RiderWebSocketController.updateOrderList();
+        UserWebSocketController.updateOrderList();
         System.out.println(message);
     }
 
@@ -109,21 +111,20 @@ public class PharmacistWebSocketController {
                         "                            <br>\n" +
                         "                            <p class=\"text-black\">주문자 아이디 : " + e.getValue().getOrder_user_id() + "</p>\n" +
                         "                            <p class=\"text-black\">주문자 이름 : " + e.getValue().getOrder_name() + "</p>\n" +
-                        "                            <p class=\"text-black\">주문자 주소 : " + e.getValue().getOrder_adr1() + " " + e.getValue().getOrder_adr2() + " </p>\n" +
+                        "                            <h6 class=\"text-black\">주문자 주소 : " + e.getValue().getOrder_adr1() + " " + e.getValue().getOrder_adr2() + " </h6>\n" +
                         "                            <p class=\"text-black\">주문자 휴대폰 번호 : " + e.getValue().getOrder_phone() +" </p>\n" +
                         "                            <h6 class=\"text-black\">주문자 메세지 : " + e.getValue().getOrder_msg() + " </h6>\n" +
-                        "                            <p class=\"text-black\"><br>주문내역 <br> " + e.getValue().getOrder_prod() + " </p>\n" +
-
-                        "                            <div class=\"form-group\">\n" +
-                        "                                <label for=\"p_order_note1\" class=\"text-black\">약사의 한 마디</label>\n" +
-                        "                                <textarea id=\"" + "\" name=\"p_order_note1\" id=\"p_order_note1\" cols=\"80\" rows=\"5\"\n" +
-                        "                                          class=\"form-control\"\n" +
-                        "                                          placeholder=\"환자에게 전할 말이 있으시면 작성해주세요.\"></textarea>\n" +
-                        "                            </div>\n");
+                        "                            <p class=\"text-black\"><br>상품명 <br> " + e.getValue().getOrder_prod() + " </p>\n" );
 
                                                     if(e.getValue().getOrder_status().equals("0")){
 
                                                         String str =
+                                                                 "<div class=\"form-group\">\n" +
+                                                                "                                <label for=\"p_order_note1\" class=\"text-black\">약사의 한 마디</label>\n" +
+                                                                "                                <textarea id=\"" + "\" name=\"p_order_note1\" id=\"p_order_note1\" cols=\"80\" rows=\"5\"\n" +
+                                                                "                                          class=\"form-control\"\n" +
+                                                                "                                          placeholder=\"환자에게 전할 말이 있으시면 작성해주세요.\"></textarea>\n" +
+                                                                "                            </div>" +
                         "                            <div class=\"form-group row\" style=\"float: right\">\n" +
                         "                                <div class=\"col-lg-6\">\n" +
                         "                                    <input type=\"button\" id=\"deliveryBtn\" class=\"btn btn-primary btn-lg btn-block\" value=\"라이더 호출\" onclick=\"sendToRider(\'"
@@ -145,7 +146,7 @@ public class PharmacistWebSocketController {
                                 "                </div>";
                                                         result.append(str);
 
-                                                            } else {
+                                                            } else if (e.getValue().getOrder_status().equals("1")){
                                                         String str = "<div class=\"col-lg-6\">\n" +
                                                                 "                                    " +
                                                                 "<input type=\"button\" class=\"btn btn-primary btn-lg btn-block\" value=\"배달 대기\">\n"+
@@ -155,9 +156,28 @@ public class PharmacistWebSocketController {
                                                                 "</form>" +
                                                                 "</div>";
                                                         result.append(str);
+                                                    } else if (e.getValue().getOrder_status().equals("2")) {
+                                                        String str = "<div class=\"col-lg-6\">\n" +
+                                                                "                                    " +
+                                                                "<input type=\"button\" class=\"btn btn-primary btn-lg btn-block\" value=\"배달 중\">\n"+
+                                                                "</div>" +
+                                                                "</div>" +
+                                                                "</div>" +
+                                                                "</form>" +
+                                                                "</div>";
+                                                        result.append(str);
+                                                    } else if (e.getValue().getOrder_status().equals("3")) {
+                                                        String str = "<div class=\"col-lg-6\">\n" +
+                                                                "                                    " +
+                                                                "<input type=\"button\" class=\"btn btn-primary btn-lg btn-block\" value=\"배달 완료\">\n"+
+                                                                "</div>" +
+                                                                "</div>" +
+                                                                "</div>" +
+                                                                "</form>" +
+                                                                "</div>";
+                                                        result.append(str);
                                                     }
 
-                //statusRes.setStatus(700);
             }
             session.getBasicRemote().sendText(result.toString());
         } catch (Exception e) {
