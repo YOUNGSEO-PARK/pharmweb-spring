@@ -36,12 +36,6 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public void deleteAll(String user_id){
-        cartDAO.deleteAll(user_id);
-    }
-
-
-    @Override
     public int sumMoney(String user_id){
         return cartDAO.sumMoney(user_id);
     }

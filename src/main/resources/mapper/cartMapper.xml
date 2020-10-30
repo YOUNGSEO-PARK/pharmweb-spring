@@ -3,14 +3,10 @@
 
 <mapper namespace="com.example.pharmwebspring.DAO.CartDAO">
     <!-- 장바구니에 담기 -->
-    <insert id="insert">
-        insert into cart (cart_no, user_id, prod_name, count_p)
+    <insert id="insert" parameterType="com.example.pharmwebspring.Model.Cart">
+        insert into cart (user_id, cart_img_url, cart_prod_name, count_p, cart_prod_price)
         values
-          (SELECT seq_cart('file') , #{user_id}, #{prod_name}, #{count_p} )
-
-         //장바구니 담기 버튼을 누를때 실행되는 쿼리문
-         //cart_id와 userid, product_id, amount 값을 저장한다.
-         //cart_id는 하나씩 증가되어야하기때문에 시퀀스값으로 지정한다.
+          (#{user_id}, #{cart_img_url}, #{cart_prod_name}, #{count_p}, #{cart_prod_price})
     </insert>
 
     <select id="listCart" resultType="com.example.pharmwebspring.Model.Cart">

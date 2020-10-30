@@ -2,7 +2,7 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <th:block th:replace="layout/01_link :: linkFragment"></th:block>
-
+<script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
 
 <body>
 
@@ -13,17 +13,16 @@
 
     <div class="bg-light py-3">
         <div class="container">
-            <div class="row">
+            <div th:class="${dto}" class="row">
                 <div class="col-md-12 mb-0"><a href="index">Home</a> <span class="mx-2 mb-0">/</span> <a
-                        href="shop">Store</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">타이레놀,
-                    500mg</strong></div>
+                        href="shop">Store</a> <span class="mx-2 mb-0">/</span> <strong th:text="${dto.prod_name}" class="text-black"></strong></div>
             </div>
         </div>
     </div>
 
-    <div class="site-section">
+    <div th:class="${dto}" class="site-section">
         <div class="container">
-            <div th:class="${dto}" class="row">
+            <div class="row">
                 <div class="col-md-5 mr-auto">
                     <div class="border text-center">
                         <img th:src="${dto.img_url}" alt="Image" class="img-fluid p-5">
@@ -38,23 +37,28 @@
                     <p>
                         <strong class="text-primary h4" th:text="${dto.price}">원</strong></p>
 
+                    <form name="cartform" action="#" method="post">
+                        <div class="mb-5">
+                            <div class="input-group mb-3" style="max-width: 220px;">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
+                                </div>
+                                <script></script>
+                                <input type="hidden" name="user_id" th:value="${id}">
+                                <input type="hidden" name="cart_prod_price" th:value="${dto.price}">
+                                <input type="hidden" name="cart_prod_name" th:value="${dto.prod_name}">
+                                <input type="hidden" name="cart_img_url" th:value="${dto.img_url}">
+                                <input type="text" class="form-control text-center" name="count_p" th:value="${dto.count_p}" placeholder=""
+                                       aria-label="Example text with button addon" aria-describedby="button-addon1">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
+                                </div>
+                            </div>
 
-                    <div class="mb-5">
-                        <div class="input-group mb-3" style="max-width: 220px;">
-                            <div class="input-group-prepend">
-                                <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
-                            </div>
-                            <input type="text" class="form-control text-center" value="1" placeholder=""
-                                   aria-label="Example text with button addon" aria-describedby="button-addon1">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
-                            </div>
                         </div>
 
-                    </div>
-
-                    <input type="button" id="CartBtn" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary" value="장바구니 담기">
-
+                        <input type="button" id="CartBtn" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary" value="장바구니 담기">
+                    </form>
                     <div class="mt-5">
                         <ul class="nav nav-pills mb-3 custom-pill" id="pills-tab" role="tablist">
                             <li class="nav-item">

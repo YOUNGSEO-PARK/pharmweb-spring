@@ -13,6 +13,15 @@ public class Product {
     private String img_url;
     private int price;
     private String prod_info;
+    private int count_p;
+
+    public int getCount_p() {
+        return count_p;
+    }
+
+    public void setCount_p(int count_p) {
+        this.count_p = count_p;
+    }
 
     public String get_prod_name() { return prod_name; }
     public void set_prod_name(String prod_name) {
