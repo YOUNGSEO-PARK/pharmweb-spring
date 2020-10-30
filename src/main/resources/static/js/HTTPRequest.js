@@ -437,6 +437,30 @@ $("#rpwCheckBtn").on('click', () => { //.on 이벤트 트리거
     })
 })
 
+$("#CartBtn").on('click', () => { //.on 이벤트 트리거
+    var data = {};
+    $("form[name=cartform]").serializeArray().map(function (x) {
+        data[x.name] = x.value;
+    });
+    console.log(data)
+
+    $.ajax({
+        type: "POST", //fix
+        dataType: "json", //fix
+        contentType: "application/json; charset=utf-8;", //fix
+        url: "/insert",
+        data: JSON.stringify(data), //fix ; 객체->스트링
+    }).done(function (data) {
+
+        if (data.status == 700) {
+            alert("장바구에 담겼다 임마.")
+            document.location.href = '/mp_cart';
+        } else if (data.status == 701) {
+            alert("안됬어. 돌아가.")
+        }
+
+    })
+})
 //------------------------------success-fin-------------------------------------------------------------------
 //
 // $("#CartBtn").on('click', () => { //.on 이벤트 트리거

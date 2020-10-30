@@ -3,8 +3,10 @@ package com.example.pharmwebspring.controller;
 import com.example.pharmwebspring.Model.Cart;
 import com.example.pharmwebspring.Model.DataDao;
 import com.example.pharmwebspring.Model.MapapiDto;
+import com.example.pharmwebspring.Model.StatusRes;
 import com.example.pharmwebspring.Service.CartService;
 import com.example.pharmwebspring.Service.OrderService;
+import jdk.jshell.Snippet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -183,7 +185,8 @@ public class ViewController {
     @Inject
     ProductService productService;
     @RequestMapping("/shop") //세부적인 url mapping
-    public ModelAndView shoppage(ModelAndView mav) {
+    public ModelAndView shoppage(ModelAndView mav, Model model, HttpSession session) {
+        userSession(model,session);
         mav.setViewName("/shop"); //이동할 페이지 이름 (product_list.jsp 파일로 이동)
         mav.addObject("list", productService.listProduct());  //데이터 저장
 
@@ -194,16 +197,55 @@ public class ViewController {
         return mav; //페이지 이동
     }
 
+
     @Inject
     CartService cartService;
-    @RequestMapping("insert.do")
-    public String insert(@ModelAttribute Cart cart, HttpSession session){
-        String user_id=(String)session.getAttribute("user_id");
-        if(user_id==null){
-            return "/index";
-        }
-        cart.setUser_id(user_id);
+    @PostMapping("/insert")
+    public StatusRes insert(@RequestBody Cart cart, HttpSession session, Model model){
+        StatusRes statusRes = new StatusRes();
+        userSession(model, session);
         cartService.insert(cart);
+        if(cart==null){
+            statusRes.setStatus(701);
+        }
+        else{
+            statusRes.setStatus(700);
+        }
+        return statusRes;
+
+
+    }
+
+    @RequestMapping("list.do")
+    public ModelAndView list(HttpSession session, ModelAndView mav){
+        String user_id = (String) session.getAttribute("user_id");
+        Map<String, Object>map = new HashMap<String, Object>();
+        List<Cart> list = cartService.listCart(user_id);
+        int sumMoney = cartService.sumMoney(user_id);
+        map.put("list", list);
+        map.put("count_p", list.size());
+        map.put("sumMoney", sumMoney);
+        mav.setViewName("/mp_cart");
+        mav.addObject("map",map);
+        return mav;
+    }
+
+    @RequestMapping("delete.do")
+    public String delete(@RequestParam int cart_no){
+        cartService.delete(cart_no);
+        return "/mp_cart";
+    }
+
+    @RequestMapping("update.do")
+    public String update(@RequestParam int[] count_p, @RequestParam String[] prod_name, HttpSession session){
+        String user_id = (String)session.getAttribute("user_id");
+        for(int i = 0; i<prod_name.length; i++){
+            Cart cart = new Cart();
+            cart.setUser_id(user_id);
+            cart.setCount_p(count_p[i]);
+            cart.setCart_prod_name(prod_name[i]);
+            cartService.modifyCart(cart);
+        }
         return "/mp_cart";
     }
 
@@ -227,7 +269,8 @@ public class ViewController {
         }else{
             return new ModelAndView("/index","",null);
         }
-    }*/
+    }
+    */
     @GetMapping("/mp_cart")
     public String mp_cartpage(Model model, HttpSession session) {
 
@@ -298,12 +341,13 @@ public class ViewController {
         return "shop_heart";
     }
 
-    @RequestMapping("/shop_single?{prod_name}")
+    @RequestMapping("/{prod_name}")
     public ModelAndView shop_singlepage(
             @PathVariable("prod_name")
-            String prod_name,
-            ModelAndView mav) {
+                    String prod_name,
+            ModelAndView mav, Model model, HttpSession session) {
 
+        userSession(model, session);
         mav.setViewName("/shop_single");
         mav.addObject("dto",productService.product(prod_name));
 
