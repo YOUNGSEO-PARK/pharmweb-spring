@@ -45,9 +45,9 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void getOrderPharmList()
+    public String getOrderPharmList()
     {
 
-        dao.getOrderPharmList();
+        return dao.getOrderPharmList();
     }
 }

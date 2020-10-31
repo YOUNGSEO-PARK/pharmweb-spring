@@ -19,6 +19,7 @@ $("#LoginBtn").on('click', () => { //.on 이벤트 트리거
         }).done(function (data) {
             //로직 필요에 따라 변경
             if (data.status == 102) {
+
                 alert("안녕하세요, 기운팜팜입니다!")
                 document.location.href = '/index';
             } else if (data.status == 103) {

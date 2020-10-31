@@ -25,12 +25,20 @@
                     <h2>주문 알림<strong>✔</strong></h2>
                 </div>
             </div>
+            <table class="table table-bordered">
 
-            <div id="site-section" class="site-section  overlay" style="max-height: 1000px; background-color: white; padding:40px 20px; overflow:scroll; overflow-x:hidden">
+                <tbody id="site-section">
+
+                <!--소켓-->
+                <div class="site-section  overlay" style="max-height: 1000px; background-color: white; padding:40px 20px; overflow:scroll; overflow-x:hidden">
+                </div>
+
+                </tbody>
+
+            </table>
 
             </div>
         </div>
-    </div>
 
     <th:block th:replace="layout/03_footer :: footerFragment"></th:block>
 
@@ -60,6 +68,14 @@
         const pomsg = document.getElementById("pharm_msg").value
 
         websocket.send(number + "/"+ id + "/" + name + "/" + adr1 + "/" + adr2 + "/" + phone+ "/"+ omsg+ "/"+ prod+ "/" +pomsg+ "/" + time+ "/"+ s)
+    }
+
+    function fail(orderNo) {
+        websocket.send(":" + orderNo)
+    }
+
+    function refund(orderNo) {
+        websocket.send("#" + orderNo)
     }
 </script>
 </html>

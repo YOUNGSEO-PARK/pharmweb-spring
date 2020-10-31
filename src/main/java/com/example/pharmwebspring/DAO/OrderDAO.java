@@ -20,5 +20,5 @@ public interface OrderDAO {
 
     void updateOrderPmsg(Order order);
 
-    void getOrderPharmList();
+    String getOrderPharmList();
 }

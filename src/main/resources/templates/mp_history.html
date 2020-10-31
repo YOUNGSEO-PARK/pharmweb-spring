@@ -92,5 +92,9 @@
     function youngseo(order_no) {
         websocket.send(order_no)
     }
+
+    function refund(order_no) {
+        websocket.send("#" + order_no)
+    }
 </script>
 </html>

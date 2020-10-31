@@ -111,14 +111,14 @@ public class ViewController {
         }
     }
 
-    @Autowired
-    OrderService orderService;
-
-    public void orderPharmList(Model model){
-        orderService.getOrderPharmList();
-
-
-    }
+//    @Autowired
+//    OrderService orderService;
+//
+//    public void orderPharmList(Model model){
+//        orderService.getOrderPharmList();
+//
+//
+//    }
     @GetMapping("/")
     public String page(Model model, HttpSession session) {
 
@@ -475,17 +475,17 @@ public class ViewController {
     }
     */
 
-    @RequestMapping("/{prod_name}")
-    public ModelAndView shop_singlepage(
-            @PathVariable("prod_name")
-                    String prod_name,
-            ModelAndView mav, Model model, HttpSession session) {
-
-        userSession(model, session);
-        mav.setViewName("shop_single");
-        mav.addObject("dto",productService.product(prod_name));
-
-        return mav;
-    }
+//    @RequestMapping("/{prod_name}")
+//    public ModelAndView shop_singlepage(
+//            @PathVariable("prod_name")
+//                    String prod_name,
+//            ModelAndView mav, Model model, HttpSession session) {
+//
+//        userSession(model, session);
+//        mav.setViewName("shop_single");
+//        mav.addObject("dto",productService.product(prod_name));
+//
+//        return mav;
+//    }
 
 }

@@ -16,5 +16,5 @@ public interface OrderService {
 
     void deleteOrder(Order order);
 
-    void getOrderPharmList();
+    String getOrderPharmList();
 }

@@ -84,7 +84,7 @@ public class RiderWebSocketController {
         try {
             StringBuilder result = new StringBuilder();
             for (Map.Entry<String, Order> e : orders.entrySet()) {
-                result.append("<div class=\"container\">\n" +
+                result.append("<tr><div class=\"container\">\n" +
                         "                    <div class=\" form-group row\" style=\"margin-bottom:20px; padding:20px; border:3px solid #75b239;\">\n" +
 
                         "                        <div>\n" +
@@ -112,7 +112,7 @@ public class RiderWebSocketController {
                         "</div>"+
                                 "</div>\n"+
                                 "</div>\n"+
-                                "</div>\n";
+                                "</div></tr>\n";
                     result.append(str);
                 } else if(e.getValue().getOrder_status().equals("2")){
                     String str = "<div \"width:150px; margin-right: 40px;\">"+
@@ -122,7 +122,7 @@ public class RiderWebSocketController {
                             "</div>"+
                             "                </div>"+
                             "                </div>"+
-                            "                </div>";
+                            "                </div></tr>";
                     result.append(str);
                 }
 

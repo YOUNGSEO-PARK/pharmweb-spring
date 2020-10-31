@@ -61,6 +61,27 @@ public class PharmacistWebSocketController {
 
     @OnMessage
     public void onMessage(String message) {
+        if (message.charAt(0) == ':') {
+            String orderNo = message.substring(1);
+            Order order = new Order();
+            order.setOrder_no(Integer.parseInt(orderNo));
+            order.setOrder_status("5");
+            orderService.updateStatus(order);
+            updateOrderList();
+            UserWebSocketController.updateOrderList();
+            return;
+        }
+
+        if (message.charAt(0) == '#') {
+            String orderNo = message.substring(1);
+            Order order = new Order();
+            order.setOrder_no(Integer.parseInt(orderNo));
+            order.setOrder_status("7");
+            orderService.updateStatus(order);
+            updateOrderList();
+            UserWebSocketController.updateOrderList();
+            return;
+        }
         StringTokenizer tokenizer = new StringTokenizer(message, "/");
         int order_no = Integer.parseInt(tokenizer.nextToken());
         String order_user_id = tokenizer.nextToken();
@@ -110,7 +131,7 @@ public class PharmacistWebSocketController {
         try {
             StringBuilder result = new StringBuilder();
             for (Map.Entry<Integer, Order> e : orders.entrySet()) {
-                result.append("<div class=\"container\">\n" +
+                result.append("<tr><div class=\"container\">\n" +
                         "                    <form name = \" pdeliverform\">\n" +
                         "                    <div class=\" form-group row\" style=\"margin-bottom:20px; padding:20px; border:3px solid #75b239;\">\n" +
                         "                        <div>\n" +
@@ -151,13 +172,13 @@ public class PharmacistWebSocketController {
                                                                                                                          + "\',\'" + e.getValue().getOrder_time() + "\')\">\n" +
                         "                                </div>\n"+
                                 "<div class=\"col-lg-6\">\n" +
-                                "                                    <input type=\"button\" class=\"btn btn-primary btn-lg btn-block\" style=\"width:150px;\" value=\"배달 불가\">\n" +
+                                "                                    <input type=\"button\" class=\"btn btn-primary btn-lg btn-block\" style=\"width:150px;\" value=\"배달 불가\" onclick=fail(" + e.getValue().getOrder_no() +")>\n" +
                                 "                                </div>\n" +
                                 "                            </div>\n" +
                                 "                        </div>\n" +
                                 "                    </div>\n" +
                                 "                   </form>\n" +
-                                "                </div>";
+                                "                </div></tr>";
                                                         result.append(str);
 
                                                             } else if (e.getValue().getOrder_status().equals("1")){
@@ -168,7 +189,7 @@ public class PharmacistWebSocketController {
                                                                 "</div>" +
                                                                 "</div>" +
                                                                 "</form>" +
-                                                                "</div>";
+                                                                "</div></tr>";
                                                         result.append(str);
                                                     } else if (e.getValue().getOrder_status().equals("2")) {
                                                         String str = "<div class=\"col-lg-6\" style=\"float: right\">\n" +
@@ -178,7 +199,7 @@ public class PharmacistWebSocketController {
                                                                 "</div>" +
                                                                 "</div>" +
                                                                 "</form>" +
-                                                                "</div>";
+                                                                "</div></tr>";
                                                         result.append(str);
                                                     } else if (e.getValue().getOrder_status().equals("3")) {
                                                         String str = "<div class=\"col-lg-6\" style=\"float: right\">\n" +
@@ -188,7 +209,47 @@ public class PharmacistWebSocketController {
                                                                 "</div>" +
                                                                 "</div>" +
                                                                 "</form>" +
-                                                                "</div>";
+                                                                "</div></tr>";
+                                                        result.append(str);
+                                                    } else if (e.getValue().getOrder_status().equals("4")) {
+                                                        String str = "<div class=\"col-lg-6\" style=\"float: right\">\n" +
+                                                                "                                    " +
+                                                                "<h5>구매 확정</h5>\n"+
+                                                                "</div>" +
+                                                                "</div>" +
+                                                                "</div>" +
+                                                                "</form>" +
+                                                                "</div></tr>";
+                                                        result.append(str);
+                                                    } else if (e.getValue().getOrder_status().equals("5")) {
+                                                        String str = "<div class=\"col-lg-6\" style=\"float: right\">\n" +
+                                                                "                                    " +
+                                                                "<h5>배달 불가</h5>\n"+
+                                                                "</div>" +
+                                                                "</div>" +
+                                                                "</div>" +
+                                                                "</form>" +
+                                                                "</div></tr>";
+                                                        result.append(str);
+                                                    } else if (e.getValue().getOrder_status().equals("6")) {
+                                                        String str = "<div class=\"col-lg-6\" style=\"float: right\">\n" +
+                                                                "                                    " +
+                                                                "<input type=\"button\" class=\"btn btn-primary btn-lg btn-block\" style=\"width:250px;\" value=\"환불 완료\" onclick=\"refund('"+ e.getValue().getOrder_no() +"')\">\n"+
+                                                                "</div>" +
+                                                                "</div>" +
+                                                                "</div>" +
+                                                                "</form>" +
+                                                                "</div></tr>";
+                                                        result.append(str);
+                                                    } else if (e.getValue().getOrder_status().equals("7")) {
+                                                        String str = "<div class=\"col-lg-6\" style=\"float: right\">\n" +
+                                                                "                                    " +
+                                                                "<h5>환불 완료</h5>\n"+
+                                                                "</div>" +
+                                                                "</div>" +
+                                                                "</div>" +
+                                                                "</form>" +
+                                                                "</div></tr>";
                                                         result.append(str);
                                                     }
 
