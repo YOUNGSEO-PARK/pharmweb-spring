@@ -361,10 +361,6 @@ $("#orderBtn").on('click', () => { //.on 이벤트 트리거
     })
 })
 
-$("#CartBtn").on('click', () => {
-    location.herf="/insert.do";
-});
-
 $("#upwCheckBtn").on('click', () => { //.on 이벤트 트리거
 
     var data = {};
@@ -452,10 +448,10 @@ $("#CartBtn").on('click', () => { //.on 이벤트 트리거
         data: JSON.stringify(data), //fix ; 객체->스트링
     }).done(function (data) {
 
-        if (data.status == 800) {
+        if (data.status == 500) {
             alert("장바구니에 담겼다 임마.")
             document.location.href = '/mp_cart';
-        } else if (data.status == 801) {
+        } else if (data.status == 501) {
             alert("돌아가.")
         }
 

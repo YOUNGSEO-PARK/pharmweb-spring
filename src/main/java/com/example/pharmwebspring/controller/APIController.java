@@ -1,23 +1,20 @@
 package com.example.pharmwebspring.controller;
-
-//import com.example.pharmwebspring.DAO.CartDAO;
 import com.example.pharmwebspring.Model.*;
-//import com.example.pharmwebspring.Service.CartService;
 import com.example.pharmwebspring.Service.CartService;
 import com.example.pharmwebspring.Service.MemberService;
 import com.example.pharmwebspring.Service.OrderService;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import com.example.pharmwebspring.Service.ProductService;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 @RestController
@@ -27,6 +24,7 @@ public class APIController {
 
     @Autowired
     MemberService memberService;
+    @Inject
     @Autowired
     CartService cartService;
     @Autowired
@@ -386,17 +384,55 @@ public class APIController {
         return statusRes;
     }
 
+
+
+
+
+    //예지, 원래 뷰컨트롤러에 있었음
     @PostMapping("/cartinsert")
     public StatusRes insert(@RequestBody Cart cart){
 
         cartService.insert(cart);
         if(cart==null){
-            statusRes.setStatus(801);
+            statusRes.setStatus(501);
         }
         else{
-            statusRes.setStatus(800);
+            statusRes.setStatus(500);
         }
         return statusRes;
+    }
+
+    @RequestMapping("list.do")
+    public ModelAndView list(HttpSession session, ModelAndView mav){
+        String user_id = (String) session.getAttribute("user_id");
+        Map<String, Object> map = new HashMap<String, Object>();
+        List<Cart> list = cartService.listCart(user_id);
+        int sumMoney = cartService.sumMoney(user_id);
+        map.put("list", list);
+        map.put("count_p", list.size());
+        map.put("sumMoney", sumMoney);
+        mav.setViewName("/mp_cart");
+        mav.addObject("map",map);
+        return mav;
+    }
+
+    @RequestMapping("delete.do")
+    public String delete(@RequestParam int cart_no){
+        cartService.delete(cart_no);
+        return "/mp_cart";
+    }
+
+    @RequestMapping("update.do")
+    public String update(@RequestParam int[] count_p, @RequestParam String[] prod_name, HttpSession session){
+        String user_id = (String)session.getAttribute("user_id");
+        for(int i = 0; i<prod_name.length; i++){
+            Cart cart = new Cart();
+            cart.setUser_id(user_id);
+            cart.setCount_p(count_p[i]);
+            cart.setCart_prod_name(prod_name[i]);
+            cartService.modifyCart(cart);
+        }
+        return "/mp_cart";
     }
 
 }

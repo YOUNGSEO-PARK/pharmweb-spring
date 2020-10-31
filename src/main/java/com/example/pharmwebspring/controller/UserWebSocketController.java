@@ -57,14 +57,18 @@ public class UserWebSocketController {
 
         Order order = new Order();
         order.setOrder_no(Integer.parseInt(message));
+        order.setOrder_status("4");
+        orders.get(message).setOrder_status("4");
 
+        orderService.updateStatus(order);
+        updateOrderList();
 
         //remove query
-        orderService.deleteOrder(order);
+        //orderService.deleteOrder(order);
         updateOrderList();
 
         PharmacistWebSocketController.updateOrderList();
-        RiderWebSocketController.orders.remove(message);
+       // RiderWebSocketController.orders.remove(message);
         RiderWebSocketController.updateOrderList();
         requestOrderList();
     }
@@ -80,17 +84,17 @@ public class UserWebSocketController {
                         "                                            <img src=\"images/product_02.png\" alt=\"Image\" class=\"img-fluid\">\n" +
                         "                                        </td>\n" +
                         "                                        <td>\n" +
-                                "                                    <p>주문자 아이디 :" + e.getValue().getOrder_user_id() + " </p>\n" +
-                        "                                            <p>주문번호 :" + e.getValue().getOrder_no() + " </p>\n" +
-                        "                                            <p>상품명 :" + e.getValue().getOrder_prod() + " </p>\n" +
+                                "                                    <p>주문번호 : " + e.getValue().getOrder_no() + " </p>\n" +
+                                "                                    <p>주문자 아이디 : " + e.getValue().getOrder_user_id() + " </p>\n" +
+                        "                                            <p>상품명 : " + e.getValue().getOrder_prod() + " </p>\n" +
                         "                                            <p>가격 : 29000원</p>\n" +
                         "                                            <p>일시 : 2020.10.29 16:05시</p>\n" +
                         "                                            <br>\n" +
                         "                                            <div class=\"border mb-2\">\n" +
-                        "                                                <h3 class=\"h6 mb-0\"><a class=\"d-block\" style=\"padding:20px;\" data-toggle=\"collapse\" href=\"#collapsepaypal\" role=\"button\"\n" +
-                        "                                                                       aria-expanded=\"false\" aria-controls=\"collapsepaypal\">약사의 말 한마디</a></h3>\n" +
+                        "                                                <h3 class=\"h6 mb-0\"><a class=\"d-block\" style=\"padding:20px;\" data-toggle=\"collapse\" href=\"#"+ e.getValue().getOrder_user_id() +e.getValue().getOrder_no() +"\" role=\"button\"\n" +
+                        "                                                                       aria-expanded=\"false\" aria-controls="+ e.getValue().getOrder_user_id() + e.getValue().getOrder_no() +">약사의 말 한마디</a></h3>\n" +
                         "\n" +
-                        "                                                <div class=\"collapse\">\n" +
+                        "                                                <div class=\"collapse\" id="+ e.getValue().getOrder_user_id() + e.getValue().getOrder_no() +">\n" +
                         "                                                    <div class=\"py-2 px-4\">\n" +
                         "                                                        <p class=\"mb-0\">" + e.getValue().getOrder_pmsg() + "</p>\n" +
                         "                                                    </div>\n" +
@@ -100,31 +104,78 @@ public class UserWebSocketController {
                 if(e.getValue().getOrder_status().equals("0")){
 
                     String str =
-                            "</td>\n" +
-                                    "                                <td>주문 완료</td>\n";
+                            "</p>\n" +
+                                    "                                  </div>\n" +
+                                    "                                </div>\n" +
+                                    "                              </div>\n" +
+                                    "                            </td>\n" +
+                                    "                            <td>\n" +
+                                    "                              <h5>주문 완료</h5>\n" +
+                                    "                              <br> \n" +
+                                    "                              <input type=\"button\" style=\"font-size:medium;\"class=\"btn btn-primary btn-lg btn-block\" value=\"환불신청\">\n" +
+                                    "                            </input>\n" +
+                                    "                            </td>\n" +
+                                    "                          </tr>         ";
                     result.append(str);
                 }else if(e.getValue().getOrder_status().equals("1")){
 
                     String str =
-                            "</td>\n" +
-                                    "                                <td>배송 대기</td>\n";
+                            "</p>\n" +
+                                    "                                  </div>\n" +
+                                    "                                </div>\n" +
+                                    "                              </div>\n" +
+                                    "                            </td>\n" +
+                                    "                            <td>\n" +
+                                    "                              <h5>배송 대기</h5>\n" +
+                                    "                              <br> \n" +
+                                    "                              <input type=\"button\" style=\"font-size:medium;\"class=\"btn btn-primary btn-lg btn-block\" value=\"환불신청\">\n" +
+                                    "                            </input>\n" +
+                                    "                            </td>\n" +
+                                    "                          </tr>         ";
                     result.append(str);
                 } else if(e.getValue().getOrder_status().equals("2")){
-                    String str =  "</td>\n" +
-                            "                                        <td>배송 중</td>\n";
+                    String str =  "</p>\n" +
+                            "                                  </div>\n" +
+                            "                                </div>\n" +
+                            "                              </div>\n" +
+                            "                            </td>\n" +
+                            "                            <td>\n" +
+                            "                              <h5>배송 중</h5>\n" +
+                            "                              <br> \n" +
+                            "                              <input type=\"button\" style=\"font-size:medium;\"class=\"btn btn-primary btn-lg btn-block\" value=\"환불신청\">\n" +
+                            "                            </input>\n" +
+                            "                            </td>\n" +
+                            "                          </tr>         ";
                     result.append(str);
                 } else if(e.getValue().getOrder_status().equals("3")) {
-                    String str = "</td>\n" +
-                            "                                        <td>배송 완료</td>\n";
+                    String str = "</p>\n" +
+                            "                                  </div>\n" +
+                            "                                </div>\n" +
+                            "                              </div>\n" +
+                            "                            </td>\n" +
+                            "                            <td>\n" +
+                            "                              <h5>배송 완료</h5>\n" +
+                            "                              <br> \n" +
+                            "                              <input type=\"button\" style=\"font-size:medium;\"class=\"btn btn-primary btn-lg btn-block\" value=\"구매 확정\">\n" +
+                            "                            </input>\n" +
+                            "                            </td>\n" +
+                            "                          </tr>         ";
 
                     result.append(str);
 
+                } else if(e.getValue().getOrder_status().equals("4")) {
+                    String str = "</p>\n" +
+                            "                                  </div>\n" +
+                            "                                </div>\n" +
+                            "                              </div>\n" +
+                            "                            </td>\n" +
+                            "                            <td>\n" +
+                            "                              <h5>구매 확정</h5>\n" +
+                            "                            </td>\n" +
+                            "                          </tr>         ";
+
+                    result.append(str);
                 }
-                result.append(" <td><input type=\"button\" class=\"btn btn-primary btn-lg btn-block\" value=\"환불 신청\" onclick=\"youngseo(" +
-                        e.getValue().getOrder_no() +
-                        ")\"> <input type=\"button\" class=\"btn btn-primary btn-lg btn-block\" value=\"수령 확인\" onclick=\"youngseo(" +
-                        e.getValue().getOrder_no() +
-                        ")\"> </td> </tr>");
             }
 
             session.getBasicRemote().sendText(result.toString());
