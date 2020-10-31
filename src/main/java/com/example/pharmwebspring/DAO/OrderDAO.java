@@ -2,6 +2,7 @@ package com.example.pharmwebspring.DAO;
 
 import com.example.pharmwebspring.Model.Order;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -20,5 +21,7 @@ public interface OrderDAO {
 
     void updateOrderPmsg(Order order);
 
-    String getOrderPharmList();
+   // String getOrderPharmList();
+
+    List<Order> getOrderById(@Param("login_id") String string);
 }

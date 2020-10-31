@@ -45,9 +45,15 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public String getOrderPharmList()
-    {
+    public List<Order> getOrderByIdList(String string) {
 
-        return dao.getOrderPharmList();
+        return dao.getOrderById(string);
     }
+
+//    @Override
+//    public String getOrderPharmList()
+//    {
+//
+//        return dao.getOrderPharmList();
+//    }
 }

@@ -10,7 +10,7 @@
 
     <select id="getOrder" resultType="com.example.pharmwebspring.Model.Order">
         select * from parmdb.order
-        </select>
+    </select>
 
     <update id="updateOrderStatus" parameterType="com.example.pharmwebspring.Model.Order" >
         update parmdb.order set order_status = #{order_status} where order_no=#{order_no}
@@ -27,7 +27,12 @@
     <select id="getOrderPharmList" resultType="java.util.HashMap">
         select pharm_name from parmdb.pharmacy
     </select>
-<!--    <select id="getProduct" parameterType="String" resultType="com.example.pharmwebspring.Model.Product">-->
+
+    <select id="getOrderById" parameterType="String" resultType="com.example.pharmwebspring.Model.Order">
+        select * from parmdb.order where order_user_id=#{login_id}
+    </select>
+
+    <!--    <select id="getProduct" parameterType="String" resultType="com.example.pharmwebspring.Model.Product">-->
 <!--        select * from parmdb.product where-->
 <!--    </select>-->
     

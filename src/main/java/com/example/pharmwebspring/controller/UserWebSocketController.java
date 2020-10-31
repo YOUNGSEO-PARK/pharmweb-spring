@@ -22,6 +22,7 @@ public class UserWebSocketController {
     private String userID;
     private Session session;
 
+    public static String userId;
     private static int loginNumber;
     public static HashMap<Integer, Order> orders;
     public static HashMap<Integer, UserWebSocketController> users;
@@ -39,11 +40,6 @@ public class UserWebSocketController {
         users.put(id, this);
         requestOrderList();
         System.out.println("Enter : " + id);
-        System.out.println("================");
-        System.out.println(session.toString());
-        System.out.println(session.getPathParameters().toString());
-        System.out.println(session.getPathParameters().get("id"));
-        System.out.println("================");
     }
 
     @OnClose
@@ -74,15 +70,11 @@ public class UserWebSocketController {
         Order order = new Order();
         order.setOrder_no(Integer.parseInt(message));
 
-        //??
+
         order.setOrder_status("4");
 
         orderService.updateStatus(order);
         updateOrderList();
-
-        //remove query
-        //orderService.deleteOrder(order);
-        //updateOrderList();
 
         PharmacistWebSocketController.updateOrderList();
         RiderWebSocketController.orders.remove(message);
@@ -233,7 +225,6 @@ public class UserWebSocketController {
 
             session.getBasicRemote().sendText(result.toString());
         } catch (Exception e) {
-            System.out.println("Exception ID : " + id);
             e.printStackTrace();
         }
     }
@@ -246,9 +237,10 @@ public class UserWebSocketController {
             userWebSocketController.requestOrderList();
         }
     }
+
     public static HashMap<Integer, Order> getOrders() {
 
-        List<Order> list = orderService.getOrderList();
+        List<Order> list = orderService.getOrderByIdList(userId);
         System.out.println(list.toString());
         HashMap<Integer, Order> hashMap = new HashMap<>();
 

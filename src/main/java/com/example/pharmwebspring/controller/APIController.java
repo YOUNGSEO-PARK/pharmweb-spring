@@ -7,14 +7,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 
 @RestController
@@ -207,6 +203,8 @@ public class APIController {
 
             statusRes.setStatus(103);
         } else {
+
+            UserWebSocketController.userId = user.getUser_id();
             session.setAttribute("id", user.getUser_id());
             session.setAttribute("uname", user.getUser_name());
             session.setAttribute("uphone", user.getUser_phone());
