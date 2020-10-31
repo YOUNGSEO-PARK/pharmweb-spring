@@ -361,9 +361,6 @@ $("#orderBtn").on('click', () => { //.on 이벤트 트리거
     })
 })
 
-$("#CartBtn").on('click', () => {
-    location.herf="/insert.do";
-});
 
 $("#upwCheckBtn").on('click', () => { //.on 이벤트 트리거
 
@@ -453,44 +450,29 @@ $("#CartBtn").on('click', () => { //.on 이벤트 트리거
     }).done(function (data) {
 
         if (data.status == 800) {
-            alert("장바구니에 담겼다 임마.")
+            alert("장바구니에 상품이 성공적으로 담겼습니다.")
             document.location.href = '/mp_cart';
         } else if (data.status == 801) {
-            alert("돌아가.")
+            alert("다시 시도해주세요.")
         }
 
     })
 })
+
+
+$("#CartlistBtn").on('click', () => { //.on 이벤트 트리거
+
+    $.ajax({
+        type: "GET", //fix
+        dataType: "json", //fix
+        contentType: "application/json; charset=utf-8;", //fix
+        url: "/list",
+        data: JSON, //fix ; 객체->스트링
+    }).done(function (data) {
+        console.log(data);
+    })
+})
 //------------------------------success-fin-------------------------------------------------------------------
-//
-// $("#CartBtn").on('click', () => { //.on 이벤트 트리거
-//     var data = {};
-//     $("form[name=regiform]").serializeArray().map(function (x) {
-//         data[x.name] = x.value;
-//     });
-//     console.log(data)
-//
-//     $.ajax({
-//         type: "POST", //fix
-//         dataType: "json", //fix
-//         contentType: "application/json; charset=utf-8;", //fix
-//         url: "/api/shop_single",
-//         data: JSON.stringify(data), //fix ; 객체->스트링
-//     }).done(function (data) {
-//
-//         //로직 필요에 따라 변경
-//         if (data.status == 104) {
-//             alert("상품이 성공적으로 장바구니에 담겼습니다.")
-//             document.location.href = '/shop_single';
-//         } else if (data.status == 105) {
-//             alert("이미 장바구니에 있는 제품입니다.");
-//         } else if (data.status == 106) {
-//             alert("장바구니에 추가하지 못했습니다.");
-//         }
-//     })
-// })
-//
-//
 // $("#deliveryBtn").on('click', () => { //.on 이벤트 트리거
 //     var data = {};
 //     $("form[name=pdeliverform]").serializeArray().map(function (x) {
@@ -516,3 +498,29 @@ $("#CartBtn").on('click', () => { //.on 이벤트 트리거
 //
 //     })
 // })
+
+var getList = {};
+getList.util = {
+    // method : get/post , url : call url
+    // params    : json 형식 요청 데이터, callbackFunction : callback 함수명
+    callAjax : function(method, url, type,params, callbackFunction ){
+        if(method=="" || url==""){
+            console.log("method or url empty");
+            return false;
+        }
+
+        $.ajax({
+            type : "GET"
+            , url : "/list"
+            , data : JSON.stringify(params)
+            , contentType:'application/json; charset=utf-8'
+            , dataType: type
+            , success : function(params) {
+                console.log(params)
+            }
+            , error : function(jqXHR, error) {
+                console.log(error);
+            }
+        });
+    }
+};

@@ -24,14 +24,13 @@
     <br>
     <br>
 
-
     <div class="container">
         <div class="row justify-content-between">
             <div class="col-md-12">
                 <h2 class="h3 mb-5 text-black" style="padding-left: 230px;">Cart</h2>
             </div>
             <th:block th:replace="layout/06_mypage :: mypageFragment"></th:block>
-            <div class="col-lg-10">
+            <div th:each="col:${list}" class="col-lg-10">
                 <div class="container">
                     <div class="row mb-5">
                         <form class="col-md-12" method="post">
@@ -49,13 +48,14 @@
                                     </thead>
                                     <tbody>
                                     <tr>
+
                                         <td class="product-thumbnail">
-                                            <img th:src="${list.img_url}" alt="Image" class="img-fluid">
+                                            <img th:src="${col.cart_img_url}" alt="Image" class="img-fluid">
                                         </td>
                                         <td class="product-name">
-                                            <h2 class="h5 text-black">락토핏</h2>
+                                            <h2 class="h5 text-black" th:text="${col.cart_prod_name}"></h2>
                                         </td>
-                                        <td>9900원</td>
+                                        <td th:text="${col.cart_prod_price}"></td>
                                         <td>
                                             <div class="input-group mb-3" style="max-width: 120px;">
                                                 <div class="input-group-prepend">
@@ -75,38 +75,7 @@
                                             </div>
 
                                         </td>
-                                        <td>9900원</td>
-                                        <td><a href="#" class="btn btn-primary height-auto btn-sm">X</a></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="product-thumbnail">
-                                            <img src="images/아로나민.jpg" alt="Image" class="img-fluid">
-                                        </td>
-                                        <td class="product-name">
-                                            <h2 class="h5 text-black">아로나민</h2>
-                                        </td>
-                                        <td>12000원</td>
-                                        <td>
-                                            <div class="input-group mb-3" style="max-width: 120px;">
-                                                <div class="input-group-prepend">
-                                                    <button class="btn btn-outline-primary js-btn-minus" type="button">
-                                                        &minus;
-                                                    </button>
-                                                </div>
-                                                <input type="text" class="form-control text-center" value="1"
-                                                       placeholder=""
-                                                       aria-label="Example text with button addon"
-                                                       aria-describedby="button-addon1">
-                                                <div class="input-group-append">
-                                                    <button class="btn btn-outline-primary js-btn-plus" type="button">
-                                                        &plus;
-                                                    </button>
-                                                </div>
-                                            </div>
-
-                                        </td>
-                                        <td>12000원</td>
+                                        <td th:text="${col.money}"></td>
                                         <td><a href="#" class="btn btn-primary height-auto btn-sm">X</a></td>
                                     </tr>
                                     </tbody>

@@ -9,12 +9,12 @@
           (#{user_id}, #{cart_img_url}, #{cart_prod_name}, #{count_p}, #{cart_prod_price})
     </insert>
 
-    <select id="listCart" resultType="com.example.pharmwebspring.Model.Cart">
-        select * from parmdb.cart
-    </select>
 
     <select id="sumMoney" resultType="int">
-        select nvl(sum(price*count_p),0) from cart c, product p
-        where c.prod_name=p.prod_name and user_id=#{user_id}
+        select nvl(sum(cart_prod_price*count_p),0) from pramdb.cart where user_id=#{user_id}
+    </select>
+
+    <select id="listCart" resultType="com.example.pharmwebspring.Model.Cart">
+        select * from pramdb.cart where user_id=#{user_id}
     </select>
 </mapper>

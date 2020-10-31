@@ -201,27 +201,39 @@ public class ViewController {
     @Inject
     CartService cartService;
 
-    @RequestMapping("list.do")
-    public ModelAndView list(HttpSession session, ModelAndView mav){
-        String user_id = (String) session.getAttribute("user_id");
-        Map<String, Object>map = new HashMap<String, Object>();
-        List<Cart> list = cartService.listCart(user_id);
-        int sumMoney = cartService.sumMoney(user_id);
-        map.put("list", list);
-        map.put("count_p", list.size());
-        map.put("sumMoney", sumMoney);
-        mav.setViewName("/mp_cart");
-        mav.addObject("map",map);
-        return mav;
+
+    @RequestMapping("/list")
+    public ModelAndView list(HttpSession session, ModelAndView mav,
+                             Model model){
+        //user_id = (String) session.getAttribute("user_id");
+        //userSession(model, session);
+        Map<String, Object>map = new HashMap<>();
+        String user_id = (String)session.getAttribute("user_id");
+        if(user_id != null){
+            List<Cart> list = cartService.listCart(user_id);
+            int sumMoney = cartService.sumMoney(user_id);
+
+            map.put("sumMoney", sumMoney);
+            map.put("list", list);
+            map.put("count", list.size());
+
+            mav.setViewName("/mp_cart");
+            mav.addObject("map", map);
+
+            return mav;
+        }
+        else{
+            return new ModelAndView("/index","",null);
+        }
     }
 
-    @RequestMapping("delete.do")
+    @RequestMapping("/delete")
     public String delete(@RequestParam int cart_no){
         cartService.delete(cart_no);
         return "/mp_cart";
     }
 
-    @RequestMapping("update.do")
+    @RequestMapping("/update")
     public String update(@RequestParam int[] count_p, @RequestParam String[] prod_name, HttpSession session){
         String user_id = (String)session.getAttribute("user_id");
         for(int i = 0; i<prod_name.length; i++){
@@ -333,7 +345,7 @@ public class ViewController {
             ModelAndView mav, Model model, HttpSession session) {
 
         userSession(model, session);
-        mav.setViewName("/shop_single");
+        mav.setViewName("shop_single");
         mav.addObject("dto",productService.product(prod_name));
 
         return mav;
