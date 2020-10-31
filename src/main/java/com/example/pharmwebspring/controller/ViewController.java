@@ -381,29 +381,23 @@ public class ViewController {
     CartService cartService;
 
 
-    @RequestMapping("/list")
+    @PostMapping("/list")
     public ModelAndView list(HttpSession session, ModelAndView mav,
                              Model model){
         //user_id = (String) session.getAttribute("user_id");
         //userSession(model, session);
-        Map<String, Object>map = new HashMap<>();
+        //Map<String, Object>map = new HashMap<>();
+        userSession(model, session);
         String user_id = (String)session.getAttribute("user_id");
-        if(user_id != null){
-            List<Cart> list = cartService.listCart(user_id);
-            int sumMoney = cartService.sumMoney(user_id);
+            //List<Cart> list = cartService.listCart(user_id);
 
-            map.put("sumMoney", sumMoney);
-            map.put("list", list);
-            map.put("count", list.size());
+            //map.put("list", list);
+            //map.put("count", list.size());
 
-            mav.setViewName("/mp_cart");
-            mav.addObject("map", map);
+            mav.setViewName("mp_cart");
+            mav.addObject("map", cartService.listCart(user_id));
 
             return mav;
-        }
-        else{
-            return new ModelAndView("/index","",null);
-        }
     }
 
     @RequestMapping("/delete")
@@ -426,10 +420,12 @@ public class ViewController {
     }
 
     @GetMapping("/mp_cart")
-    public String mp_cartpage(Model model, HttpSession session) {
-
+    public ModelAndView mp_cartpage(ModelAndView mav, Model model, HttpSession session) {
         userSession(model,session);
-        return "mp_cart";
+        String user_id = (String)session.getAttribute("user_id");
+        mav.setViewName("mp_cart");
+        mav.addObject("map", cartService.listCart(user_id));
+        return mav;
     }
 
     @Inject
@@ -478,7 +474,7 @@ public class ViewController {
             ModelAndView mav, Model model, HttpSession session) {
 
         userSession(model, session);
-        mav.setViewName("/shop_single");
+        mav.setViewName("shop_single");
         mav.addObject("dto",productService.product(prod_name));
 
         return mav;

@@ -4,17 +4,12 @@
 <mapper namespace="com.example.pharmwebspring.DAO.CartDAO">
     <!-- 장바구니에 담기 -->
     <insert id="insert" parameterType="com.example.pharmwebspring.Model.Cart">
-        insert into cart (user_id, cart_img_url, cart_prod_name, count_p, cart_prod_price)
+        insert into cart (user_id, cart_img_url, cart_prod_name, count_p, cart_prod_price, summoney)
         values
-          (#{user_id}, #{cart_img_url}, #{cart_prod_name}, #{count_p}, #{cart_prod_price})
+          (#{user_id}, #{cart_img_url}, #{cart_prod_name}, #{count_p}, #{cart_prod_price}, #{summoney})
     </insert>
 
-
-    <select id="sumMoney" resultType="int">
-        select nvl(sum(cart_prod_price*count_p),0) from pramdb.cart where user_id=#{user_id}
-    </select>
-
     <select id="listCart" resultType="com.example.pharmwebspring.Model.Cart">
-        select * from pramdb.cart where user_id=#{user_id}
+        select * from parmdb.cart
     </select>
 </mapper>

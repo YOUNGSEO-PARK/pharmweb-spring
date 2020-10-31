@@ -397,7 +397,9 @@ public class APIController {
         return statusRes;
     }
 
-    @RequestMapping("list.do")
+
+
+   /* @RequestMapping("list.do")
     public ModelAndView list(HttpSession session, ModelAndView mav){
         String user_id = (String) session.getAttribute("user_id");
         Map<String, Object> map = new HashMap<String, Object>();
@@ -428,6 +430,6 @@ public class APIController {
             cartService.modifyCart(cart);
         }
         return "/mp_cart";
-    }
+    }*/
 
 }
