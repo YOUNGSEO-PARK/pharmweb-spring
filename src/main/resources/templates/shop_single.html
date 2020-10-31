@@ -31,9 +31,9 @@
                         <h2 class="text-black" th:text="${dto.prod_name}"></h2>
                         <br>
                         <h5 class="text-primary">효능·효과</h5>
-                        <p> 효능은 이렇습니다</p>
+                        <p class="prod_info_after" th:text="${dto.prod_info_after}"></p>
                         <h5 class="text-primary">용법·용량</h5>
-                        <p> 이렇게 사용하세요</p>
+                        <p class="prod_info_how" th:text="${dto.prod_info_how}"></p>
 
                         <p>
                             <strong class="text-primary h4" th:text="${dto.price}">원</strong></p>
@@ -71,9 +71,10 @@
                                         </thead>
                                         <tbody>
                                         <tr>
-                                            <th scope="row">"Acetaminophen　아세트아미노펜　300mg
-                                                Caffeine Anhydrous　카페인무수물　50mg
-                                                Isopropylantipyrine　이소프로필안티피린　150mg"
+                                            <th scope="row">
+                                                <h2 class="h5 text-black">
+                                                    <a th:text="${dto.prod_info_when}"></a>
+                                                </h2>
                                             </th>
                                         </tr>
                                         </tbody>

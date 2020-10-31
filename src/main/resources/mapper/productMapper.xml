@@ -6,11 +6,11 @@
         resultType = "com.example.pharmwebspring.Model.Product">
 <!-- 코드의 자료형을 알려준다 DTO타입으로 받아야 되므로 DTO파일의 경로를 입력. -->
 <!-- 이 코드가 호출되면 ProductDTO가 arraylist로 저장됨 -->
-        select * from parmdb.product;
+        select * from parmdb.productpro;
 <!-- id의 내림차순으로 검색한다. (id의 오름차순으로 검색 - 1,2,3,4,.....10) -->
 </select>
 
         <select id="detailProduct" resultType="com.example.pharmwebspring.Model.Product">
-                select * from product where prod_name=#{prod_name}
+                select * from productpro where prod_name=#{prod_name}
         </select>
 </mapper>

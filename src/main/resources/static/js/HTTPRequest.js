@@ -459,24 +459,5 @@ $("#CartBtn").on('click', () => { //.on 이벤트 트리거
     })
 })
 
-$("#CartListBtn").on('click', () => { //.on 이벤트 트리거
-    var data = {};
-    $("form[name=cartlistform]").serializeArray().map(function (x) {
-        data[x.name] = x.value;
-    });
-    console.log(data)
-
-    $.ajax({
-        type: "GET", //fix
-        dataType: "json", //fix
-        contentType: "application/json; charset=utf-8;", //fix
-        url: "/list",
-        data: JSON.stringify(data), //fix ; 객체->스트링
-    }).done(function (data) {
-        alert("success");
-
-    })
-})
-
 
 //------------------------------success-fin-------------------------------------------------------------------
