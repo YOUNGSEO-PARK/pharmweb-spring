@@ -145,13 +145,6 @@ public class ViewController {
         return "login";
     }
 
-    @GetMapping("/cart")
-    public String cartpage(Model model, HttpSession session) {
-
-        userSession(model,session);
-        return "cart";
-    }
-
     @GetMapping("/order")
     public String orderpage(Model model, HttpSession session) {
 

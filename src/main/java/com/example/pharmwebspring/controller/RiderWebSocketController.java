@@ -108,7 +108,7 @@ public class RiderWebSocketController {
                     String str =
                         "<div \"width:150px; margin-right: 40px;\">"+
 
-                        "<input type=\"button\" class=\"btn btn-primary btn-lg btn-block\" value=\"수거완료\" onclick=\"func(\'"+e.getValue().getOrder_no()+"\')\">"+
+                        "<input type=\"button\" class=\"btn btn-primary btn-lg btn-block\" value=\"수거완료\" style=\"width:150px;\" onclick=\"func(\'"+e.getValue().getOrder_no()+"\')\">"+
                         "</div>"+
                                 "</div>\n"+
                                 "</div>\n"+
@@ -116,7 +116,7 @@ public class RiderWebSocketController {
                     result.append(str);
                 } else if(e.getValue().getOrder_status().equals("2")){
                     String str = "<div \"width:150px; margin-right: 40px;\">"+
-                            "<input type=\"button\" class=\"btn btn-primary btn-lg btn-block\" value=\"배달완료\" onclick=\"fin(" +
+                            "<input type=\"button\" class=\"btn btn-primary btn-lg btn-block\" value=\"배달완료\" style=\"width:150px;\" onclick=\"fin(" +
                             + e.getValue().getOrder_no() +
                     ")\">"+
                             "</div>"+
