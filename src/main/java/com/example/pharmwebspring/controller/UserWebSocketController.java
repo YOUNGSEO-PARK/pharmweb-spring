@@ -65,7 +65,7 @@ public class UserWebSocketController {
 
         //remove query
         //orderService.deleteOrder(order);
-        updateOrderList();
+        //updateOrderList();
 
         PharmacistWebSocketController.updateOrderList();
        // RiderWebSocketController.orders.remove(message);
@@ -112,7 +112,7 @@ public class UserWebSocketController {
                                     "                            <td>\n" +
                                     "                              <h5>주문 완료</h5>\n" +
                                     "                              <br> \n" +
-                                    "                              <input type=\"button\" style=\"font-size:medium;\"class=\"btn btn-primary btn-lg btn-block\" value=\"환불신청\">\n" +
+                                    "                              <input type=\"button\" style=\"font-size:medium;\"class=\"btn btn-primary btn-lg btn-block\" value=\"환불 신청\">\n" +
                                     "                            </input>\n" +
                                     "                            </td>\n" +
                                     "                          </tr>         ";
@@ -128,7 +128,7 @@ public class UserWebSocketController {
                                     "                            <td>\n" +
                                     "                              <h5>배송 대기</h5>\n" +
                                     "                              <br> \n" +
-                                    "                              <input type=\"button\" style=\"font-size:medium;\"class=\"btn btn-primary btn-lg btn-block\" value=\"환불신청\">\n" +
+                                    "                              <input type=\"button\" style=\"font-size:medium;\"class=\"btn btn-primary btn-lg btn-block\" value=\"환불 신청\">\n" +
                                     "                            </input>\n" +
                                     "                            </td>\n" +
                                     "                          </tr>         ";
@@ -142,7 +142,7 @@ public class UserWebSocketController {
                             "                            <td>\n" +
                             "                              <h5>배송 중</h5>\n" +
                             "                              <br> \n" +
-                            "                              <input type=\"button\" style=\"font-size:medium;\"class=\"btn btn-primary btn-lg btn-block\" value=\"환불신청\">\n" +
+                            "                              <input type=\"button\" style=\"font-size:medium;\"class=\"btn btn-primary btn-lg btn-block\" value=\"환불 신청\">\n" +
                             "                            </input>\n" +
                             "                            </td>\n" +
                             "                          </tr>         ";
@@ -156,7 +156,7 @@ public class UserWebSocketController {
                             "                            <td>\n" +
                             "                              <h5>배송 완료</h5>\n" +
                             "                              <br> \n" +
-                            "                              <input type=\"button\" style=\"font-size:medium;\"class=\"btn btn-primary btn-lg btn-block\" value=\"구매 확정\">\n" +
+                            "                              <input type=\"button\" style=\"font-size:medium;\"class=\"btn btn-primary btn-lg btn-block\" value=\"구매 확정\" onclick=\"youngseo(\'"+e.getValue().getOrder_no()+"\')\">" +
                             "                            </input>\n" +
                             "                            </td>\n" +
                             "                          </tr>         ";

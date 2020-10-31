@@ -377,14 +377,13 @@ public class ViewController {
 
 
 
-
-    //예지
     @Inject
     ProductService productService;
+
     @RequestMapping("/shop") //세부적인 url mapping
     public ModelAndView shoppage(ModelAndView mav, Model model, HttpSession session) {
         userSession(model,session);
-        mav.setViewName("/shop"); //이동할 페이지 이름 (product_list.jsp 파일로 이동)
+        mav.setViewName("shop"); //이동할 페이지 이름 (product_list.jsp 파일로 이동)
         mav.addObject("list", productService.listProduct());  //데이터 저장
 
         //서비스에서 상품 리스트를 받아와 list라는 이름의 변수에 저장
@@ -429,6 +428,5 @@ public class ViewController {
 
         return mav;
     }
-
 
 }

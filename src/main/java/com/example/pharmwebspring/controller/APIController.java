@@ -384,11 +384,6 @@ public class APIController {
         return statusRes;
     }
 
-
-
-
-
-    //예지, 원래 뷰컨트롤러에 있었음
     @PostMapping("/cartinsert")
     public StatusRes insert(@RequestBody Cart cart){
 
@@ -411,7 +406,7 @@ public class APIController {
         map.put("list", list);
         map.put("count_p", list.size());
         map.put("sumMoney", sumMoney);
-        mav.setViewName("/mp_cart");
+        mav.setViewName("mp_cart");
         mav.addObject("map",map);
         return mav;
     }

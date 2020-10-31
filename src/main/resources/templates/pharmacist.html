@@ -58,6 +58,8 @@
 
     function sendToRider(number, id, name, adr1, adr2, phone, omsg, prod, pmsg, s) {
         const pomsg = document.getElementById("pharm_msg").value
+        // if(pomsg == null)
+        //     ;
         websocket.send(number + "/"+ id + "/" + name + "/" + adr1 + "/" + adr2 + "/" + phone+ "/"+ omsg+ "/"+ prod+ "/" +pomsg+ "/"+ s)
     }
 </script>

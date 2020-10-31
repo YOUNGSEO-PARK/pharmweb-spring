@@ -449,10 +449,10 @@ $("#CartBtn").on('click', () => { //.on 이벤트 트리거
     }).done(function (data) {
 
         if (data.status == 500) {
-            alert("장바구니에 담겼다 임마.")
+            alert("선택한 상품이 장바구니에 담겼습니다.")
             document.location.href = '/mp_cart';
         } else if (data.status == 501) {
-            alert("돌아가.")
+            alert("장바구니 담기에 실패하였습니다.")
         }
 
     })
@@ -487,28 +487,4 @@ $("#CartBtn").on('click', () => { //.on 이벤트 트리거
 // })
 //
 //
-// $("#deliveryBtn").on('click', () => { //.on 이벤트 트리거
-//     var data = {};
-//     $("form[name=pdeliverform]").serializeArray().map(function (x) {
-//         data[x.name] = x.value;
-//     });
-//     console.log(data)
-//
-//     $.ajax({
-//         type: "POST", //fix
-//         dataType: "json", //fix
-//         contentType: "application/json; charset=utf-8;", //fix
-//         url: "/api/pharmacist",
-//         data: JSON.stringify(data), //fix ; 객체->스트링
-//     }).done(function (data) {
-//
-//         //로직 필요에 따라 변경
-//         //if (data.status == 700) {
-//             alert("라이더에게 정보를 보냈습니다!")
-//         // }
-//         // else if (data.status == 701) {
-//         //     alert("라이더에게 정보를 보내지 못했습니다.")
-//         // }
-//
-//     })
-// })
+
