@@ -72,7 +72,6 @@ public class PharmacistWebSocketController {
         String order_prod = tokenizer.nextToken();
         String order_pmsg = tokenizer.nextToken();
         String order_status = tokenizer.nextToken();
-//        String msg = tokenizer.nextToken();
 
         Order order = new Order();
         order.setOrder_no(order_no);
