@@ -49,7 +49,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row">
+                            <div class="form-group row" style="margin-top: -25px;">
                                 <div class="col-md-6">
                                     <label for="order_name" class="text-black">이름<span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="order_name" name="order_name">
@@ -64,27 +64,35 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row">
+                            <div class="form-group row" style="margin-top: -35px;">
                                 <div class="col-md-12">
                                     <label for="order_adr2"></label>
                                     <input type="text" class="form-control" id="order_adr2" name="order_adr2" placeholder="세부주소">
                                 </div>
                             </div>
 
-                            <div class="form-group row">
+                            <div class="form-group row mb-5">
                                 <div class="col-md-12">
-                                    <label for="order_phone" class="text-black">핸드폰 번호<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="order_phone" name="order_phone"
-                                           placeholder="-없이 작성해주세요.">
+                                    <label for="c_phone" class="text-black">핸드폰 번호<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="c_phone" name="c_phone" placeholder="-없이 작성해주세요.">
+                                </div>
+                            </div>
+                            <div class="form-group row mb-5" style="margin: -30px -13px -40px;">
+                                <div class="col-md-12">
+                                    <label for="pharm_choice" class="text-black">약국선택<span class="text-danger">*</span></label>
+                                </div>
+                                <div class="col-md-12">
+                                    <select id="pharm_choice" class="pharm_choice" name="pharm_choice">
+                                        <option value="a"> 영서약국</option>
+                                        <option value="b"> 소현약국</option>
+                                        <option value="c"> 예지약국</option></select>
                                 </div>
                             </div>
 
-                            <div class="form-group row">
-                                <div class="col-md-12">
-                                    <label for="order_msg" class="text-black">주문 메세지</label>
-                                    <input type="text" name="order_msg" id="order_msg" cols="30" rows="5" class="form-control"
-                                              placeholder="약사님께 전할 메세지가 있으시면 작성해주세요.">
-                                </div>
+                            <div class="form-group" style="margin-top: -35px;">
+                                <label for="c_order_notes" class="text-black">주문 메세지</label>
+                                <textarea name="c_order_notes" id="c_order_notes" cols="30" rows="5" class="form-control"
+                                          placeholder="약사님께 전할 말이 있으시면 작성해주세요."></textarea>
                             </div>
 
                             <div class="form-group row">
