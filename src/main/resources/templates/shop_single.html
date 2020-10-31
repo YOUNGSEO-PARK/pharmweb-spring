@@ -20,125 +20,71 @@
         </div>
     </div>
 
-    <div th:class="${dto}" class="site-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-5 mr-auto">
-                    <div class="border text-center">
-                        <img th:src="${dto.img_url}" alt="Image" class="img-fluid p-5">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <h2 class="text-black" th:text="${dto.prod_name}"></h2>
-                    <p th:text="${dto.prod_info}">
-                    </p>
-
-
-                    <p>
-                        <strong class="text-primary h4" th:text="${dto.price}">원</strong></p>
-
-                    <form name="cartform" action="#" method="post">
-                        <div class="mb-5">
-                            <div class="input-group mb-3" style="max-width: 220px;">
-                                <div class="input-group-prepend">
-                                    <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
-                                </div>
-                                <script></script>
-                                <input type="hidden" name="user_id" th:value="${id}">
-                                <input type="hidden" name="cart_prod_price" th:value="${dto.price}">
-                                <input type="hidden" name="cart_prod_name" th:value="${dto.prod_name}">
-                                <input type="hidden" name="cart_img_url" th:value="${dto.img_url}">
-                                <input type="text" class="form-control text-center" name="count_p" th:value="${dto.count_p}" placeholder=""
-                                       aria-label="Example text with button addon" aria-describedby="button-addon1">
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <input type="button" id="CartBtn" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary" value="장바구니 담기">
-                    </form>
-                    <div class="mt-5">
-                        <ul class="nav nav-pills mb-3 custom-pill" id="pills-tab" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home"
-                                   role="tab"
-                                   aria-controls="pills-home" aria-selected="true">약 정보</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile"
-                                   role="tab"
-                                   aria-controls="pills-profile" aria-selected="false">세부정보</a>
-                            </li>
-
-                        </ul>
-                        <div class="tab-content" id="pills-tabContent">
-                            <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
-                                 aria-labelledby="pills-home-tab">
-                                <table class="table custom-table">
-                                    <thead>
-                                    <th>원료</th>
-                                    <th>설명</th>
-                                    <th>함유량</th>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <th scope="row">OTC022401</th>
-                                        <td>Pain Management: Acetaminophen PM Extra-Strength Caplets, 500 mg,
-                                            100/Bottle
-                                        </td>
-                                        <td>1 BT</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">OTC022401</th>
-                                        <td>Pain Management: Acetaminophen PM Extra-Strength Caplets, 500 mg,
-                                            100/Bottle
-                                        </td>
-                                        <td>144/CS</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">OTC022401</th>
-                                        <td>Pain Management: Acetaminophen PM Extra-Strength Caplets, 500 mg,
-                                            100/Bottle
-                                        </td>
-                                        <td>1 EA</td>
-                                    </tr>
-
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="tab-pane fade" id="pills-profile" role="tabpanel"
-                                 aria-labelledby="pills-profile-tab">
-
-                                <table class="table custom-table">
-
-                                    <tbody>
-                                    <tr>
-                                        <td>HPIS CODE</td>
-                                        <td class="bg-light">999_200_40_0</td>
-                                    </tr>
-                                    <tr>
-                                        <td>HEALTHCARE PROVIDERS ONLY</td>
-                                        <td class="bg-light">No</td>
-                                    </tr>
-                                    <tr>
-                                        <td>LATEX FREE</td>
-                                        <td class="bg-light">Yes, No</td>
-                                    </tr>
-                                    <tr>
-                                        <td>MEDICATION ROUTE</td>
-                                        <td class="bg-light">Topical</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-
-                            </div>
-
+    <div class="site-section">
+        <div th:class="${dto}">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-5 mr-auto">
+                        <div class="border text-center">
+                            <img th:src="${dto.img_url}" alt="Image" class="img-fluid p-5">
                         </div>
                     </div>
+                    <div class="col-md-6">
+                        <h2 class="text-black" th:text="${dto.prod_name}"></h2>
+                        <br>
+                        <h5 class="text-primary">효능·효과</h5>
+                        <p> 효능은 이렇습니다</p>
+                        <h5 class="text-primary">용법·용량</h5>
+                        <p> 이렇게 사용하세요</p>
+
+                        <p>
+                            <strong class="text-primary h4" th:text="${dto.price}">원</strong></p>
+
+                        <form name="cartform" action="#" method="post">
+                            <div class="mb-5">
+                                <div class="input-group mb-3" style="max-width: 220px;">
+                                    <div class="input-group-prepend">
+                                        <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
+                                    </div>
+                                    <script></script>
+                                    <input type="hidden" name="user_id" th:value="${id}">
+                                    <input type="hidden" name="cart_prod_price" th:value="${dto.price}">
+                                    <input type="hidden" name="cart_prod_name" th:value="${dto.prod_name}">
+                                    <input type="hidden" name="cart_img_url" th:value="${dto.img_url}">
+                                    <input type="text" class="form-control text-center" name="count_p" th:value="${dto.count_p}" placeholder=""
+                                           aria-label="Example text with button addon" aria-describedby="button-addon1">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <input type="button" id="CartBtn" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary" value="장바구니 담기">
+                        </form>
+                        <div class="mt-5">
+                            <div class="tab-content" id="pills-tabContent">
+                                <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                                     aria-labelledby="pills-home-tab">
+                                    <table class="table custom-table">
+                                        <thead>
+                                        <th>주 성분</th>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <th scope="row">"Acetaminophen　아세트아미노펜　300mg
+                                                Caffeine Anhydrous　카페인무수물　50mg
+                                                Isopropylantipyrine　이소프로필안티피린　150mg"
+                                            </th>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
 
 
+                    </div>
                 </div>
             </div>
         </div>

@@ -89,7 +89,7 @@ public class UserWebSocketController {
                         "                                                <h3 class=\"h6 mb-0\"><a class=\"d-block\" style=\"padding:20px;\" data-toggle=\"collapse\" href=\"#collapsepaypal\" role=\"button\"\n" +
                         "                                                                       aria-expanded=\"false\" aria-controls=\"collapsepaypal\">약사의 말 한마디</a></h3>\n" +
                         "\n" +
-                        "                                                <div class=\"collapse\" id=\"collapsepaypal\">\n" +
+                        "                                                <div class=\"collapse\">\n" +
                         "                                                    <div class=\"py-2 px-4\">\n" +
                         "                                                        <p class=\"mb-0\">따뜻한 물을 자주 마시는게 좋습니다.</p>\n" +
                         "                                                    </div>\n" +
