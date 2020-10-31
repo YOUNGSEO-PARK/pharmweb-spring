@@ -56,11 +56,10 @@
         container.innerHTML = event.data
     }
 
-    function sendToRider(number, id, name, adr1, adr2, phone, omsg, prod, pmsg, s) {
+    function sendToRider(number, id, name, adr1, adr2, phone, omsg, prod, pmsg, time, s) {
         const pomsg = document.getElementById("pharm_msg").value
-        // if(pomsg == null)
-        //     ;
-        websocket.send(number + "/"+ id + "/" + name + "/" + adr1 + "/" + adr2 + "/" + phone+ "/"+ omsg+ "/"+ prod+ "/" +pomsg+ "/"+ s)
+
+        websocket.send(number + "/"+ id + "/" + name + "/" + adr1 + "/" + adr2 + "/" + phone+ "/"+ omsg+ "/"+ prod+ "/" +pomsg+ "/" + time+ "/"+ s)
     }
 </script>
 </html>

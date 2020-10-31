@@ -71,6 +71,7 @@ public class PharmacistWebSocketController {
         String order_msg = tokenizer.nextToken();
         String order_prod = tokenizer.nextToken();
         String order_pmsg = tokenizer.nextToken();
+        String order_time = tokenizer.nextToken();
         String order_status = tokenizer.nextToken();
 
         Order order = new Order();
@@ -83,6 +84,7 @@ public class PharmacistWebSocketController {
         order.setOrder_msg(order_msg);
         order.setOrder_prod(order_prod);
         order.setOrder_pmsg(order_pmsg);
+        order.setOrder_time(order_time);
         order.setOrder_status(order_status);
 
         // status 업데이트하는 쿼리
@@ -115,13 +117,14 @@ public class PharmacistWebSocketController {
                         "                            <image src=\"images/person_1.jpg\" width=\"200px\" height=\"200px\"></image>\n" +
                         "                        </div>\n" +
                         "                        <div style=\"padding-left: 100px;\">\n" +
-                        "                            <h4 class=\"text-black\"><b>주문번호 : " + e.getValue().getOrder_no() +"</b></h4>\n" +
+                        "                            <h4 class=\"text-black\"><b>주문번호 : " + e.getValue().getOrder_no() +"</b></h4> " +
+                        "                            <p class=\"text-black\">주문 일자 : " + e.getValue().getOrder_time() + "</p>\n"+
                         "                            <br>\n" +
                         "                            <p class=\"text-black\">주문자 아이디 : " + e.getValue().getOrder_user_id() + "</p>\n" +
-                        "                            <p class=\"text-black\">주문자 이름 : " + e.getValue().getOrder_name() + "</p>\n" +
-                        "                            <h6 class=\"text-black\">주문자 주소 : " + e.getValue().getOrder_adr1() + " " + e.getValue().getOrder_adr2() + " </h6>\n" +
-                        "                            <p class=\"text-black\">주문자 휴대폰 번호 : " + e.getValue().getOrder_phone() +" </p>\n" +
-                        "                            <h6 class=\"text-black\">주문자 메세지 : " + e.getValue().getOrder_msg() + " </h6>\n" +
+                        "                           <p class=\"text-black\">주문자 휴대폰 번호 : " + e.getValue().getOrder_phone() +" </p>\n" +
+                        "                            <h6 class=\"text-black\">주문자 메세지 : " + e.getValue().getOrder_msg() + " </h6><br>\n" +
+                        "                           <p class=\"text-black\">수령인 이름 : " + e.getValue().getOrder_name() + "</p>\n" +
+                        "                            <h6 class=\"text-black\">수령인 주소 : " + e.getValue().getOrder_adr1() + " " + e.getValue().getOrder_adr2() + " </h6>\n" +
                         "                            <p class=\"text-black\"><br>상품명 <br> " + e.getValue().getOrder_prod() + " </p>\n" );
 
                                                     if(e.getValue().getOrder_status().equals("0")){
@@ -131,7 +134,7 @@ public class PharmacistWebSocketController {
                                                                 "                                <label for=\"p_order_note1\" class=\"text-black\">약사의 한 마디</label>\n" +
                                                                 "                                <textarea  id=\"pharm_msg\"" + "\" name=\"pharm_msg\" cols=\"80\" rows=\"5\"\n" +
                                                                 "                                          class=\"form-control\"\n" +
-                                                                "                                          placeholder=\"환자에게 전할 말이 있으시면 작성해주세요.\"></textarea>\n" +
+                                                                "                                          \">"+ e.getValue().getOrder_pmsg() + "</textarea>\n" +
                                                                 "                            </div>" +
                         "                            <div class=\"form-group row\" style=\"float: right\">\n" +
                         "                                <div class=\"col-lg-6\">\n" +
@@ -144,7 +147,8 @@ public class PharmacistWebSocketController {
                                                                                                                         + "\',\'" + e.getValue().getOrder_phone()
                                                                                                                         + "\',\'" + e.getValue().getOrder_msg()
                                                                                                                         + "\',\'" + e.getValue().getOrder_prod()
-                                                                                                                        + "\',\'" + e.getValue().getOrder_pmsg() + "\')\">\n" +
+                                                                                                                        + "\',\'" + e.getValue().getOrder_pmsg()
+                                                                                                                         + "\',\'" + e.getValue().getOrder_time() + "\')\">\n" +
                         "                                </div>\n"+
                                 "<div class=\"col-lg-6\">\n" +
                                 "                                    <input type=\"button\" class=\"btn btn-primary btn-lg btn-block\" style=\"width:150px;\" value=\"배달 불가\">\n" +
