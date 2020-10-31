@@ -101,41 +101,30 @@ public class UserWebSocketController {
 
                     String str =
                             "</td>\n" +
-                                    "                                        <td>주문 완료</td>\n" +
-                                    "                                    " +
-                                    " <td><input type=\"button\" class=\"btn btn-primary btn-lg btn-block\" value=\"환불 신청\" onclick=\"youngseo(" +
-                                    e.getValue().getOrder_no() +
-                                    ")\"> </td></tr>";
+                                    "                                <td>주문 완료</td>\n";
                     result.append(str);
                 }else if(e.getValue().getOrder_status().equals("1")){
 
                     String str =
                             "</td>\n" +
-                                    "                                        <td>배송 대기</td>\n" +
-                                    "                                    " +
-                                    " <td><input type=\"button\" class=\"btn btn-primary btn-lg btn-block\" value=\"환불 신청\" onclick=\"youngseo(" +
-                                    e.getValue().getOrder_no() +
-                                    ")\"> </td></tr>";
+                                    "                                <td>배송 대기</td>\n";
                     result.append(str);
                 } else if(e.getValue().getOrder_status().equals("2")){
                     String str =  "</td>\n" +
-                            "                                        <td>배송 중</td>\n" +
-                            "                                    " +
-                            " <td><input type=\"button\" class=\"btn btn-primary btn-lg btn-block\" value=\"환불 신청\" onclick=\"youngseo(" +
-                            e.getValue().getOrder_no() +
-                            ")\"> </td></tr>";
+                            "                                        <td>배송 중</td>\n";
                     result.append(str);
-                } else if(e.getValue().getOrder_status().equals("3")){
-                    String str =  "</td>\n" +
-                            "                                        <td>배송 완료</td>\n" +
-                            "                                    " +
-                            " <td><input type=\"button\" class=\"btn btn-primary btn-lg btn-block\" value=\"수령 확인\" onclick=\"youngseo(" +
-                            e.getValue().getOrder_no() +
-                            ")\"> </td></tr>";
+                } else if(e.getValue().getOrder_status().equals("3")) {
+                    String str = "</td>\n" +
+                            "                                        <td>배송 완료</td>\n";
+
                     result.append(str);
+
                 }
-
-
+                result.append(" <td><input type=\"button\" class=\"btn btn-primary btn-lg btn-block\" value=\"환불 신청\" onclick=\"youngseo(" +
+                        e.getValue().getOrder_no() +
+                        ")\"> <input type=\"button\" class=\"btn btn-primary btn-lg btn-block\" value=\"수령 확인\" onclick=\"youngseo(" +
+                        e.getValue().getOrder_no() +
+                        ")\"> </td> </tr>");
             }
 
             session.getBasicRemote().sendText(result.toString());
