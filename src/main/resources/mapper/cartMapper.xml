@@ -10,8 +10,7 @@
     </insert>
 
     <select id="listCart" resultType="com.example.pharmwebspring.Model.Cart">
-        select cart_no, p.prod_name, c.user_id, user_name, prod_name, price, img_url
-        from user u, cart c, product p where u.user_id=c.user_id and c.prod_name=p.prod_name amd c.user_id=#{user_id} order by cart_no
+        select * from parmdb.cart
     </select>
 
     <select id="sumMoney" resultType="int">

@@ -212,11 +212,9 @@ public class ViewController {
             statusRes.setStatus(700);
         }
         return statusRes;
-
-
     }
 
-    @RequestMapping("list.do")
+    @RequestMapping("/list")
     public ModelAndView list(HttpSession session, ModelAndView mav){
         String user_id = (String) session.getAttribute("user_id");
         Map<String, Object>map = new HashMap<String, Object>();
@@ -271,12 +269,7 @@ public class ViewController {
         }
     }
     */
-    @GetMapping("/mp_cart")
-    public String mp_cartpage(Model model, HttpSession session) {
 
-        userSession(model,session);
-        return "mp_cart";
-    }
 
     @GetMapping("/mp_delete")
     public String mp_deletepage(Model model, HttpSession session) {
