@@ -16,6 +16,10 @@
         update parmdb.order set order_status = #{order_status} where order_no=#{order_no}
     </update>
 
+    <update id="updateOrderPmsg" parameterType="com.example.pharmwebspring.Model.Order" >
+        update parmdb.order set order_pmsg = #{order_pmsg} where order_no=#{order_no}
+    </update>
+
     <delete id="deleteOrder" parameterType="com.example.pharmwebspring.Model.Order">
         delete from parmdb.order where order_no=#{order_no}
     </delete>

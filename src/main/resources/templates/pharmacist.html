@@ -52,15 +52,13 @@
     websocket.onmessage = function (event) {
 
         const container = document.getElementById("site-section")
-        //const pharm_msg = document.getElementById("pharm_msg")
 
         container.innerHTML = event.data
-        //pharm_msg.innerText = event.data
     }
 
     function sendToRider(number, id, name, adr1, adr2, phone, omsg, prod, pmsg, s) {
-
-        websocket.send(number + "/"+ id + "/" + name + "/" + adr1 + "/" + adr2 + "/" + phone+ "/"+ omsg+ "/"+ prod+ "/" +pmsg+ "/"+ s)
+        const pomsg = document.getElementById("pharm_msg").value
+        websocket.send(number + "/"+ id + "/" + name + "/" + adr1 + "/" + adr2 + "/" + phone+ "/"+ omsg+ "/"+ prod+ "/" +pomsg+ "/"+ s)
     }
 </script>
 </html>

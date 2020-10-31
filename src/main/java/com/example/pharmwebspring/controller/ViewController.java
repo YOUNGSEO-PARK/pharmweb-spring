@@ -200,21 +200,6 @@ public class ViewController {
 
     @Inject
     CartService cartService;
-    @PostMapping("/insert")
-    public StatusRes insert(@RequestBody Cart cart, HttpSession session, Model model){
-        StatusRes statusRes = new StatusRes();
-        userSession(model, session);
-        cartService.insert(cart);
-        if(cart==null){
-            statusRes.setStatus(701);
-        }
-        else{
-            statusRes.setStatus(700);
-        }
-        return statusRes;
-
-
-    }
 
     @RequestMapping("list.do")
     public ModelAndView list(HttpSession session, ModelAndView mav){

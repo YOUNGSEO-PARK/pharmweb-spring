@@ -51,17 +51,21 @@ public class RiderWebSocketController {
     @OnMessage
     public void onMessage(String message) {
         if (message.charAt(0) == ':') {
+
             String realMessage = message.substring(1);
+
             Order order = new Order();
             order.setOrder_no(Integer.parseInt(realMessage));
+
             order.setOrder_status("3");
             orders.get(realMessage).setOrder_status("3");
             orderService.updateStatus(order);
+
             PharmacistWebSocketController.updateOrderList();
             UserWebSocketController.updateOrderList();
             return;
         }
-        System.out.println("메시지 받아라 : " + message);
+
         Order order = new Order();
         // status 업데이트하는 쿼리
         order.setOrder_no(Integer.parseInt(message));
@@ -97,7 +101,7 @@ public class RiderWebSocketController {
                         "                            <h6 class=\"text-black\">주문자 메세지 : " + e.getValue().getOrder_msg() + " </h6>\n" +
                         "                            <p class=\"text-black\">주문내역 <br> " + e.getValue().getOrder_prod() + " </p>\n" +
 
-                "                            <h6 class=\"text-black\">약사의 한 마디 : " + e.getValue().getOrder_msg() + "</h6>\n");
+                "                            <h6 class=\"text-black\">약사의 한 마디 : " + e.getValue().getOrder_pmsg() + "</h6>\n");
 
                 if(e.getValue().getOrder_status().equals("1")){
 
