@@ -1,7 +1,12 @@
 package com.example.pharmwebspring.controller;
 
+import com.example.pharmwebspring.Model.Cart;
 import com.example.pharmwebspring.Model.DataDao;
 import com.example.pharmwebspring.Model.MapapiDto;
+import com.example.pharmwebspring.Model.StatusRes;
+import com.example.pharmwebspring.Service.CartService;
+import com.example.pharmwebspring.Service.OrderService;
+import jdk.jshell.Snippet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +16,9 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.example.pharmwebspring.Service.ProductService;
 
@@ -169,12 +176,6 @@ public class ViewController {
         return "location";
     }
 
-    @GetMapping("/mp_cart")
-    public String mp_cartpage(Model model, HttpSession session) {
-
-        userSession(model,session);
-        return "mp_cart";
-    }
 
     @GetMapping("/mp_delete")
     public String mp_deletepage(Model model, HttpSession session) {
@@ -376,6 +377,60 @@ public class ViewController {
     }
 
 
+    @Inject
+    CartService cartService;
+
+
+    @RequestMapping("/list")
+    public ModelAndView list(HttpSession session, ModelAndView mav,
+                             Model model){
+        //user_id = (String) session.getAttribute("user_id");
+        //userSession(model, session);
+        Map<String, Object>map = new HashMap<>();
+        String user_id = (String)session.getAttribute("user_id");
+        if(user_id != null){
+            List<Cart> list = cartService.listCart(user_id);
+            int sumMoney = cartService.sumMoney(user_id);
+
+            map.put("sumMoney", sumMoney);
+            map.put("list", list);
+            map.put("count", list.size());
+
+            mav.setViewName("/mp_cart");
+            mav.addObject("map", map);
+
+            return mav;
+        }
+        else{
+            return new ModelAndView("/index","",null);
+        }
+    }
+
+    @RequestMapping("/delete")
+    public String delete(@RequestParam int cart_no){
+        cartService.delete(cart_no);
+        return "/mp_cart";
+    }
+
+    @RequestMapping("/update")
+    public String update(@RequestParam int[] count_p, @RequestParam String[] prod_name, HttpSession session){
+        String user_id = (String)session.getAttribute("user_id");
+        for(int i = 0; i<prod_name.length; i++){
+            Cart cart = new Cart();
+            cart.setUser_id(user_id);
+            cart.setCount_p(count_p[i]);
+            cart.setCart_prod_name(prod_name[i]);
+            cartService.modifyCart(cart);
+        }
+        return "/mp_cart";
+    }
+
+    @GetMapping("/mp_cart")
+    public String mp_cartpage(Model model, HttpSession session) {
+
+        userSession(model,session);
+        return "mp_cart";
+    }
 
     @Inject
     ProductService productService;
