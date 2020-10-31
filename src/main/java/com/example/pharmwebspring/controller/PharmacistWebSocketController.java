@@ -158,9 +158,9 @@ public class PharmacistWebSocketController {
                                                         result.append(str);
 
                                                             } else if (e.getValue().getOrder_status().equals("1")){
-                                                        String str = "<div class=\"col-lg-6\">\n" +
+                                                        String str = "<div class=\"col-lg-6\" style=\"float: right\">\n" +
                                                                 "                                    " +
-                                                                "<input type=\"button\" class=\"btn btn-primary btn-lg btn-block\" value=\"배달 대기\">\n"+
+                                                                "<input type=\"button\" class=\"btn btn-primary btn-lg btn-block\" style=\"width:250px;\" value=\"배달 대기\">\n"+
                                                                 "</div>" +
                                                                 "</div>" +
                                                                 "</div>" +
@@ -168,9 +168,9 @@ public class PharmacistWebSocketController {
                                                                 "</div>";
                                                         result.append(str);
                                                     } else if (e.getValue().getOrder_status().equals("2")) {
-                                                        String str = "<div class=\"col-lg-6\">\n" +
+                                                        String str = "<div class=\"col-lg-6\" style=\"float: right\">\n" +
                                                                 "                                    " +
-                                                                "<input type=\"button\" class=\"btn btn-primary btn-lg btn-block\" value=\"배달 중\">\n"+
+                                                                "<input type=\"button\" class=\"btn btn-primary btn-lg btn-block\" style=\"width:250px;\" value=\"배달 중\">\n"+
                                                                 "</div>" +
                                                                 "</div>" +
                                                                 "</div>" +
@@ -178,9 +178,9 @@ public class PharmacistWebSocketController {
                                                                 "</div>";
                                                         result.append(str);
                                                     } else if (e.getValue().getOrder_status().equals("3")) {
-                                                        String str = "<div class=\"col-lg-6\">\n" +
+                                                        String str = "<div class=\"col-lg-6\" style=\"float: right\">\n" +
                                                                 "                                    " +
-                                                                "<input type=\"button\" class=\"btn btn-primary btn-lg btn-block\" value=\"배달 완료\">\n"+
+                                                                "<input type=\"button\" class=\"btn btn-primary btn-lg btn-block\" style=\"width:250px;\" value=\"배달 완료\" >\n"+
                                                                 "</div>" +
                                                                 "</div>" +
                                                                 "</div>" +
