@@ -19,6 +19,7 @@ import java.util.StringTokenizer;
 @Component
 @ServerEndpoint(value = "/pharmacistWebSocket")
 public class PharmacistWebSocketController {
+
     @Autowired
     static OrderService orderService;
 
@@ -43,6 +44,7 @@ public class PharmacistWebSocketController {
 
     @OnOpen
     public void onOpen(Session session) {
+
         id = loginNumber++;
         this.session = session;
         pharmacist.put(id, this);
@@ -52,6 +54,7 @@ public class PharmacistWebSocketController {
 
     @OnClose
     public void onClose(Session session) {
+
         pharmacist.remove(id);
         System.out.println("Exit : " + id);
     }
@@ -67,6 +70,7 @@ public class PharmacistWebSocketController {
         String order_phone = tokenizer.nextToken();
         String order_msg = tokenizer.nextToken();
         String order_prod = tokenizer.nextToken();
+        String order_pmsg = tokenizer.nextToken();
         String order_status = tokenizer.nextToken();
 //        String msg = tokenizer.nextToken();
 
@@ -79,11 +83,13 @@ public class PharmacistWebSocketController {
         order.setOrder_phone(order_phone);
         order.setOrder_msg(order_msg);
         order.setOrder_prod(order_prod);
+        order.setOrder_pmsg(order_pmsg);
         order.setOrder_status(order_status);
 
         // status 업데이트하는 쿼리
         order.setOrder_status("1");
         orderService.updateStatus(order);
+        orderService.updateOrderPmsg(order);
         //
 
         updateOrderList();
@@ -92,6 +98,7 @@ public class PharmacistWebSocketController {
         RiderWebSocketController.orders.put(String.valueOf(order_no), order);
         RiderWebSocketController.updateOrderList();
         UserWebSocketController.updateOrderList();
+
         System.out.println(message);
     }
 
@@ -123,7 +130,7 @@ public class PharmacistWebSocketController {
                                                         String str =
                                                                  "<div class=\"form-group\">\n" +
                                                                 "                                <label for=\"p_order_note1\" class=\"text-black\">약사의 한 마디</label>\n" +
-                                                                "                                <textarea id=\"" + "\" name=\"p_order_note1\" id=\"pharm_msg\" cols=\"80\" rows=\"5\"\n" +
+                                                                "                                <textarea  id=\"pharm_msg\"" + "\" name=\"pharm_msg\" cols=\"80\" rows=\"5\"\n" +
                                                                 "                                          class=\"form-control\"\n" +
                                                                 "                                          placeholder=\"환자에게 전할 말이 있으시면 작성해주세요.\"></textarea>\n" +
                                                                 "                            </div>" +
@@ -137,7 +144,8 @@ public class PharmacistWebSocketController {
                                                                                                                         + "\', \'" + e.getValue().getOrder_adr2()
                                                                                                                         + "\',\'" + e.getValue().getOrder_phone()
                                                                                                                         + "\',\'" + e.getValue().getOrder_msg()
-                                                                                                                        + "\',\'" + e.getValue().getOrder_prod() + "\')\">\n" +
+                                                                                                                        + "\',\'" + e.getValue().getOrder_prod()
+                                                                                                                        + "\',\'" + e.getValue().getOrder_pmsg() + "\')\">\n" +
                         "                                </div>\n"+
                                 "<div class=\"col-lg-6\">\n" +
                                 "                                    <input type=\"button\" class=\"btn btn-primary btn-lg btn-block\" value=\"배달 불가\">\n" +

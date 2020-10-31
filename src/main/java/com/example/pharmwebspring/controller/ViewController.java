@@ -200,21 +200,8 @@ public class ViewController {
 
     @Inject
     CartService cartService;
-    @PostMapping("/insert")
-    public StatusRes insert(@RequestBody Cart cart, HttpSession session, Model model){
-        StatusRes statusRes = new StatusRes();
-        userSession(model, session);
-        cartService.insert(cart);
-        if(cart==null){
-            statusRes.setStatus(701);
-        }
-        else{
-            statusRes.setStatus(700);
-        }
-        return statusRes;
-    }
 
-    @RequestMapping("/list")
+    @RequestMapping("list.do")
     public ModelAndView list(HttpSession session, ModelAndView mav){
         String user_id = (String) session.getAttribute("user_id");
         Map<String, Object>map = new HashMap<String, Object>();
@@ -269,7 +256,12 @@ public class ViewController {
         }
     }
     */
+    @GetMapping("/mp_cart")
+    public String mp_cartpage(Model model, HttpSession session) {
 
+        userSession(model,session);
+        return "mp_cart";
+    }
 
     @GetMapping("/mp_delete")
     public String mp_deletepage(Model model, HttpSession session) {

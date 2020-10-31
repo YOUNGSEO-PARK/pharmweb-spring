@@ -9,8 +9,17 @@ public class Order {
     private String order_pharm;
     private String order_prod;
     private String order_msg;
+    private String order_pmsg;
     private String order_user_id;
     private String order_status;
+
+    public String getOrder_pmsg() {
+        return order_pmsg;
+    }
+
+    public void setOrder_pmsg(String order_pmsg) {
+        this.order_pmsg = order_pmsg;
+    }
 
     public int getOrder_no() {
 

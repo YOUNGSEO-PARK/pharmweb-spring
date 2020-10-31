@@ -79,7 +79,7 @@
     const websocket = new WebSocket(uri)
 
     websocket.onopen = function (event) {
-        websocket.send(":" + sessionStorage.getItem("id"))
+        websocket.send(":" + "irene")
     }
     websocket.onclose = function (event) {
 

@@ -33,6 +33,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public void updateOrderPmsg(Order order) {
+        dao.updateOrderPmsg(order);
+    }
+
+    @Override
     public void deleteOrder(Order order) {
         dao.deleteOrder(order);
     }

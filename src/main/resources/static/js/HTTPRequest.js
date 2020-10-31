@@ -448,15 +448,15 @@ $("#CartBtn").on('click', () => { //.on 이벤트 트리거
         type: "POST", //fix
         dataType: "json", //fix
         contentType: "application/json; charset=utf-8;", //fix
-        url: "/insert",
+        url: "/api/cartinsert",
         data: JSON.stringify(data), //fix ; 객체->스트링
     }).done(function (data) {
 
-        if (data.status == 700) {
-            alert("장바구에 담겼다 임마.")
+        if (data.status == 800) {
+            alert("장바구니에 담겼다 임마.")
             document.location.href = '/mp_cart';
-        } else if (data.status == 701) {
-            alert("안됬어. 돌아가.")
+        } else if (data.status == 801) {
+            alert("돌아가.")
         }
 
     })
