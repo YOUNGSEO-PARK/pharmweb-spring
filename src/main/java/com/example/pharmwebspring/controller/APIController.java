@@ -3,12 +3,14 @@ package com.example.pharmwebspring.controller;
 //import com.example.pharmwebspring.DAO.CartDAO;
 import com.example.pharmwebspring.Model.*;
 //import com.example.pharmwebspring.Service.CartService;
+import com.example.pharmwebspring.Service.CartService;
 import com.example.pharmwebspring.Service.MemberService;
 import com.example.pharmwebspring.Service.OrderService;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import com.example.pharmwebspring.Service.ProductService;
 import org.springframework.web.servlet.ModelAndView;
@@ -25,8 +27,8 @@ public class APIController {
 
     @Autowired
     MemberService memberService;
-//    @Autowired
-//    CartService cartService;
+    @Autowired
+    CartService cartService;
     @Autowired
     OrderService orderService;
 
@@ -383,4 +385,18 @@ public class APIController {
 
         return statusRes;
     }
+
+    @PostMapping("/cartinsert")
+    public StatusRes insert(@RequestBody Cart cart){
+
+        cartService.insert(cart);
+        if(cart==null){
+            statusRes.setStatus(801);
+        }
+        else{
+            statusRes.setStatus(800);
+        }
+        return statusRes;
+    }
+
 }
