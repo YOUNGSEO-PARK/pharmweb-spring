@@ -40,12 +40,6 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public int sumMoney(String user_id){
-
-        return cartDAO.sumMoney(user_id);
-    }
-
-    @Override
     public int countCart(String user_id, String prod_name){
         return 0;
     }
