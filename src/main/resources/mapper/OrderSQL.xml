@@ -24,7 +24,7 @@
         delete from parmdb.order where order_no=#{order_no}
     </delete>
 
-    <select id="getOrderPharmList" parameterType="com.example.pharmwebspring.Model.Pharmacy">
+    <select id="getOrderPharmList" resultType="List">
         select pharm_name from parmdb.order
     </select>
 <!--    <select id="getProduct" parameterType="String" resultType="com.example.pharmwebspring.Model.Product">-->
