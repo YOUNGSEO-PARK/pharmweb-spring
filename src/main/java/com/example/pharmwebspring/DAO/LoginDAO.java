@@ -31,4 +31,6 @@ public interface LoginDAO {
 
     void deleteUser(Login login);
 
+    void updateUser(User user);
+
 }

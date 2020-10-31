@@ -111,14 +111,14 @@ public class ViewController {
         }
     }
 
-//    @Autowired
-//    OrderService orderService;
-//
-//    public void orderPharmList(Model model){
-//        List<String> = orderService.getOrderPharmList();
-//
-//
-//    }
+    @Autowired
+    OrderService orderService;
+
+    public void orderPharmList(Model model){
+        orderService.getOrderPharmList();
+
+
+    }
     @GetMapping("/")
     public String page(Model model, HttpSession session) {
 

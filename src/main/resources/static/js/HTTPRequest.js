@@ -478,5 +478,28 @@ $("#CartListBtn").on('click', () => { //.on 이벤트 트리거
     })
 })
 
-
 //------------------------------success-fin-------------------------------------------------------------------
+$("#userConfirmBtn").on('click', () => { //.on 이벤트 트리거
+
+    var data = {};
+    $("form[name=umpform]").serializeArray().map(function (x) {
+        data[x.name] = x.value;
+    });
+
+    $.ajax({
+        type: "POST", //fix
+        dataType: "json", //fix
+        contentType: "application/json; charset=utf-8;", //fix
+        url: "/api/upwupdate",
+        data: JSON.stringify(data), //fix ; 객체->스트링
+    }).done(function (data) {
+
+        //로직 필요에 따라 변경
+        if (data.status == 907) {
+            alert("수정 완료되었습니다.")
+            document.location.href = '/mypage';
+        } else if (data.status == 908) {
+            alert("수정 오류입니다.")
+        }
+    })
+})

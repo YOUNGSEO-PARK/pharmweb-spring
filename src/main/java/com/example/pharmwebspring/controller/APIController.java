@@ -397,8 +397,23 @@ public class APIController {
         return statusRes;
     }
 
+    @PostMapping("/upwupdate")
+    public StatusRes UserpwUpdate(HttpSession session, @RequestBody User user) {
 
+        user.setUser_id((String) session.getAttribute("id"));
 
+        memberService.updateUser(user);
+
+        if (user == null) {
+
+            statusRes.setStatus(908);
+        } else {
+
+            statusRes.setStatus(907);
+        }
+
+        return statusRes;
+    }
    /* @RequestMapping("list.do")
     public ModelAndView list(HttpSession session, ModelAndView mav){
         String user_id = (String) session.getAttribute("user_id");
