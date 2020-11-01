@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.pharmwebspring.DAO.ProductDaoU">
+    <select id = "listProductU" resultType = "com.example.pharmwebspring.Model.ProductU">
+            select * from parmdb.product_u;
+        </select>
+    <select id="detailProductU" resultType="com.example.pharmwebspring.Model.ProductU">
+                select * from product_u where prodU_name=#{prodU_name}
+        </select>
+</mapper>
