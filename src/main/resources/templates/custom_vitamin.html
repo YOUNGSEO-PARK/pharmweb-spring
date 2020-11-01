@@ -1,10 +1,156 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<th:block th:replace="layout/01_link :: linkFragment"></th:block>
+
 <body>
 
+<div class="site-wrap">
+
+    <th:block th:replace="layout/02_header :: headerFragment"></th:block>
+
+    <div class="bg-light py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 mb-0">
+                    <a href="index">Home</a> <span class="mx-2 mb-0">/</span>
+                    <strong class="text-black"> Custom </strong>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-lg-2 navibar">
+                <ul>
+                    <li><a href="custom">상처/흉터</a></li>
+                    <li><a href="custom_flu">감기약</a></li>
+                    <li><a href="custom_home">가정상비약</a></li>
+                    <li><a href="custom_period">월경통약</a></li>
+                    <li><a href="custom_vitamin">영양제</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-10">
+                <div class="container">
+                    <div class="row mb-5">
+                        <form class="col-md-12" method="post">
+                            <div class="site-blocks-table">
+                                <table class="table table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <th width="150">상품이미지</th>
+                                        <th width="150">상품명</th>
+                                        <th width="120">가격</th>
+                                        <th width="380">상세설명</th>
+                                        <th width="100">구매</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td class="product-thumbnail">
+                                            <img src="images/Z19.jpg" alt="Image" class="img-fluid">
+                                        </td>
+                                        <td class="product-name">
+                                            <h2 class="h6 text-black">후시딘</h2>
+                                        </td>
+                                        <td>4000원</td>
+                                        <td>
+                                            <p>상처연고</p>
+                                            <p>세균의 감염을 막는 항생제성분이 들어있어 상처 초기 2차감염 예방에 도움을 줄 수 있다.</p>
+                                        </td>
+                                        <td><a href="#" class="btn btn-primary height-auto btn-sm">+</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="product-thumbnail">
+                                            <img src="images/Z13.jpg" alt="Image" class="img-fluid">
+                                        </td>
+                                        <td class="product-name">
+                                            <h2 class="h6 text-black">마데카솔</h2>
+                                        </td>
+                                        <td>5000원</td>
+                                        <td>
+                                            <p>상처연고</p>
+                                            <p>항생제는 첨가되어있지 않지만, 피부재생을 돕는 성분이 들어있어 어느정도 치료된 상처나 가볍게 긁힌 상처에 도움을 준다.</p>
+                                        </td>
+                                        <td><a href="#" class="btn btn-primary height-auto btn-sm">+</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="product-thumbnail">
+                                            <img src="images/Z14.jpg" alt="Image" class="img-fluid">
+                                        </td>
+                                        <td class="product-name">
+                                            <h2 class="h6 text-black">마데카솔 분말</h2>
+                                        </td>
+                                        <td>9000원</td>
+                                        <td>
+                                            <p>상처연고</p>
+                                            <p>마데카솔의 분말 형태이며, 진물이 많이 나는 상처에 도움을 준다.</p>
+                                        </td>
+                                        <td><a href="#" class="btn btn-primary height-auto btn-sm">+</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="product-thumbnail">
+                                            <img src="images/Z18.jpg" alt="Image" class="img-fluid">
+                                        </td>
+                                        <td class="product-name">
+                                            <h2 class="h6 text-black">하이맘폼</h2>
+                                        </td>
+                                        <td>8000원</td>
+                                        <td>
+                                            <p>상처초기 습윤드레싱</p>
+                                            <p>폴리 우레탄 재질로 ,두껍고 폭신하며 생활방수가 불가능하지만 진물(삼출액)의 흡수력이 매우 좋다.</p>
+                                        </td>
+                                        <td><a href="#" class="btn btn-primary height-auto btn-sm">+</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="product-thumbnail">
+                                            <img src="images/Z12.jpg" alt="Image" class="img-fluid">
+                                        </td>
+                                        <td class="product-name">
+                                            <h2 class="h6 text-black">듀오덤</h2>
+                                        </td>
+                                        <td>4000원</td>
+                                        <td>
+                                            <p>상처중기 습윤드레싱</p>
+                                            <p>젤라틴/팩틴 재질로, 도톰하고 말랑하며 생활방수가 가능하고 진물(삼출액)의 흡수력이 좋은 편이다.</p>
+                                        </td>
+                                        <td><a href="#" class="btn btn-primary height-auto btn-sm">+</a></td>
+                                    </tr>
+                                    </tbody>
+                                    <tr>
+                                        <td class="product-thumbnail">
+                                            <img src="images/Z17.jpg" alt="Image" class="img-fluid">
+                                        </td>
+                                        <td class="product-name">
+                                            <h2 class="h6 text-black">테가덤</h2>
+                                        </td>
+                                        <td>20000원</td>
+                                        <td>
+                                            <p>상처후기 습윤드레싱</p>
+                                            <p>아크릴/폴리우레탄 재질로, 두께가 얇고 생활방수가 가능하며 진물(삼출액)의 흡수력이 없다.</p>
+                                        </td>
+                                        <td><a href="#" class="btn btn-primary height-auto btn-sm">+</a></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <th:block th:replace="layout/03_footer :: footerFragment"></th:block>
+
+</div>
+
+<th:block th:replace="layout/04_script :: scriptFragment"></th:block>
+
 </body>
+
 </html>
