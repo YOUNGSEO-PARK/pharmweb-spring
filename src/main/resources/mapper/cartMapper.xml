@@ -16,4 +16,11 @@
     <delete id="delete">
         delete from cart where cart_no=#{cart_no}
     </delete>
+
+    <delete id="deleteAll">
+        delete from cart where userid=#{userid}
+        <!-- 장바구니테이블로부터 회원의 아이디와 삭제하고자하는 회원의 아이디가 같으면 장바구니에 있는 자료를 전부다 삭제 -->
+    </delete>
+
+
 </mapper>
