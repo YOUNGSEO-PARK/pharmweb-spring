@@ -1,10 +1,7 @@
 package com.example.pharmwebspring.controller;
 
-import com.example.pharmwebspring.Model.Cart;
-import com.example.pharmwebspring.Model.DataDao;
-import com.example.pharmwebspring.Model.MapapiDto;
+import com.example.pharmwebspring.Model.*;
 import com.example.pharmwebspring.Service.CartService;
-import com.example.pharmwebspring.Model.StatusRes;
 import com.example.pharmwebspring.Service.*;
 import com.example.pharmwebspring.Service.ProductServiceN;
 import jdk.jshell.Snippet;
@@ -114,13 +111,16 @@ public class ViewController {
         }
     }
 
-    @GetMapping("/order")
-    public String orderpage(Model model, HttpSession session) {
+    @RequestMapping("/order")
+    public ModelAndView orderpage(Model model, HttpSession session, ModelAndView mav) {
 
         userSession(model,session);
         List<String> test= orderService.getOrderPharmList();
         model.addAttribute("pharmList",test);
-        return "order";
+        String user_id = (String)session.getAttribute("user_id");
+        mav.setViewName("order");
+        mav.addObject("list", cartService.listCart(user_id));  //데이터 저장
+        return mav;
     }
 
     @GetMapping("/")

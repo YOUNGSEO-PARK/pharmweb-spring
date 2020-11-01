@@ -108,7 +108,7 @@
 
                 <div class="col-md-6">
 
-                    <div class="row mb-5">
+                    <div th:each="col:${list}" class="row mb-5">
                         <div class="col-md-12">
                             <h2 class="h3 mb-3 text-black">주문 내역</h2>
                             <div class="p-3 p-lg-5 border">
@@ -119,12 +119,8 @@
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <td>신신파스<strong class="mx-2">x</strong> 1</td>
-                                        <td>2600원</td>
-                                    </tr>
-                                    <tr>
-                                        <td>락토핏 <strong class="mx-2">x</strong> 1</td>
-                                        <td>9900원</td>
+                                        <td><a th:text="${col.cart_prod_name}"></a><strong class="mx-2">x</strong><a th:text="${col.count_p}"></a></td>
+                                        <td><a th:text="${col.summoney}"></a></td>
                                     </tr>
                                     <tr>
                                         <td class="text-black font-weight-bold"><strong>장바구니 총 금액</strong></td>
