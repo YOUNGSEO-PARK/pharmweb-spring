@@ -30,18 +30,18 @@
                 <h2 class="h3 mb-5 text-black" style="padding-left: 230px;">Cart</h2>
             </div>
             <th:block th:replace="layout/06_mypage :: mypageFragment"></th:block>
-            <div class="col-lg-10">
+            <div class="col-lg-10" style="padding-left:40px;">
                 <div class="container">
                     <div class="row mb-5">
                         <table class="table table-bordered">
                         <thead>
-                        <tr class="text-black">
-                            <th class="product-thumbnail" th:width="200">상품이미지</th>
-                            <th class="product-name" th:width="250">상품명</th>
-                            <th class="product-price" th:width="100">가격</th>
-                            <th class="product-quantity" th:width="150">수량</th>
-                            <th class="product-total" th:width="150">총합</th>
-                            <th class="product-remove" th:width="50">삭제</th>
+                        <tr class="text-black text-center">
+                            <th class="product-thumbnail" width="200">상품이미지</th>
+                            <th class="product-name" width="250">상품명</th>
+                            <th class="product-price" width="100">가격</th>
+                            <th class="product-quantity" width="150">수량</th>
+                            <th class="product-total" width="120">총합</th>
+                            <th class="product-remove" width="80">삭제</th>
                         </tr>
                         </thead>
                             <div th:each="col:${map}" class="site-blocks-table">
@@ -52,14 +52,13 @@
                                         <td th:value="${id}" class="product-thumbnail">
                                             <img th:src="${col.cart_img_url}" alt="Image" class="img-fluid" style="vertical-align: middle">
                                         </td>
-                                        <td class="product-name">
-                                            <h6 class="text-center text-black">
-                                                <a th:text="${col.cart_prod_name}"></a>
-                                            </h6>
+                                        <td class="product-name" style="vertical-align: middle">
+                                            <h6 th:text="${col.cart_prod_name}" class="text-center text-black"></h6>
                                         </td>
-                                        <td ><p class="product-price text-center text-black" th:text="${col.cart_prod_price}"></p></td>
-                                        <td>
-                                            <div class="input-group mb-3" style="max-width: 120px;">
+                                        <td style="vertical-align: middle">
+                                            <p class="product-price text-center text-black" th:text="${col.cart_prod_price}"></p></td>
+                                        <td style="vertical-align: middle">
+                                            <div class="input-group mb-3" style="max-width: 120px;" >
                                                 <div class="input-group-prepend">
                                                     <button class="btn btn-outline-primary js-btn-minus" type="button">
                                                         &minus;
@@ -80,8 +79,12 @@
                                         </td>
                                         <input type="hidden" th:value="${col.cart_no}">
 
-                                        <td><p class="product-total text-center text-black" th:text="${col.summoney}"></p></td>
-                                        <td><a th:href="@{${col.cart_no}}"><button class="btn btn-primary height-auto btn-sm">X</button></a></td>
+                                        <td style="vertical-align: middle">
+                                            <p class="product-total text-center text-black" th:text="${col.summoney}"></p>
+                                        </td>
+                                        <td style="vertical-align: middle">
+                                            <a th:href="@{${col.cart_no}}"><button class="btn btn-primary height-auto btn-sm">X</button></a>
+                                        </td>
                                     </tr>
 
                                     </div>
