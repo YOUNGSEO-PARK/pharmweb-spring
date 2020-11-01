@@ -4,8 +4,8 @@ import com.example.pharmwebspring.Model.Cart;
 import com.example.pharmwebspring.Model.DataDao;
 import com.example.pharmwebspring.Model.MapapiDto;
 import com.example.pharmwebspring.Model.StatusRes;
-import com.example.pharmwebspring.Service.CartService;
-import com.example.pharmwebspring.Service.OrderService;
+import com.example.pharmwebspring.Service.*;
+import com.example.pharmwebspring.Service.ProductServiceN;
 import jdk.jshell.Snippet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,8 +19,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.example.pharmwebspring.Service.ProductService;
 
 @Controller
 public class ViewController {
@@ -205,6 +203,8 @@ public class ViewController {
         return "mypage";
     }
 
+    @Inject
+    ProductServiceB productServiceB;
     @RequestMapping("/shop_allergy")
     public ModelAndView shop_allergypage(ModelAndView mav, Model model, HttpSession session) {
         userSession(model,session);
@@ -213,6 +213,8 @@ public class ViewController {
         return mav; //페이지 이동
     }
 
+    @Inject
+    ProductServiceN productServiceN;
     @RequestMapping("/shop_ent")
     public ModelAndView shop_entpage(ModelAndView mav, Model model, HttpSession session) {
         userSession(model,session);
@@ -221,6 +223,8 @@ public class ViewController {
         return mav; //페이지 이동
     }
 
+    @Inject
+    ProductServiceZ productServiceZ;
     @RequestMapping("/shop_etc")
     public ModelAndView shop_etcpage(ModelAndView mav, Model model, HttpSession session) {
         userSession(model,session);
@@ -229,6 +233,8 @@ public class ViewController {
         return mav; //페이지 이동
     }
 
+    @Inject
+    ProductServiceE productServiceE;
     @RequestMapping("/shop_eye")
     public ModelAndView shop_eyepage(ModelAndView mav, Model model, HttpSession session) {
         userSession(model,session);
@@ -237,6 +243,8 @@ public class ViewController {
         return mav; //페이지 이동
     }
 
+    @Inject
+    ProductServiceH productServiceH;
     @RequestMapping("/shop_heart")
     public ModelAndView shop_heartpage(ModelAndView mav, Model model, HttpSession session) {
         userSession(model,session);
@@ -246,7 +254,8 @@ public class ViewController {
     }
 
 
-
+    @Inject
+    ProductServiceT productServiceT;
     @RequestMapping("/shop_tooth")
     public ModelAndView shop_toothpage(ModelAndView mav, Model model, HttpSession session) {
         userSession(model,session);
@@ -255,7 +264,10 @@ public class ViewController {
         return mav; //페이지 이동
     }
 
-    @GetMapping("/shop_urology")
+
+    @Inject
+    ProductServiceU productServiceU;
+    @RequestMapping("/shop_urology")
     public ModelAndView shop_urologypage(ModelAndView mav, Model model, HttpSession session) {
         userSession(model,session);
         mav.setViewName("shop_urology"); //이동할 페이지 이름 (product_list.jsp 파일로 이동)
@@ -263,7 +275,9 @@ public class ViewController {
         return mav; //페이지 이동
     }
 
-    @GetMapping("/shop_flu")
+    @Inject
+    ProductServiceF productServiceF;
+    @RequestMapping("/shop_flu")
     public ModelAndView shop_flupage(ModelAndView mav, Model model, HttpSession session) {
         userSession(model,session);
         mav.setViewName("shop_flu"); //이동할 페이지 이름 (product_list.jsp 파일로 이동)
