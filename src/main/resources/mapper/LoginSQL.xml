@@ -4,8 +4,8 @@
 <mapper namespace="com.example.pharmwebspring.DAO.LoginDAO">
 
     <insert id="setUser" parameterType="com.example.pharmwebspring.Model.User">
-        INSERT INTO parmdb.user (user_id, user_pw, user_name, user_phone, user_email, user_adr)
-        VALUE (#{user_id}, #{user_pw}, #{user_name}, #{user_phone}, #{user_email}, #{user_adr})
+        INSERT INTO parmdb.user (user_id, user_pw, user_name, user_phone, user_email, user_adr1, user_adr2)
+        VALUE (#{user_id}, #{user_pw}, #{user_name}, #{user_phone}, #{user_email}, #{user_adr1}, #{user_adr2})
     </insert>
 
     <select id="getUser" parameterType="com.example.pharmwebspring.Model.Login"

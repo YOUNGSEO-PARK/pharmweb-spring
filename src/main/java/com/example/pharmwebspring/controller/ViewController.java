@@ -21,6 +21,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.example.pharmwebspring.controller.PharmacistWebSocketController.orderService;
+
 @Controller
 public class ViewController {
 
@@ -29,7 +31,8 @@ public class ViewController {
         String uname= (String) session.getAttribute("uname");
         String uphone = (String) session.getAttribute("uphone");
         String uemail = (String) session.getAttribute("uemail");
-        String uadr = (String) session.getAttribute("uadr");
+        String uadr1 = (String) session.getAttribute("uadr1");
+        String uadr2 = (String) session.getAttribute("uadr2");
 
         model.addAttribute("home", "/index");
 
@@ -39,7 +42,8 @@ public class ViewController {
             model.addAttribute("uname", uname);
             model.addAttribute("uphone", uphone);
             model.addAttribute("uemail", uemail);
-            model.addAttribute("uadr", uadr);
+            model.addAttribute("uadr1", uadr1);
+            model.addAttribute("uadr2", uadr2);
 
             model.addAttribute("status", "Logout");
             model.addAttribute("url","/logout");
@@ -110,14 +114,15 @@ public class ViewController {
         }
     }
 
-//    @Autowired
-//    OrderService orderService;
-//
-//    public void orderPharmList(Model model){
-//        orderService.getOrderPharmList();
-//
-//
-//    }
+    @GetMapping("/order")
+    public String orderpage(Model model, HttpSession session) {
+
+        userSession(model,session);
+        List<String> test= orderService.getOrderPharmList();
+        model.addAttribute("pharmList",test);
+        return "order";
+    }
+
     @GetMapping("/")
     public String page(Model model, HttpSession session) {
 
@@ -150,13 +155,6 @@ public class ViewController {
     public String loginpage(Model model, HttpSession session) {
         userSession(model,session);
         return "login";
-    }
-
-    @GetMapping("/order")
-    public String orderpage(Model model, HttpSession session) {
-
-        userSession(model,session);
-        return "order";
     }
 
     @GetMapping("/custom")
@@ -489,6 +487,8 @@ public class ViewController {
         mav.addObject("list", productService.listProduct());  //데이터 저장
         return mav; //페이지 이동
     }
+
+
 
     /*@RequestMapping("/cart")
     public ModelAndView list(HttpSession session, ModelAndView mav){

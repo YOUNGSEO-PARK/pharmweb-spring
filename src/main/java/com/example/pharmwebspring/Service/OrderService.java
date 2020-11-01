@@ -16,7 +16,7 @@ public interface OrderService {
 
     void deleteOrder(Order order);
 
-   // String getOrderPharmList();
-
     List<Order> getOrderByIdList(String string);
+
+    List<String> getOrderPharmList();
 }

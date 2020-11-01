@@ -213,7 +213,8 @@ public class APIController {
             session.setAttribute("uname", user.getUser_name());
             session.setAttribute("uphone", user.getUser_phone());
             session.setAttribute("uemail", user.getUser_email());
-            session.setAttribute("uadr", user.getUser_adr());
+            session.setAttribute("uadr1", user.getUser_adr1());
+            session.setAttribute("uadr2", user.getUser_adr2());
 //            session.setAttribute("category",1);
 
             statusRes.setStatus(102);
@@ -268,24 +269,6 @@ public class APIController {
         return statusRes;
     }
 
-
-//    @PostMapping("/pharmdeliver")
-//    public StatusRes PharmDeliver(HttpServletRequest request, @RequestBody Order order){
-//
-//        StatusRes statusRes = new StatusRes();
-//        HttpSession session = request.getSession();
-//
-//        if (order == null) {
-//
-//            statusRes.setStatus(700);
-//        } else {
-//
-//            session.setAttribute("id", order.getOrder_no());
-//
-//            statusRes.setStatus(302);
-//        }
-//        return statusRes;
-//    }
 
     @PostMapping("/udelete")
     public StatusRes DeleteUser(HttpSession session, @RequestBody String pw) throws JSONException {

@@ -50,10 +50,10 @@ public class OrderServiceImpl implements OrderService {
         return dao.getOrderById(string);
     }
 
-//    @Override
-//    public String getOrderPharmList()
-//    {
-//
-//        return dao.getOrderPharmList();
-//    }
+    @Override
+    public List<String> getOrderPharmList()
+    {
+
+        return dao.getOrderPharmList();
+    }
 }
