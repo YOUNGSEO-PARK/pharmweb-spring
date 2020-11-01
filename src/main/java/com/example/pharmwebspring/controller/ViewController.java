@@ -460,7 +460,7 @@ public class ViewController {
                     int cart_no, ModelAndView mav){
         cartService.delete(cart_no);
         mav.setViewName("mp_cart");
-        return "mp_cart";
+        return "redirect:/mp_cart";
     }
 
 
