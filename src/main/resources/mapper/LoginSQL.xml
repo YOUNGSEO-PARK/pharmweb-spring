@@ -50,16 +50,7 @@
     </delete>
 
     <update id="updateUser" parameterType="com.example.pharmwebspring.Model.User">
-        update parmdb.user set user_pw=#{user_pw},user_phone=#{user_phone}, user_adr=#{user_adr} where user_id=#{login_id}
+        update parmdb.user set user_pw=#{user_pw},user_phone=#{user_phone}, user_adr1=#{user_adr1}, user_adr2=#{user_adr2} where user_id=#{user_id}
     </update>
-
-<!--    <select id="getProduct" parameterType="String" resultType="com.example.pharmwebspring.Model.Product">-->
-<!--        select * from parmdb.product where-->
-<!--    </select>-->
-    
-<!--    <insert id="insertCart" parameterType="com.example.pharmwebspring.Model.Cart">-->
-<!--        INSERT INTO parmdb.cart (user_id, order_no, cart_img_uri, prod_name, count, cart_prod_price)-->
-<!--        VALUE-->
-<!--    </insert>-->
 
 </mapper>
