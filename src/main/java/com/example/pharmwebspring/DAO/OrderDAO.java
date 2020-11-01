@@ -21,7 +21,7 @@ public interface OrderDAO {
 
     void updateOrderPmsg(Order order);
 
-   // String getOrderPharmList();
+    List<String> getOrderPharmList();
 
     List<Order> getOrderById(@Param("login_id") String string);
 }

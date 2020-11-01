@@ -51,30 +51,31 @@
 
                             <div class="form-group row" style="margin-top: -25px;">
                                 <div class="col-md-6">
-                                    <label for="order_name" class="text-black">이름<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="order_name" name="order_name">
+                                    <label for="order_name" class="text-black">수령인 이름<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="order_name" name="order_name" placeholder="수령인 이름 (기본: 주문자 이름)">
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <div class="col-md-12">
-                                    <label for="order_adr1" class="text-black">주소 <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="order_adr1" name="order_adr1"
-                                           placeholder="시,군,구 (도로명)">
+                                    <label for="order_adr1" class="text-black">수령인 주소 <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="order_adr1" name="order_adr1" th:value="${uadr1}"
+                                           placeholder="시,군,구">
                                 </div>
                             </div>
 
                             <div class="form-group row" style="margin-top: -35px;">
                                 <div class="col-md-12">
                                     <label for="order_adr2"></label>
-                                    <input type="text" class="form-control" id="order_adr2" name="order_adr2" placeholder="세부주소">
+                                    <input type="text" class="form-control" id="order_adr2" name="order_adr2"
+                                           placeholder="세부 주소 (도로명, 번지)" th:value="${uadr2}">
                                 </div>
                             </div>
 
                             <div class="form-group row mb-5">
                                 <div class="col-md-12">
-                                    <label for="order_phone" class="text-black">핸드폰 번호<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="order_phone" name="order_phone" placeholder="-없이 작성해주세요.">
+                                    <label for="order_phone" class="text-black">휴대폰 번호<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="order_phone" name="order_phone" placeholder="010-0000-0000" th:value="${uphone}">
                                 </div>
                             </div>
 
@@ -84,17 +85,13 @@
                                 </div>
                                 <div class="col-md-12">
                                     <select id="order_pharm" class="order_pharm" name="order_pharm">
-                                        <option value="none">===선택===</option>
-                                        <option value="영서약국"> 영서약국</option>
-                                        <option value="소현약국"> 소현약국</option>
-                                        <option value="예지약국"> 예지약국</option></select>
+                                        <option   th:each="pharm : ${pharmList}" th:text="${pharm.pharm_name}"></option>
+                                    </select>
                                 </div>
-                                </th:>
                             </div>
 
-
                             <div class="form-group" style="margin-top: -35px;">
-                                <label for="order_msg" class="text-black">주문 메세지</label>
+                                <label for="order_msg" class="text-black">주문자 메세지</label>
                                 <textarea name="order_msg" id="order_msg" cols="30" rows="5" class="form-control"
                                           placeholder="약사님께 전할 말이 있으시면 작성해주세요."></textarea>
                             </div>
