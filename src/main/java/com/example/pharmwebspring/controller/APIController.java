@@ -397,11 +397,14 @@ public class APIController {
         return statusRes;
     }
 
-    /*@RequestMapping("/delete")
-    public String delete(@RequestParam String cart_no){
+    @GetMapping ("/{cart_no}")
+    public ModelAndView delete(
+            @PathVariable("cart_no")
+                    int cart_no,ModelAndView mav){
         cartService.delete(cart_no);
-        return "/mp_cart";
-    }*/
+        mav.setViewName("mp_cart");
+        return mav;
+    }
 
    /* @RequestMapping("list.do")
     public ModelAndView list(HttpSession session, ModelAndView mav){

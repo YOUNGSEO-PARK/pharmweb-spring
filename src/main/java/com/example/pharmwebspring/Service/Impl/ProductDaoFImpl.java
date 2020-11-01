@@ -11,7 +11,7 @@ import javax.inject.Inject;
 import java.util.List;
 
 @Repository //DB관련 객체를 스프링에서 대신 관리해주게하는 어노테이션
-public class ProductFDaoImpl implements ProductDaoF {
+public class ProductDaoFImpl implements ProductDaoF {
 
     @Inject //sqlSession을 의존성을 주입해서 스프링 자체에서 객체를 생성하고 소멸시키게끔 한다.
     SqlSession sqlSession;
