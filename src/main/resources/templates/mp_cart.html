@@ -48,7 +48,7 @@
                                     <div class="row">
                                     <tbody>
                                     <tr>
-                                        <td class="product-thumbnail">
+                                        <td th:value="${id}" class="product-thumbnail">
                                             <img th:src="${col.cart_img_url}" alt="Image" class="img-fluid">
                                         </td>
                                         <td class="product-name">
@@ -77,14 +77,18 @@
 
 
                                         </td>
+                                        <input type="hidden" th:value="${col.cart_no}">
+
                                         <td><p class="product-total" th:text="${col.summoney}"></p></td>
-                                        <td><a href="#" class="btn btn-primary height-auto btn-sm">X</a></td>
+                                        <td><a th:href="@{${col.cart_no}}"><button class="btn btn-primary height-auto btn-sm">X</button></a></td>
                                     </tr>
+
                                     </div>
                                     </tbody>
                                 </table>
                             </div>
                     </div>
+                    </form>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="row mb-5">
@@ -97,6 +101,7 @@
                             </div>
                         </div>
                         <div class="col-md-6 pl-5">
+                            <form action="#" method="post">
                             <div class="row justify-content-end">
                                 <div class="col-md-7">
                                     <div class="row">
@@ -132,6 +137,7 @@
 
                                 </div>
                             </div>
+                            </form>
                         </div>
                     </div>
                 </div>

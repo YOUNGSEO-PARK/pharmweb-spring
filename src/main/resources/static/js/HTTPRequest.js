@@ -460,24 +460,20 @@ $("#CartBtn").on('click', () => { //.on 이벤트 트리거
     })
 })
 
-$("#CartListBtn").on('click', () => { //.on 이벤트 트리거
-    var data = {};
-    $("form[name=cartlistform]").serializeArray().map(function (x) {
-        data[x.name] = x.value;
-    });
-    console.log(data)
+/*$("#CartDelBtn").on('click', () => { //.on 이벤트 트리거
 
     $.ajax({
-        type: "GET", //fix
+        type: "POST", //fix
         dataType: "json", //fix
         contentType: "application/json; charset=utf-8;", //fix
-        url: "/list",
-        data: JSON.stringify(data), //fix ; 객체->스트링
+        url: "/api/delete",
+        //data: JSON.stringify(data), //fix ; 객체->스트링
     }).done(function (data) {
-        alert("success");
+            alert("장바구니에서 삭제되었습니다.")
+            //document.location.href = '/mp_cart';
 
     })
-})
+})*/
 
 //------------------------------success-fin-------------------------------------------------------------------
 $("#userConfirmBtn").on('click', () => { //.on 이벤트 트리거

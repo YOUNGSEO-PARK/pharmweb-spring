@@ -4,8 +4,8 @@ import com.example.pharmwebspring.Model.Cart;
 import com.example.pharmwebspring.Model.DataDao;
 import com.example.pharmwebspring.Model.MapapiDto;
 import com.example.pharmwebspring.Model.StatusRes;
-import com.example.pharmwebspring.Service.CartService;
-import com.example.pharmwebspring.Service.OrderService;
+import com.example.pharmwebspring.Service.*;
+import com.example.pharmwebspring.Service.ProductServiceN;
 import jdk.jshell.Snippet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,8 +19,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.example.pharmwebspring.Service.ProductService;
 
 @Controller
 public class ViewController {
@@ -213,62 +211,86 @@ public class ViewController {
         return "mypage";
     }
 
-    @GetMapping("/shop_allergy")
-    public String shop_allergypage(Model model, HttpSession session) {
-
+    @Inject
+    ProductServiceB productServiceB;
+    @RequestMapping("/shop_allergy")
+    public ModelAndView shop_allergypage(ModelAndView mav, Model model, HttpSession session) {
         userSession(model,session);
-        return "shop_allergy";
+        mav.setViewName("shop_allergy"); //이동할 페이지 이름 (product_list.jsp 파일로 이동)
+        mav.addObject("list", productServiceB.listProductB());  //데이터 저장
+        return mav; //페이지 이동
     }
 
-    @GetMapping("/shop_ent")
-    public String shop_entpage(Model model, HttpSession session) {
-
+    @Inject
+    ProductServiceN productServiceN;
+    @RequestMapping("/shop_ent")
+    public ModelAndView shop_entpage(ModelAndView mav, Model model, HttpSession session) {
         userSession(model,session);
-        return "shop_ent";
+        mav.setViewName("shop_ent"); //이동할 페이지 이름 (product_list.jsp 파일로 이동)
+        mav.addObject("list", productServiceN.listProductN());  //데이터 저장
+        return mav; //페이지 이동
     }
 
-    @GetMapping("/shop_etc")
-    public String shop_etcpage(Model model, HttpSession session) {
-
+    @Inject
+    ProductServiceZ productServiceZ;
+    @RequestMapping("/shop_etc")
+    public ModelAndView shop_etcpage(ModelAndView mav, Model model, HttpSession session) {
         userSession(model,session);
-        return "shop_etc";
+        mav.setViewName("shop_etc"); //이동할 페이지 이름 (product_list.jsp 파일로 이동)
+        mav.addObject("list", productServiceZ.listProductZ());  //데이터 저장
+        return mav; //페이지 이동
     }
 
-    @GetMapping("/shop_eye")
-    public String shop_eyepage(Model model, HttpSession session) {
-
+    @Inject
+    ProductServiceE productServiceE;
+    @RequestMapping("/shop_eye")
+    public ModelAndView shop_eyepage(ModelAndView mav, Model model, HttpSession session) {
         userSession(model,session);
-        return "shop_eye";
+        mav.setViewName("shop_eye"); //이동할 페이지 이름 (product_list.jsp 파일로 이동)
+        mav.addObject("list", productServiceE.listProductE());  //데이터 저장
+        return mav; //페이지 이동
     }
 
-    @GetMapping("/shop_heart")
-    public String shop_heartpage(Model model, HttpSession session) {
-
+    @Inject
+    ProductServiceH productServiceH;
+    @RequestMapping("/shop_heart")
+    public ModelAndView shop_heartpage(ModelAndView mav, Model model, HttpSession session) {
         userSession(model,session);
-        return "shop_heart";
+        mav.setViewName("shop_heart"); //이동할 페이지 이름 (product_list.jsp 파일로 이동)
+        mav.addObject("list", productServiceH.listProductH());  //데이터 저장
+        return mav; //페이지 이동
     }
 
 
-
-    @GetMapping("/shop_tooth")
-    public String shop_toothpage(Model model, HttpSession session) {
-
+    @Inject
+    ProductServiceT productServiceT;
+    @RequestMapping("/shop_tooth")
+    public ModelAndView shop_toothpage(ModelAndView mav, Model model, HttpSession session) {
         userSession(model,session);
-        return "shop_tooth";
+        mav.setViewName("shop_tooth"); //이동할 페이지 이름 (product_list.jsp 파일로 이동)
+        mav.addObject("list", productServiceT.listProductT());  //데이터 저장
+        return mav; //페이지 이동
     }
 
-    @GetMapping("/shop_urology")
-    public String shop_urologypage(Model model, HttpSession session) {
 
+    @Inject
+    ProductServiceU productServiceU;
+    @RequestMapping("/shop_urology")
+    public ModelAndView shop_urologypage(ModelAndView mav, Model model, HttpSession session) {
         userSession(model,session);
-        return "shop_urology";
+        mav.setViewName("shop_urology"); //이동할 페이지 이름 (product_list.jsp 파일로 이동)
+        mav.addObject("list", productServiceU.listProductU());  //데이터 저장
+        return mav; //페이지 이동
     }
 
-    @GetMapping("/shop_flu")
-    public String shop_flupage(Model model, HttpSession session) {
-
+    @Inject
+    ProductServiceF productServiceF;
+    @RequestMapping("/shop_flu")
+    public ModelAndView shop_flupage(ModelAndView mav, Model model, HttpSession session) {
         userSession(model,session);
-        return "shop_flu";
+        mav.setViewName("shop_flu"); //이동할 페이지 이름 (product_list.jsp 파일로 이동)
+        mav.addObject("list", productServiceF.listProductF());  //데이터 저장
+        return mav; //페이지 이동
     }
 
     @GetMapping("/thankyou")
@@ -395,7 +417,7 @@ public class ViewController {
         //user_id = (String) session.getAttribute("user_id");
         //userSession(model, session);
         //Map<String, Object>map = new HashMap<>();
-        userSession(model, session);
+        //userSession(model, session);
         String user_id = (String)session.getAttribute("user_id");
             //List<Cart> list = cartService.listCart(user_id);
 
@@ -408,11 +430,7 @@ public class ViewController {
             return mav;
     }
 
-    @RequestMapping("/delete")
-    public String delete(@RequestParam int cart_no){
-        cartService.delete(cart_no);
-        return "/mp_cart";
-    }
+
 
     @RequestMapping("/update")
     public String update(@RequestParam int[] count_p, @RequestParam String[] prod_name, HttpSession session){
@@ -444,11 +462,6 @@ public class ViewController {
         userSession(model,session);
         mav.setViewName("shop"); //이동할 페이지 이름 (product_list.jsp 파일로 이동)
         mav.addObject("list", productService.listProduct());  //데이터 저장
-
-        //서비스에서 상품 리스트를 받아와 list라는 이름의 변수에 저장
-
-        //service -> model -> mybatis -> 리스트를 받아옴
-
         return mav; //페이지 이동
     }
 

@@ -7,10 +7,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 @RestController
@@ -393,6 +397,15 @@ public class APIController {
             statusRes.setStatus(500);
         }
         return statusRes;
+    }
+
+    @GetMapping ("/{cart_no}")
+    public ModelAndView delete(
+            @PathVariable("cart_no")
+                    int cart_no,ModelAndView mav){
+        cartService.delete(cart_no);
+        mav.setViewName("mp_cart");
+        return mav;
     }
 
     @PostMapping("/upwupdate")
