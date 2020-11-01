@@ -37,41 +37,14 @@
             </div>
         </div>
     </div>
-
-
-    <div class="py-4">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <h3 class="mb-3 h6 text-uppercase text-black d-block">가격 순 정렬</h3>
-                    <div id="slider-range" class="border-primary"></div>
-                    <input type="text" name="text" id="amount" class="form-control border-0 pl-0 bg-white" disabled=""/>
-                </div>
-                <div class="col-lg-6 text-lg-right">
-                    <h3 class="mb-3 h6 text-uppercase text-black d-block">Filter</h3>
-                    <button type="button" class="btn btn-primary btn-md dropdown-toggle px-4" id="dropdownMenuReference"
-                            data-toggle="dropdown">정렬
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
-                        <a class="dropdown-item" href="#">인기순</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">상품명(오름차순)</a>
-                        <a class="dropdown-item" href="#">상품명(내림차순)</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">가격(오름차순)</a>
-                        <a class="dropdown-item" href="#">가격(내림차순)</a>
-                    </div>
-                </div>
-            </div>
+    <br>
+    <div class="row">
+        <div class="title-section text-center col-12">
+            <h2>알레르기 <strong class="text-primary">/</strong> 구충제</h2>
         </div>
     </div>
-    <div class="site-section bg-light">
+    <div class="site-section bg-light "style="padding:50px 0px;">
         <div class="container">
-            <div class="row">
-                <div class="title-section text-center col-12">
-                    <h2>알레르기 <strong class="text-primary">/</strong> 구충제</h2>
-                </div>
-            </div>
             <div class="row">
                 <div th:each="col:${list}" class="col-sm-6 col-lg-4 text-center item mb-4 item-v2">
                     <a th:href="@{${col.prodB_name}}"> <img th:src="${col.imgB_url}" width="200px;" height="250px;" style="margin:15px 0px;" alt="Image"></a>
