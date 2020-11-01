@@ -124,13 +124,13 @@
                                     </thead>
                                     <tbody>
                                     <tr class="text-black" th:each="col:${list}">
-                                        <td th:if="${id}==${col.user_id}"><strong th:text="${col.cart_prod_name}"></strong><strong>    x</strong><strong th:text="${col.count_p}"></strong> </td>
-                                        <td th:if="${id}==${col.user_id}"><strong name="summoney" th:text="${col.summoney}"></strong></td>
+                                        <td ><strong th:text="${col.cart_prod_name}"></strong><strong>    x</strong><strong th:text="${col.count_p}"></strong> </td>
+                                        <td ><strong name="summoney" th:text="${col.summoney}"></strong></td>
                                     </tr>
 
                                     <tr>
                                         <td class="text-black font-weight-bold"><strong>최종 금액</strong></td>
-                                        <td class="text-black font-weight-bold"><strong>12500원</strong></td>
+                                        <td class="text-black font-weight-bold"><strong th:text="${map.total}"></strong></td>
                                     </tr>
                                     </tbody>
                                 </table>
