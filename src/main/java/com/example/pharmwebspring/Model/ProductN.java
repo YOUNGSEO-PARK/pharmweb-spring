@@ -3,14 +3,12 @@ package com.example.pharmwebspring.Model;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.swing.*;
-
 @Getter
 @Setter
 public class ProductN {
     private String prodN_name;
     private String prodN_attribute;
-    private String codeN;
+    private String code;
     private String prodN_info_when;
     private String prodN_info_after;
     private String prodN_info_how;
@@ -35,12 +33,12 @@ public class ProductN {
         this.prodN_attribute = prodN_attribute;
     }
 
-    public String getCodeN() {
-        return codeN;
+    public String getCode() {
+        return code;
     }
 
-    public void setCodeN(String codeN) {
-        this.codeN = codeN;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getProdN_info_when() {

@@ -56,7 +56,7 @@
                             <div class="form-group row" style="margin-top: -25px;">
                                 <div class="col-md-6">
                                     <label for="order_name" class="text-black">수령인 이름<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="order_name" name="order_name" placeholder="수령인 이름 (기본: 주문자 이름)">
+                                    <input type="text" class="form-control" id="order_name" name="order_name" placeholder="수령인 이름 (기본: 주문자 이름)" th:value="${uname}">
                                 </div>
                             </div>
 
@@ -117,19 +117,17 @@
                             <h2 class="h3 mb-3 text-black">주문 내역</h2>
                             <div class="p-3 p-lg-5 border">
                                 <table class="table site-block-order-table mb-5" th:class="${list}">
-                                    <thead>
+                                    <thead class="text-black">
                                     <th>상품</th>
+                                    <th> </th>
                                     <th>총 합</th>
                                     </thead>
                                     <tbody>
-                                    <tr th:each="col:${list}">
+                                    <tr class="text-black" th:each="col:${list}">
                                         <td th:if="${id}==${col.user_id}"><strong th:text="${col.cart_prod_name}"></strong><strong>    x</strong><strong th:text="${col.count_p}"></strong> </td>
                                         <td th:if="${id}==${col.user_id}"><strong name="summoney" th:text="${col.summoney}"></strong></td>
                                     </tr>
-                                    <tr>
-                                        <td class="text-black font-weight-bold"><strong>장바구니 총 금액</strong></td>
-                                        <td class="text-black">12500원</td>
-                                    </tr>
+
                                     <tr>
                                         <td class="text-black font-weight-bold"><strong>최종 금액</strong></td>
                                         <td class="text-black font-weight-bold"><strong>12500원</strong></td>

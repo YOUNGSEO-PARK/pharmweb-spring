@@ -4,21 +4,21 @@
 <mapper namespace="com.example.pharmwebspring.DAO.CartDAO">
     <!-- 장바구니에 담기 -->
     <insert id="insert" parameterType="com.example.pharmwebspring.Model.Cart">
-        insert into cart (user_id, cart_img_url, cart_prod_name, count_p, cart_prod_price, summoney)
+        insert into cart (user_id, cart_img_url, cart_prod_name, count_p, cart_prod_price, summoney, code)
         values
-          (#{user_id}, #{cart_img_url}, #{cart_prod_name}, #{count_p}, #{cart_prod_price}, #{summoney})
+          (#{user_id}, #{cart_img_url}, #{cart_prod_name}, #{count_p}, #{cart_prod_price}, #{summoney}, #{code})
     </insert>
 
     <select id="listCart" resultType="com.example.pharmwebspring.Model.Cart">
-        select * from parmdb.cart
+        SELECT * from parmdb.cart
     </select>
 
     <delete id="delete">
-        delete from cart where cart_no=#{cart_no}
+        delete from cart where code=#{cart_code}
     </delete>
 
     <delete id="deleteAll">
-        delete from cart where userid=#{userid}
+        delete from cart where user_id=#{userid}
         <!-- 장바구니테이블로부터 회원의 아이디와 삭제하고자하는 회원의 아이디가 같으면 장바구니에 있는 자료를 전부다 삭제 -->
     </delete>
 
