@@ -6,6 +6,7 @@
             select * from parmdb.productpro;
         </select>
         <select id="detailProduct" resultType="com.example.pharmwebspring.Model.Product">
-                select * from productpro where prod_name=#{prod_name}
+                select * from parmdb.productpro where prod_name=#{prod_name};
         </select>
+
 </mapper>

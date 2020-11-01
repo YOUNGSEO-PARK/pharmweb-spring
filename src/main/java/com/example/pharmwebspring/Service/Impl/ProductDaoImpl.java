@@ -26,4 +26,5 @@ public class ProductDaoImpl implements ProductDao {
                 "product.detail_product", prod_name);
         //앞쪽에 namespace와 뒤쪽에 id를 적는다. 이렇게 해야 Mapper와 매핑이 된다.
     }
+
 }

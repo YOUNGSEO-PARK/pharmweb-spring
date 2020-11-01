@@ -381,12 +381,15 @@ public class APIController {
 
             statusRes.setStatus(502);
         }
+//
+//        else if(cart.getCart_prod_name().equals())
 
         else{
 
             cartService.insert(cart);
             statusRes.setStatus(500);
         }
+
         return statusRes;
     }
 
