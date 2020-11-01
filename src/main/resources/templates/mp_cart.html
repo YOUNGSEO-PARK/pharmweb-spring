@@ -31,7 +31,7 @@
             </div>
             <th:block th:replace="layout/06_mypage :: mypageFragment"></th:block>
             <div class="col-lg-10">
-                <div class="container">
+                <form class="container">
                     <div class="row mb-5">
                         <table class="table table-bordered">
                         <thead>
@@ -78,19 +78,20 @@
 
 
                                         </td>
-                                        <input type="hidden" th:value="${col.cart_no}">
-
-                                        <td><p class="product-total text-center text-black" th:text="${col.summoney}"></p></td>
-                                        <td><a th:href="@{${col.cart_no}}"><button class="btn btn-primary height-auto btn-sm">X</button></a></td>
+                                        <input type="hidden" th:int value="${col.cart_no}">
 
                                         <td><p class="product-total" th:text="${col.summoney}"></p></td>
-                                        <td><a th:href="@{/api/delete/${col.cart_no}}"><button class="btn btn-primary height-auto btn-sm">X</button></a></td>
+                                        <div>
+                                            <td><a th:href="@{/cartdelete(cart_no=${col.cart_no})}"><input type="button" class="btn btn-primary height-auto btn-sm"></inputbutton></a></td>
+                                        </div>
                                     </tr>
 
                                     </div>
                                     </tbody>
+                            </div>
                                 </table>
                             </div>
+                </form>
                     </table>
                     </div>
                     </form>
@@ -119,7 +120,8 @@
                                             <span class="text-black">Subtotal</span>
                                         </div>
                                         <div class="col-md-6 text-right">
-                                            <strong class="text-black">${col.carttotal}</strong>
+                                            <strong class="text-black">
+                                            </strong>
                                         </div>
                                     </div>
                                     <div class="row mb-5">

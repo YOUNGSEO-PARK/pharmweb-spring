@@ -77,7 +77,6 @@ public class Cart {
     }
 
     public int getCarttotal() {
-        carttotal = summoney + carttotal;
         return carttotal;
     }
 

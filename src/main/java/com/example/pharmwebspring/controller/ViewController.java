@@ -456,6 +456,16 @@ public class ViewController {
 
 
 
+    @RequestMapping("/cartdelete")
+    public String delete(
+            @RequestParam("cart_no")
+                    int cart_no, ModelAndView mav){
+        cartService.delete(cart_no);
+        mav.setViewName("mp_cart");
+        return "mp_cart";
+    }
+
+
     @RequestMapping("/update")
     public String update(@RequestParam int[] count_p, @RequestParam String[] prod_name, HttpSession session){
         String user_id = (String)session.getAttribute("user_id");
