@@ -23,20 +23,23 @@ public class CartDAOImpl implements CartDAO {
 
     @Override
     public void insert(Cart cart){
-
         sqlSession.insert("cart.insert", cart);
     } //장바구니 담기
 
     @Override
     public List<Cart> listCart(String user_id){
-
         return sqlSession.selectList("cart.listCart", user_id);
     }
 
     @Override
-    public void delete(int cart_no){
+    public void delete(String cart_code){
 
-        sqlSession.delete("cart.delete", cart_no);
+        sqlSession.delete("cart.delete", cart_code);
+    }
+
+    @Override
+    public void deleteAll(String user_id) {
+        sqlSession.delete("cart.deleteAll", user_id);
     }
 
     @Override
@@ -50,13 +53,14 @@ public class CartDAOImpl implements CartDAO {
         return 0;
     }
 
-    @Override
-    public void updateCart(Cart cart){
-
-    }
 
     @Override
     public void modifyCart(Cart cart){
         sqlSession.update("cart.modify", cart);
+    }
+
+    @Override
+    public void updateCart(Cart cart){
+        sqlSession.update("cart.sumCart", cart);
     }
 }

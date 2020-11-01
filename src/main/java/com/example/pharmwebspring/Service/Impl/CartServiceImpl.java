@@ -34,9 +34,14 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public void delete(int cart_no){
+    public void delete(String cart_code){
 
-        cartDAO.delete(cart_no);
+        cartDAO.delete(cart_code);
+    }
+
+    @Override
+    public void deleteAll(String user_id) {
+        cartDAO.deleteAll(user_id);
     }
 
     @Override
@@ -48,6 +53,11 @@ public class CartServiceImpl implements CartService {
     public void modifyCart(Cart cart){
 
         cartDAO.modifyCart(cart);
+    }
+
+    @Override
+    public void updateCart(Cart cart){
+        cartDAO.updateCart(cart);
     }
 
 }

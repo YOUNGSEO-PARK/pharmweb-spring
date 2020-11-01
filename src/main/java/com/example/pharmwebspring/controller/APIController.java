@@ -372,13 +372,24 @@ public class APIController {
     @PostMapping("/cartinsert")
     public StatusRes insert(@RequestBody Cart cart){
 
-        cartService.insert(cart);
         if(cart==null){
+
             statusRes.setStatus(501);
         }
+
+        else if(cart.getCount_p() == 0){
+
+            statusRes.setStatus(502);
+        }
+//
+//        else if(cart.getCart_prod_name().equals())
+
         else{
+
+            cartService.insert(cart);
             statusRes.setStatus(500);
         }
+
         return statusRes;
     }
 

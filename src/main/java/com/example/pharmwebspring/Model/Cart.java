@@ -5,7 +5,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-
 public class Cart {
 
     private int cart_no;        //주문번호(하나씩 올라감)
@@ -16,7 +15,8 @@ public class Cart {
     private int count_s;        //상품종류 개수
     private String cart_img_url;     //상품 이미지
     private int summoney;  //같은 상품 가격 총액
-    private int carttotal = 0;  //장바구니 전체 총액
+    private int carttotal;  //장바구니 전체 총액
+    private String code;
 
     public int getCart_no() {
         return cart_no;
@@ -76,12 +76,19 @@ public class Cart {
         this.summoney = summoney;
     }
 
-    public int getCarttotal() {
-        return carttotal;
+    public String getCode() {
+        return code;
     }
 
-    public void setCarttotal(int carttotal) {
-        this.carttotal = carttotal;
+    public void setCode(String code) {
+        this.code = code;
     }
 
+    public void addSummony(int summoney) {
+        this.summoney += summoney;
+    }
+
+    public void addCount(int count) {
+        this.count_p += count;
+    }
 }

@@ -3,7 +3,11 @@
 
 <th:block th:replace="layout/01_link :: linkFragment"></th:block>
 
-
+<script>
+    function sum(variety){
+        var ssum = ssum + variety;
+    }
+</script>
 <body>
 
 <div class="site-wrap">
@@ -52,7 +56,7 @@
                             <div class="form-group row" style="margin-top: -25px;">
                                 <div class="col-md-6">
                                     <label for="order_name" class="text-black">수령인 이름<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="order_name" name="order_name" placeholder="수령인 이름 (기본: 주문자 이름)">
+                                    <input type="text" class="form-control" id="order_name" name="order_name" placeholder="수령인 이름 (기본: 주문자 이름)" th:value="${uname}">
                                 </div>
                             </div>
 
@@ -112,24 +116,18 @@
                         <div class="col-md-12">
                             <h2 class="h3 mb-3 text-black">주문 내역</h2>
                             <div class="p-3 p-lg-5 border">
-                                <table class="table site-block-order-table mb-5">
-                                    <thead>
+                                <table class="table site-block-order-table mb-5" th:class="${list}">
+                                    <thead class="text-black">
                                     <th>상품</th>
+                                    <th> </th>
                                     <th>총 합</th>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>신신파스<strong class="mx-2">x</strong> 1</td>
-                                        <td>2600원</td>
+                                    <tr class="text-black" th:each="col:${list}">
+                                        <td th:if="${id}==${col.user_id}"><strong th:text="${col.cart_prod_name}"></strong><strong>    x</strong><strong th:text="${col.count_p}"></strong> </td>
+                                        <td th:if="${id}==${col.user_id}"><strong name="summoney" th:text="${col.summoney}"></strong></td>
                                     </tr>
-                                    <tr>
-                                        <td>락토핏 <strong class="mx-2">x</strong> 1</td>
-                                        <td>9900원</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-black font-weight-bold"><strong>장바구니 총 금액</strong></td>
-                                        <td class="text-black">12500원</td>
-                                    </tr>
+
                                     <tr>
                                         <td class="text-black font-weight-bold"><strong>최종 금액</strong></td>
                                         <td class="text-black font-weight-bold"><strong>12500원</strong></td>
@@ -137,43 +135,43 @@
                                     </tbody>
                                 </table>
                             </div>
-                                <div class="border mb-3">
-                                    <h3 class="h6 mb-0"><a class="d-block" data-toggle="collapse" href="#collapsecheque"
-                                                           role="button"
-                                                           aria-expanded="false" aria-controls="collapsecheque">신용카드</a>
-                                    </h3>
+                            <div class="border mb-3">
+                                <h3 class="h6 mb-0"><a class="d-block" data-toggle="collapse" href="#collapsecheque"
+                                                       role="button"
+                                                       aria-expanded="false" aria-controls="collapsecheque">신용카드</a>
+                                </h3>
 
-                                    <div class="collapse" id="collapsecheque">
-                                        <div class="py-2 px-4">
-                                            <p class="mb-0">준비중</p>
-                                        </div>
+                                <div class="collapse" id="collapsecheque">
+                                    <div class="py-2 px-4">
+                                        <p class="mb-0">준비중</p>
                                     </div>
                                 </div>
-
-                                <div class="border mb-5">
-                                    <h3 class="h6 mb-0"><a class="d-block" data-toggle="collapse" href="#collapsepaypal"
-                                                           role="button"
-                                                           aria-expanded="false" aria-controls="collapsepaypal">무통장
-                                        입금</a></h3>
-
-                                    <div class="collapse" id="collapsepaypal">
-                                        <div class="py-2 px-4">
-                                            <p class="mb-0">준비중</p>
-                                        </div>
-                                    </div>
-                                </div>
-<!--btn-->
-
                             </div>
+
+                            <div class="border mb-5">
+                                <h3 class="h6 mb-0"><a class="d-block" data-toggle="collapse" href="#collapsepaypal"
+                                                       role="button"
+                                                       aria-expanded="false" aria-controls="collapsepaypal">무통장
+                                    입금</a></h3>
+
+                                <div class="collapse" id="collapsepaypal">
+                                    <div class="py-2 px-4">
+                                        <p class="mb-0">준비중</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--btn-->
+
                         </div>
                     </div>
-
                 </div>
+
             </div>
-            <!-- </form> -->
         </div>
+        <!-- </form> -->
     </div>
-    <th:block th:replace="layout/03_footer :: footerFragment"></th:block>
+</div>
+<th:block th:replace="layout/03_footer :: footerFragment"></th:block>
 
 </div>
 
