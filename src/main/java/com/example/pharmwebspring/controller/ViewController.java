@@ -116,7 +116,7 @@ public class ViewController {
         }
     }
 
-    @RequestMapping("/order_cart")
+    @GetMapping("/order")
     public ModelAndView orderpage(Model model, HttpSession session, ModelAndView mav) {
 
         userSession(model, session);
