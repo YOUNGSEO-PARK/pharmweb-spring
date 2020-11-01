@@ -452,7 +452,7 @@ $("#CartBtn").on('click', () => { //.on 이벤트 트리거
 
         if (data.status == 500) {
             alert("장바구니에 상품이 성공적으로 담겼습니다.")
-            //document.location.href = '/mp_cart';
+            document.location.href = '/mp_cart';
         } else if (data.status == 501) {
             alert("장바구니 담기에 실패하였습니다. 다시 시도해주세요.")
         }
