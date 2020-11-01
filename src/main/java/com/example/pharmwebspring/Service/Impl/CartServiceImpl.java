@@ -50,4 +50,9 @@ public class CartServiceImpl implements CartService {
         cartDAO.modifyCart(cart);
     }
 
+    @Override
+    public void updateCart(Cart cart){
+        cartDAO.updateCart(cart);
+    }
+
 }

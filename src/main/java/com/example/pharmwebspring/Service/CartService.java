@@ -18,4 +18,6 @@ public interface CartService {
 
     void modifyCart(Cart cart);
 
+    void updateCart(Cart cart);
+
 }

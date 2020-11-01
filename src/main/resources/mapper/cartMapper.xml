@@ -10,10 +10,11 @@
     </insert>
 
     <select id="listCart" resultType="com.example.pharmwebspring.Model.Cart">
-        select * from user, user u where u.user_id=#{user_id}
+        select * from parmdb.cart
     </select>
 
     <delete id="delete">
         delete from cart where cart_no=#{cart_no}
     </delete>
+
 </mapper>

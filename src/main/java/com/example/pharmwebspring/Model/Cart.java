@@ -16,7 +16,7 @@ public class Cart {
     private int count_s;        //상품종류 개수
     private String cart_img_url;     //상품 이미지
     private int summoney;  //같은 상품 가격 총액
-    private int carttotal = 0;  //장바구니 전체 총액
+    private int carttotal;  //장바구니 전체 총액
 
     public int getCart_no() {
         return cart_no;
@@ -76,12 +76,5 @@ public class Cart {
         this.summoney = summoney;
     }
 
-    public int getCarttotal() {
-        return carttotal;
-    }
-
-    public void setCarttotal(int carttotal) {
-        this.carttotal = carttotal;
-    }
 
 }

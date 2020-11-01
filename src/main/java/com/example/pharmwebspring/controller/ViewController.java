@@ -111,7 +111,7 @@ public class ViewController {
         }
     }
 
-    @RequestMapping("/order")
+    @RequestMapping("/order_cart")
     public ModelAndView orderpage(Model model, HttpSession session, ModelAndView mav) {
 
         userSession(model,session);
@@ -133,7 +133,7 @@ public class ViewController {
     @GetMapping("/index")
     public String indexpage(Model model, HttpSession session) {
 
-       userSession(model,session);
+        userSession(model,session);
         return "index";
     }
 
@@ -436,20 +436,15 @@ public class ViewController {
     @PostMapping("/list")
     public ModelAndView list(HttpSession session, ModelAndView mav,
                              Model model){
-        //user_id = (String) session.getAttribute("user_id");
-        //userSession(model, session);
-        //Map<String, Object>map = new HashMap<>();
-        //userSession(model, session);
-        String user_id = (String)session.getAttribute("user_id");
-            //List<Cart> list = cartService.listCart(user_id);
+        String user_id = (String) session.getAttribute("user_id");
+        userSession(model, session);
+        Map<String, Object>map = new HashMap<>();
+        List<Cart> list = cartService.listCart(user_id);
+        map.put("list", list);
+        mav.setViewName("mp_cart");
+        mav.addObject("map",map);
 
-            //map.put("list", list);
-            //map.put("count", list.size());
-
-            mav.setViewName("mp_cart");
-            mav.addObject("map", cartService.listCart(user_id));
-
-            return mav;
+        return mav;
     }
 
 
