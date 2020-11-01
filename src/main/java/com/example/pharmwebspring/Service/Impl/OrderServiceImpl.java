@@ -34,11 +34,26 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void updateOrderPmsg(Order order) {
+
         dao.updateOrderPmsg(order);
     }
 
     @Override
     public void deleteOrder(Order order) {
+
         dao.deleteOrder(order);
     }
+
+    @Override
+    public List<Order> getOrderByIdList(String string) {
+
+        return dao.getOrderById(string);
+    }
+
+//    @Override
+//    public String getOrderPharmList()
+//    {
+//
+//        return dao.getOrderPharmList();
+//    }
 }

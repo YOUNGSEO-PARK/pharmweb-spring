@@ -44,11 +44,6 @@ public class CartDAOImpl implements CartDAO {
 
     }
 
-    @Override
-    public int sumMoney(String user_id){
-
-        return sqlSession.selectOne("cart.sumMoney",user_id);
-    }
 
     @Override
     public int countCart(String user_id, String prod_name){

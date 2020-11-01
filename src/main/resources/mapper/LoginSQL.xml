@@ -49,6 +49,10 @@
         delete from parmdb.user where user_id=#{login_id} and user_pw=#{login_pw}
     </delete>
 
+    <update id="updateUser" parameterType="com.example.pharmwebspring.Model.User">
+        update parmdb.user set user_pw=#{user_pw},user_phone=#{user_phone}, user_adr=#{user_adr} where user_id=#{login_id}
+    </update>
+
 <!--    <select id="getProduct" parameterType="String" resultType="com.example.pharmwebspring.Model.Product">-->
 <!--        select * from parmdb.product where-->
 <!--    </select>-->

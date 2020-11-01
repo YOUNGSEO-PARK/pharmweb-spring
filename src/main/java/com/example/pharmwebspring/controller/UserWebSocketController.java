@@ -22,6 +22,7 @@ public class UserWebSocketController {
     private String userID;
     private Session session;
 
+    public static String userId;
     private static int loginNumber;
     public static HashMap<Integer, Order> orders;
     public static HashMap<Integer, UserWebSocketController> users;
@@ -49,6 +50,17 @@ public class UserWebSocketController {
 
     @OnMessage
     public void onMessage(String message) {
+        if (message.charAt(0) == '#') {
+            String orderNo = message.substring(1);
+            Order order = new Order();
+            order.setOrder_no(Integer.parseInt(orderNo));
+            order.setOrder_status("6");
+            orderService.updateStatus(order);
+            updateOrderList();
+            PharmacistWebSocketController.updateOrderList();
+            return;
+        }
+        System.out.println("Message is " + message);
         if (message.charAt(0) == ':') {
             userID = message.substring(1);
             System.out.println("ENTER : " + userID);
@@ -57,18 +69,15 @@ public class UserWebSocketController {
 
         Order order = new Order();
         order.setOrder_no(Integer.parseInt(message));
+
+
         order.setOrder_status("4");
-        orders.get(message).setOrder_status("4");
 
         orderService.updateStatus(order);
         updateOrderList();
 
-        //remove query
-        //orderService.deleteOrder(order);
-        //updateOrderList();
-
         PharmacistWebSocketController.updateOrderList();
-       // RiderWebSocketController.orders.remove(message);
+        RiderWebSocketController.orders.remove(message);
         RiderWebSocketController.updateOrderList();
         requestOrderList();
     }
@@ -88,7 +97,7 @@ public class UserWebSocketController {
                                 "                                    <p>주문자 아이디 : " + e.getValue().getOrder_user_id() + " </p>\n" +
                         "                                            <p>상품명 : " + e.getValue().getOrder_prod() + " </p>\n" +
                         "                                            <p>가격 : 29000원</p>\n" +
-                        "                                            <p>일시 : 2020.10.29 16:05시</p>\n" +
+                        "                                            <p>일시 : " + e.getValue().getOrder_time() + "</p>\n" +
                         "                                            <br>\n" +
                         "                                            <div class=\"border mb-2\">\n" +
                         "                                                <h3 class=\"h6 mb-0\"><a class=\"d-block\" style=\"padding:20px;\" data-toggle=\"collapse\" href=\"#"+ e.getValue().getOrder_user_id() +e.getValue().getOrder_no() +"\" role=\"button\"\n" +
@@ -112,7 +121,7 @@ public class UserWebSocketController {
                                     "                            <td>\n" +
                                     "                              <h5>주문 완료</h5>\n" +
                                     "                              <br> \n" +
-                                    "                              <input type=\"button\" style=\"font-size:medium;\"class=\"btn btn-primary btn-lg btn-block\" value=\"환불 신청\">\n" +
+                                    "                              <input type=\"button\" style=\"font-size:medium;\"class=\"btn btn-primary btn-lg btn-block\" value=\"환불 신청\" onclick=\"refund('" + e.getValue().getOrder_no() + "')\">\n" +
                                     "                            </input>\n" +
                                     "                            </td>\n" +
                                     "                          </tr>         ";
@@ -156,7 +165,7 @@ public class UserWebSocketController {
                             "                            <td>\n" +
                             "                              <h5>배송 완료</h5>\n" +
                             "                              <br> \n" +
-                            "                              <input type=\"button\" style=\"font-size:medium;\"class=\"btn btn-primary btn-lg btn-block\" value=\"구매 확정\" onclick=\"youngseo(\'"+e.getValue().getOrder_no()+"\')\">" +
+                            "                              <input type=\"button\" style=\"font-size:medium;\"class=\"btn btn-primary btn-lg btn-block\" value=\"구매 확정\" onclick=\"youngseo('" +e.getValue().getOrder_no()+ "')\">" +
                             "                            </input>\n" +
                             "                            </td>\n" +
                             "                          </tr>         ";
@@ -175,12 +184,47 @@ public class UserWebSocketController {
                             "                          </tr>         ";
 
                     result.append(str);
+                } else if(e.getValue().getOrder_status().equals("5")) {
+                    String str = "</p>\n" +
+                            "                                  </div>\n" +
+                            "                                </div>\n" +
+                            "                              </div>\n" +
+                            "                            </td>\n" +
+                            "                            <td>\n" +
+                            "                              <h5>구매 불가</h5>\n" +
+                            "                            </td>\n" +
+                            "                          </tr>         ";
+
+                    result.append(str);
+                } else if (e.getValue().getOrder_status().equals("6")) {
+                    String str = "</p>\n" +
+                            "                                  </div>\n" +
+                            "                                </div>\n" +
+                            "                              </div>\n" +
+                            "                            </td>\n" +
+                            "                            <td>\n" +
+                            "                              <h5>환불 대기</h5>\n" +
+                            "                            </td>\n" +
+                            "                          </tr>         ";
+
+                    result.append(str);
+                } else if (e.getValue().getOrder_status().equals("7")) {
+                    String str = "</p>\n" +
+                            "                                  </div>\n" +
+                            "                                </div>\n" +
+                            "                              </div>\n" +
+                            "                            </td>\n" +
+                            "                            <td>\n" +
+                            "                              <h5>환불 완료</h5>\n" +
+                            "                            </td>\n" +
+                            "                          </tr>         ";
+
+                    result.append(str);
                 }
             }
 
             session.getBasicRemote().sendText(result.toString());
         } catch (Exception e) {
-            System.out.println("Exception ID : " + id);
             e.printStackTrace();
         }
     }
@@ -193,9 +237,10 @@ public class UserWebSocketController {
             userWebSocketController.requestOrderList();
         }
     }
+
     public static HashMap<Integer, Order> getOrders() {
 
-        List<Order> list = orderService.getOrderList();
+        List<Order> list = orderService.getOrderByIdList(userId);
         System.out.println(list.toString());
         HashMap<Integer, Order> hashMap = new HashMap<>();
 

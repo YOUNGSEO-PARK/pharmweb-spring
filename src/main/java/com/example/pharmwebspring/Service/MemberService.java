@@ -23,4 +23,6 @@ public interface MemberService {
 
     void deleteUser(Login login);
 
+    void updateUser(User user);
+
 }

@@ -84,7 +84,7 @@ public class RiderWebSocketController {
         try {
             StringBuilder result = new StringBuilder();
             for (Map.Entry<String, Order> e : orders.entrySet()) {
-                result.append("<div class=\"container\">\n" +
+                result.append("<tr><div class=\"container\">\n" +
                         "                    <div class=\" form-group row\" style=\"margin-bottom:20px; padding:20px; border:3px solid #75b239;\">\n" +
 
                         "                        <div>\n" +
@@ -94,14 +94,14 @@ public class RiderWebSocketController {
                         "                        <div style=\"padding-left: 100px;\">\n" +
                         "                            <p class=\"text-black\"><b>주문번호 : " + e.getValue().getOrder_no() +"</b></p>\n" +
                         "                            <br>\n" +
-                        "                            <h5 class=\"text-black\">주문자 아이디 : " + e.getValue().getOrder_user_id() + "</h5>\n" +
-                        "                            <h5 class=\"text-black\">주문자 이름 : " + e.getValue().getOrder_name() + "</h5>\n" +
-                        "                            <h4 class=\"text-black\"><b>주문자 주소 : " + e.getValue().getOrder_adr1() + " " + e.getValue().getOrder_adr2() + " </b></h4>\n" +
+                        "                            <p class=\"text-black\">주문자 아이디 : " + e.getValue().getOrder_user_id() + "</p>\n" +
                         "                            <p class=\"text-black\">주문자 휴대폰 번호 : " + e.getValue().getOrder_phone() +" </p>\n"  +
-                        "                            <h6 class=\"text-black\">주문자 메세지 : " + e.getValue().getOrder_msg() + " </h6>\n" +
-                        "                            <p class=\"text-black\">주문내역 <br> " + e.getValue().getOrder_prod() + " </p>\n" +
+                        "                            <h6 class=\"text-black\">주문자 메세지 : " + e.getValue().getOrder_msg() + " </h6><br>\n"  +
+                        "                            <h5 class=\"text-black\">수령인 이름 : " + e.getValue().getOrder_name() + "</h5>\n" +
+                        "                            <h4 class=\"text-black\"><b>수령인 주소 : " + e.getValue().getOrder_adr1() + " " + e.getValue().getOrder_adr2() + " </b></h4><br>\n"+
+                        "                            <p class=\"text-black\">상품명 <br> " + e.getValue().getOrder_prod() + " </p>\n" +
 
-                "                            <h6 class=\"text-black\">약사의 한 마디 : " + e.getValue().getOrder_pmsg() + "</h6>\n");
+                "                            <h6 class=\"text-black\">약사의 한 마디 : " + e.getValue().getOrder_pmsg() + "</h6><br>\n");
 
                 if(e.getValue().getOrder_status().equals("1")){
 
@@ -112,7 +112,7 @@ public class RiderWebSocketController {
                         "</div>"+
                                 "</div>\n"+
                                 "</div>\n"+
-                                "</div>\n";
+                                "</div></tr>\n";
                     result.append(str);
                 } else if(e.getValue().getOrder_status().equals("2")){
                     String str = "<div \"width:150px; margin-right: 40px;\">"+
@@ -122,7 +122,7 @@ public class RiderWebSocketController {
                             "</div>"+
                             "                </div>"+
                             "                </div>"+
-                            "                </div>";
+                            "                </div></tr>";
                     result.append(str);
                 }
 

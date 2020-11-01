@@ -19,6 +19,7 @@ $("#LoginBtn").on('click', () => { //.on 이벤트 트리거
         }).done(function (data) {
             //로직 필요에 따라 변경
             if (data.status == 102) {
+
                 alert("안녕하세요, 기운팜팜입니다!")
                 document.location.href = '/index';
             } else if (data.status == 103) {
@@ -451,7 +452,7 @@ $("#CartBtn").on('click', () => { //.on 이벤트 트리거
 
         if (data.status == 500) {
             alert("장바구니에 상품이 성공적으로 담겼습니다.")
-            document.location.href = '/mp_cart';
+            //document.location.href = '/mp_cart';
         } else if (data.status == 501) {
             alert("장바구니 담기에 실패하였습니다. 다시 시도해주세요.")
         }
@@ -459,43 +460,47 @@ $("#CartBtn").on('click', () => { //.on 이벤트 트리거
     })
 })
 
-
-$("#CartlistBtn").on('click', () => { //.on 이벤트 트리거
+$("#CartListBtn").on('click', () => { //.on 이벤트 트리거
+    var data = {};
+    $("form[name=cartlistform]").serializeArray().map(function (x) {
+        data[x.name] = x.value;
+    });
+    console.log(data)
 
     $.ajax({
         type: "GET", //fix
         dataType: "json", //fix
         contentType: "application/json; charset=utf-8;", //fix
         url: "/list",
-        data: JSON, //fix ; 객체->스트링
+        data: JSON.stringify(data), //fix ; 객체->스트링
     }).done(function (data) {
-        console.log(data);
+        alert("success");
+
     })
 })
+
 //------------------------------success-fin-------------------------------------------------------------------
+$("#userConfirmBtn").on('click', () => { //.on 이벤트 트리거
 
-var getList = {};
-getList.util = {
-    // method : get/post , url : call url
-    // params    : json 형식 요청 데이터, callbackFunction : callback 함수명
-    callAjax : function(method, url, type,params, callbackFunction ){
-        if(method=="" || url==""){
-            console.log("method or url empty");
-            return false;
+    var data = {};
+    $("form[name=umpform]").serializeArray().map(function (x) {
+        data[x.name] = x.value;
+    });
+
+    $.ajax({
+        type: "POST", //fix
+        dataType: "json", //fix
+        contentType: "application/json; charset=utf-8;", //fix
+        url: "/api/upwupdate",
+        data: JSON.stringify(data), //fix ; 객체->스트링
+    }).done(function (data) {
+
+        //로직 필요에 따라 변경
+        if (data.status == 907) {
+            alert("수정 완료되었습니다.")
+            document.location.href = '/mypage';
+        } else if (data.status == 908) {
+            alert("수정 오류입니다.")
         }
-
-        $.ajax({
-            type : "GET"
-            , url : "/list"
-            , data : JSON.stringify(params)
-            , contentType:'application/json; charset=utf-8'
-            , dataType: type
-            , success : function(params) {
-                console.log(params)
-            }
-            , error : function(jqXHR, error) {
-                console.log(error);
-            }
-        });
-    }
-};
+    })
+})

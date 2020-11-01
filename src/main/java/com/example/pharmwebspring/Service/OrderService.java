@@ -15,4 +15,8 @@ public interface OrderService {
     void updateOrderPmsg(Order order);
 
     void deleteOrder(Order order);
+
+   // String getOrderPharmList();
+
+    List<Order> getOrderByIdList(String string);
 }
