@@ -9,7 +9,14 @@
     }
 </script>
 <body>
-
+<style>
+    table {
+        border-collapse: separate;
+        border-spacing: 50px;
+        font-family: sans-serif;
+        font-size: large;
+    }
+</style>
 <div class="site-wrap">
 
     <th:block th:replace="layout/02_header :: headerFragment"></th:block>
@@ -118,9 +125,8 @@
                             <div class="p-3 p-lg-5 border">
                                 <table class="table site-block-order-table mb-5" th:class="${list}">
                                     <thead class="text-black">
-                                    <th>상품</th>
-                                    <th> </th>
-                                    <th>총 합</th>
+                                    <th width="250">상품</th>
+                                    <th width="100">총 합</th>
                                     </thead>
                                     <tbody>
                                     <tr class="text-black" th:each="col:${list}">
