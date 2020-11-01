@@ -295,7 +295,6 @@ public class ViewController {
         return mav; //페이지 이동
     }
 
-
     @Inject
     ProductServiceU productServiceU;
     @RequestMapping("/shop_urology")
@@ -453,6 +452,16 @@ public class ViewController {
             return mav;
     }
 
+
+
+    @RequestMapping("/cartdelete")
+    public String delete(
+            @RequestParam("cart_no")
+                    int cart_no, ModelAndView mav){
+        cartService.delete(cart_no);
+        mav.setViewName("mp_cart");
+        return "mp_cart";
+    }
 
 
     @RequestMapping("/update")

@@ -382,14 +382,6 @@ public class APIController {
         return statusRes;
     }
 
-    @GetMapping ("/{cart_no}")
-    public ModelAndView delete(
-            @PathVariable("cart_no")
-                    int cart_no,ModelAndView mav){
-        cartService.delete(cart_no);
-        mav.setViewName("mp_cart");
-        return mav;
-    }
 
     @PostMapping("/upwupdate")
     public StatusRes UserpwUpdate(HttpSession session, @RequestBody User user) {

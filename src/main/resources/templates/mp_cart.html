@@ -77,14 +77,15 @@
 
 
                                         </td>
-                                        <input type="hidden" th:value="${col.cart_no}">
+                                        <input type="hidden" th:int value="${col.cart_no}">
 
                                         <td style="vertical-align: middle">
                                             <p class="product-total text-center text-black" th:text="${col.summoney}"></p>
                                         </td>
-                                        <td style="vertical-align: middle">
-                                            <a th:href="@{${col.cart_no}}"><button class="btn btn-primary height-auto btn-sm">X</button></a>
-                                        </td>
+                                        <div>
+                                            <td><a th:href="@{/cartdelete(cart_no=${col.cart_no})}"><input type="button" class="btn btn-primary height-auto btn-sm"></inputbutton></a></td>
+                                        </div>
+
                                     </tr>
 
                                     </div>
@@ -118,7 +119,8 @@
                                             <span class="text-black">Subtotal</span>
                                         </div>
                                         <div class="col-md-6 text-right">
-                                            <strong class="text-black">21900원</strong>
+                                            <strong class="text-black">""
+                                            </strong>
                                         </div>
                                     </div>
                                     <div class="row mb-5">
@@ -133,7 +135,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <button class="btn btn-primary btn-lg btn-block"
-                                                    onclick="window.location='order'">주문
+                                                    onclick="window.location='order'">주문하기
                                             </button>
                                         </div>
                                     </div>
