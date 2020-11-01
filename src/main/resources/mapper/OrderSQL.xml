@@ -32,14 +32,5 @@
         select * from parmdb.order where order_user_id=#{login_id}
     </select>
 
-    <!--    <select id="getProduct" parameterType="String" resultType="com.example.pharmwebspring.Model.Product">-->
-<!--        select * from parmdb.product where-->
-<!--    </select>-->
-    
-<!--    <insert id="insertCart" parameterType="com.example.pharmwebspring.Model.Cart">-->
-<!--        INSERT INTO parmdb.cart (user_id, order_no, cart_img_uri, prod_name, count, cart_prod_price)-->
-<!--        VALUE-->
-<!--    </insert>-->
-
 </mapper>
 
