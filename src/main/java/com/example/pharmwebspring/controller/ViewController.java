@@ -297,8 +297,6 @@ public class ViewController {
         return mav; //페이지 이동
     }
 
-    @GetMapping("/shop_urology")
-    public String shop_urologypage(Model model, HttpSession session) {
 
     @Inject
     ProductServiceU productServiceU;
@@ -515,17 +513,17 @@ public class ViewController {
     }
     */
 
-//    @RequestMapping("/{prod_name}")
-//    public ModelAndView shop_singlepage(
-//            @PathVariable("prod_name")
-//                    String prod_name,
-//            ModelAndView mav, Model model, HttpSession session) {
-//
-//        userSession(model, session);
-//        mav.setViewName("shop_single");
-//        mav.addObject("dto",productService.product(prod_name));
-//
-//        return mav;
-//    }
+    @RequestMapping("/{prod_name}")
+    public ModelAndView shop_singlepage(
+            @PathVariable("prod_name")
+                    String prod_name,
+            ModelAndView mav, Model model, HttpSession session) {
+
+        userSession(model, session);
+        mav.setViewName("shop_single");
+        mav.addObject("dto",productService.product(prod_name));
+
+        return mav;
+    }
 
 }
