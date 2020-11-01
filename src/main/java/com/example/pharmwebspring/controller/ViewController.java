@@ -3,10 +3,7 @@ package com.example.pharmwebspring.controller;
 import com.example.pharmwebspring.Model.Cart;
 import com.example.pharmwebspring.Model.DataDao;
 import com.example.pharmwebspring.Model.MapapiDto;
-import com.example.pharmwebspring.Model.StatusRes;
 import com.example.pharmwebspring.Service.CartService;
-import com.example.pharmwebspring.Service.OrderService;
-import jdk.jshell.Snippet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -157,6 +154,30 @@ public class ViewController {
 
         userSession(model,session);
         return "custom";
+    }
+    @GetMapping("/custom_flu")
+    public String custom_flupage(Model model, HttpSession session) {
+
+        userSession(model,session);
+        return "custom_flu";
+    }
+    @GetMapping("/custom_home")
+    public String custom_homepage(Model model, HttpSession session) {
+
+        userSession(model,session);
+        return "custom_home";
+    }
+    @GetMapping("/custom_period")
+    public String custom_periodpage(Model model, HttpSession session) {
+
+        userSession(model,session);
+        return "custom_period";
+    }
+    @GetMapping("/custom_vitamin")
+    public String custom_vitaminpage(Model model, HttpSession session) {
+
+        userSession(model,session);
+        return "custom_vitamin";
     }
     @Autowired
     private DataDao dataDao;
