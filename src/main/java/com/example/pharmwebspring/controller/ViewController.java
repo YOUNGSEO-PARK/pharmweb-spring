@@ -459,6 +459,17 @@ public class ViewController {
     }
 
 
+    @RequestMapping("/cartdeleteAll")
+    public String deleteAll(HttpSession session) {
+        String user_id=(String)session.getAttribute("user_id");
+        if(user_id!=null) {
+            cartService.deleteAll(user_id);
+        }
+        return "thankyou";
+    }
+
+
+
     @RequestMapping("/update")
     public String update(@RequestParam int[] count_p, @RequestParam String[] prod_name, HttpSession session){
         String user_id = (String)session.getAttribute("user_id");
