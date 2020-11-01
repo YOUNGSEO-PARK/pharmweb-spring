@@ -46,7 +46,7 @@
                                     </div>
                                     <script></script>
                                     <input type="hidden" name="user_id" th:value="${id}">
-                                    <input type="hidden" name="cart_prod_price" th:value="${dto.price}">
+                                    <input type="hidden" name="cart_prod_price" th:value="${dto.price}+' 원'">
                                     <input type="hidden" name="cart_prod_name" th:value="${dto.prod_name}">
                                     <input type="hidden" name="cart_img_url" th:value="${dto.img_url}">
                                     <input type="text" class="form-control text-center" name="count_p" th:value="${dto.count_p}" placeholder=""

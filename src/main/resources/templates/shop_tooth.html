@@ -76,7 +76,7 @@
                 <div th:each="col:${list}" class="col-sm-6 col-lg-4 text-center item mb-4 item-v2">
                     <a th:href="@{${col.prodT_name}}"> <img th:src="${col.imgT_url}" width="200px;" height="250px;" style="margin:15px 0px;" alt="Image"></a>
                     <h3 class="text-dark"><a th:href="@{${col.prodT_name}}" th:text="${col.prodT_name}"></a></h3>
-                    <p class="price" th:text="${col.priceT}"></p>
+                    <p class="price" th:text="${col.priceT}+' 원'"></p>
                     </p>
                 </div>
             </div>

@@ -69,14 +69,14 @@
         <div class="container">
             <div class="row">
                 <div class="title-section text-center col-12">
-                    <h2>심장 <strong class="text-primary">/</strong>신경</h2>
+                    <h2>심장 <strong class="text-primary">/</strong> 신경</h2>
                 </div>
             </div>
             <div class="row">
                 <div th:each="col:${list}" class="col-sm-6 col-lg-4 text-center item mb-4 item-v2">
                     <a th:href="@{${col.prodH_name}}"> <img th:src="${col.imgH_url}" width="200px;" height="250px;" style="margin:15px 0px;" alt="Image"></a>
                     <h3 class="text-dark"><a th:href="@{${col.prodH_name}}" th:text="${col.prodH_name}"></a></h3>
-                    <p class="price" th:text="${col.priceH}"></p>
+                    <p class="price" th:text="${col.priceH}+' 원'"></p>
                     </p>
                 </div>
             </div>
