@@ -33,30 +33,31 @@
             <div class="col-lg-10">
                 <div class="container">
                     <div class="row mb-5">
+                        <table class="table table-bordered">
+                        <thead>
+                        <tr class="text-black">
+                            <th class="product-thumbnail" th:width="200">상품이미지</th>
+                            <th class="product-name" th:width="250">상품명</th>
+                            <th class="product-price" th:width="100">가격</th>
+                            <th class="product-quantity" th:width="150">수량</th>
+                            <th class="product-total" th:width="150">총합</th>
+                            <th class="product-remove" th:width="50">삭제</th>
+                        </tr>
+                        </thead>
                             <div th:each="col:${map}" class="site-blocks-table">
-                                <table class="table table-bordered">
-                                    <thead>
-                                    <tr>
-                                        <th class="product-thumbnail">상품이미지</th>
-                                        <th class="product-name">상품명</th>
-                                        <th class="product-price">가격</th>
-                                        <th class="product-quantity">수량</th>
-                                        <th class="product-total">총합</th>
-                                        <th class="product-remove">삭제</th>
-                                    </tr>
-                                    </thead>
+
                                     <div class="row">
                                     <tbody>
                                     <tr>
                                         <td th:value="${id}" class="product-thumbnail">
-                                            <img th:src="${col.cart_img_url}" alt="Image" class="img-fluid">
+                                            <img th:src="${col.cart_img_url}" alt="Image" class="img-fluid" style="vertical-align: middle">
                                         </td>
                                         <td class="product-name">
-                                            <h2 class="h5 text-black">
+                                            <h6 class="text-center text-black">
                                                 <a th:text="${col.cart_prod_name}"></a>
-                                            </h2>
+                                            </h6>
                                         </td>
-                                        <td><p class="product-price" th:text="${col.cart_prod_price}"></p></td>
+                                        <td ><p class="product-price text-center text-black" th:text="${col.cart_prod_price}"></p></td>
                                         <td>
                                             <div class="input-group mb-3" style="max-width: 120px;">
                                                 <div class="input-group-prepend">
@@ -64,7 +65,7 @@
                                                         &minus;
                                                     </button>
                                                 </div>
-                                                <input type="text" class="form-control text-center" th:value="${col.count_p}"
+                                                <input type="text" class="form-control text-center text-black" th:value="${col.count_p}"
                                                        placeholder=""
                                                        aria-label="Example text with button addon"
                                                        aria-describedby="button-addon1">
@@ -79,6 +80,9 @@
                                         </td>
                                         <input type="hidden" th:value="${col.cart_no}">
 
+                                        <td><p class="product-total text-center text-black" th:text="${col.summoney}"></p></td>
+                                        <td><a th:href="@{${col.cart_no}}"><button class="btn btn-primary height-auto btn-sm">X</button></a></td>
+
                                         <td><p class="product-total" th:text="${col.summoney}"></p></td>
                                         <td><a th:href="@{/api/delete/${col.cart_no}}"><button class="btn btn-primary height-auto btn-sm">X</button></a></td>
                                     </tr>
@@ -87,6 +91,7 @@
                                     </tbody>
                                 </table>
                             </div>
+                    </table>
                     </div>
                     </form>
                     <div class="row">
@@ -100,7 +105,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div th:each="col:${map}" class="col-md-6 pl-5">
+                        <div class="col-md-6 pl-5">
                             <form action="#" method="post">
                             <div class="row justify-content-end">
                                 <div class="col-md-7">
@@ -129,7 +134,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <button class="btn btn-primary btn-lg btn-block"
-                                                    onclick="window.location='order'">주문
+                                                    onclick="window.location='order'">주문하기
                                             </button>
                                         </div>
                                     </div>
