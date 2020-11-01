@@ -455,6 +455,8 @@ $("#CartBtn").on('click', () => { //.on 이벤트 트리거
             document.location.href = '/mp_cart';
         } else if (data.status == 501) {
             alert("장바구니 담기에 실패하였습니다. 다시 시도해주세요.")
+        } else if (data.status == 502) {
+            alert("선택한 상품의 수량이 0입니다.")
         }
 
     })
