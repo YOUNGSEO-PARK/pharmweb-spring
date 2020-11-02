@@ -8,7 +8,7 @@ import lombok.Setter;
 public class ProductA {
     private String prodA_name;
     private String prodA_attribute;
-    private String code;
+    private String codeA;
     private String prodA_info_when;
     private String prodA_info_after;
     private String prodA_info_how;
@@ -33,12 +33,12 @@ public class ProductA {
         this.prodA_attribute = prodA_attribute;
     }
 
-    public String getCode() {
-        return code;
+    public String getCodeA() {
+        return codeA;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setCodeA(String codeA) {
+        this.codeA = codeA;
     }
 
     public String getProdA_info_when() {
