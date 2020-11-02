@@ -315,9 +315,8 @@ public class APIController {
 
         login.setLogin_id((String) session.getAttribute("id"));
 
-        JSONObject jObject = new JSONObject(pharmpw);
-        String login_pw = jObject.getString("login_pw");
-        login.setLogin_pw(login_pw);
+        login.setLogin_pw(pharmpw);
+        System.out.println(pharmpw);
 
         Pharmacy pharmacy = memberService.checkPharmacy(login);
 
