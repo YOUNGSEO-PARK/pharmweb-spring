@@ -162,11 +162,14 @@ public class ViewController {
         return mav;
     }
 
-    @GetMapping("/")
-    public String page(Model model, HttpSession session) {
-
+    @Inject
+    ProductServiceA productServiceA;
+    @RequestMapping("/")
+    public ModelAndView in_page(ModelAndView mav, Model model, HttpSession session) {
         userSession(model, session);
-        return "index";
+        mav.setViewName("index"); //이동할 페이지 이름 (product_list.jsp 파일로 이동)
+        mav.addObject("list", productServiceA.listProductA());  //데이터 저장
+        return mav; //페이지 이동
     }
 
    /* @GetMapping("/index")
@@ -178,8 +181,7 @@ public class ViewController {
         return "index";
     }*/
 
-    @Inject
-    ProductServiceA productServiceA;
+
     @RequestMapping("/index") //세부적인 url mapping
     public ModelAndView indexpage(ModelAndView mav, Model model, HttpSession session) {
         userSession(model, session);
