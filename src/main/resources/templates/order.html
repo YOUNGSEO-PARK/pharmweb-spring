@@ -129,7 +129,7 @@
                                     <th width="100">총 합</th>
                                     </thead>
                                     <tbody>
-                                    <tr class="text-black" th:each="col:${list}">
+                                    <tr class="text-black" th:each="col:${map.list}">
                                         <td ><strong th:text="${col.cart_prod_name}"></strong><strong>    x</strong><strong th:text="${col.count_p}"></strong> </td>
                                         <td ><strong name="summoney" th:text="${col.summoney}"></strong></td>
                                     </tr>

@@ -141,19 +141,6 @@ public class APIController {
 
         session.setAttribute("ono", order.getOrder_no());
         session.setAttribute("oid", order.getOrder_user_id());
-//        session.setAttribute("oname", order.getOrder_name());
-//        session.setAttribute("oadr1", order.getOrder_adr1());
-//        session.setAttribute("oadr2", order.getOrder_adr2());
-//        session.setAttribute("ophone",order.getOrder_phone());
-//        session.setAttribute("oprod",order.getOrder_prod());
-//        session.setAttribute("status", order.getOrder_status());
-
-//        if("ono" == null){
-//            statusRes.setStatus(701);
-//        }
-//        else{
-//            statusRes.setStatus(700);
-//        }
 
         return statusRes;
     }

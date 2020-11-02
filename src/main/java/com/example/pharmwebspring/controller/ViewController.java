@@ -122,9 +122,43 @@ public class ViewController {
         userSession(model, session);
         List<String> test = orderService.getOrderPharmList();
         model.addAttribute("pharmList", test);
-        String user_id = (String) session.getAttribute("user_id");
+        String user_id = (String) session.getAttribute("id");
         mav.setViewName("order");
         mav.addObject("list", cartService.listCart(user_id));  //데이터 저장
+
+        // 붙이기
+        Map<String, Object> map = new HashMap<>();
+        List<Cart> list = cartService.listCart(user_id);
+
+        long total = 0;
+
+        List<Cart> carts = list.stream()
+                .filter(cart -> cart.getUser_id().equals(user_id))
+                .collect(Collectors.toList());
+
+
+        for (Cart cart : carts) {
+            total += cart.getSummoney();
+        }
+
+        Map<String, Cart> key = new HashMap<>();
+        List<Cart> result = new ArrayList<>();
+
+        carts.forEach(cart -> {
+            if (key.containsKey(cart.getCode())) {
+                Cart insertCart = key.get(cart.getCode());
+                insertCart.addCount(cart.getCount_p());
+                insertCart.addSummony(cart.getSummoney());
+            } else {
+                key.put(cart.getCode(), cart);
+                result.add(cart);
+            }
+        });
+
+        map.put("total", total);
+        map.put("list", result);
+        //mav.setViewName("mp_cart");
+        mav.addObject("map", map);
         return mav;
     }
 
