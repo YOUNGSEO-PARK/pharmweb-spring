@@ -1,21 +1,29 @@
 package com.example.pharmwebspring.controller;
-import com.example.pharmwebspring.Model.*;
-import com.example.pharmwebspring.Service.CartService;
-import com.example.pharmwebspring.Service.MemberService;
-import com.example.pharmwebspring.Service.OrderService;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+
+import java.util.concurrent.atomic.AtomicLong;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.pharmwebspring.Model.Cart;
+import com.example.pharmwebspring.Model.Login;
+import com.example.pharmwebspring.Model.Order;
+import com.example.pharmwebspring.Model.Pharmacy;
+import com.example.pharmwebspring.Model.Rider;
+import com.example.pharmwebspring.Model.StatusRes;
+import com.example.pharmwebspring.Model.User;
+import com.example.pharmwebspring.Service.CartService;
+import com.example.pharmwebspring.Service.MemberService;
+import com.example.pharmwebspring.Service.OrderService;
 
 @RestController
 
@@ -107,17 +115,33 @@ public class APIController {
 
     @PostMapping("/insertorder")
     public StatusRes insertOrder(HttpSession session, @RequestBody Order order) {
-
-
         StatusRes statusRes = new StatusRes();
 
-        order.setOrder_user_id((String) session.getAttribute("id"));
+        String user_id = (String) session.getAttribute("id");
+        order.setOrder_user_id(user_id);
         order.setOrder_status("0");
 
+        StringBuilder sb = new StringBuilder();
+
+        AtomicLong sum = new AtomicLong();
+
+        cartService.listCart(user_id)
+                   .stream()
+                   .filter(cart -> cart.getUser_id().equals(user_id))
+                   .forEach(cart -> {
+                       sb.append(cart.getCart_prod_name())
+                         .append(" x")
+                         .append(cart.getCount_p())
+                         .append(' ');
+                       sum.addAndGet(cart.getSummoney());
+                   });
+
+        order.setOrder_prod(sb.toString());
+        order.setOrder_sum(sum.get());
+        cartService.deleteAll(user_id);
         orderService.insertOrder(order);
 
         String orders = order.getOrder_name();
-        System.out.println(orders);
 
         if (orders == null) {
 
