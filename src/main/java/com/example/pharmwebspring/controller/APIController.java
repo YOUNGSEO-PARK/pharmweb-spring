@@ -1,5 +1,6 @@
 package com.example.pharmwebspring.controller;
 
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
 import javax.inject.Inject;
@@ -123,7 +124,7 @@ public class APIController {
 
         StringBuilder sb = new StringBuilder();
 
-        AtomicLong sum = new AtomicLong();
+        AtomicInteger sum = new AtomicInteger();
 
         cartService.listCart(user_id)
                    .stream()

@@ -15,17 +15,7 @@ public class Order {
     private String order_user_id;
     private String order_time;
     private String order_status;
-    private Long order_sum = 0L;
-
-    public String getOrder_sum() {
-        return order_sum;
-    }
-
-    public void setOrder_sum(String order_sum) {
-        this.order_sum = order_sum;
-    }
-
-    private String order_sum;
+    private int order_sum = (int) 0L;
 
     public String getOrder_time() {
         return order_time;
@@ -140,11 +130,11 @@ public class Order {
         this.order_user_id = order_user_id;
     }
 
-    public Long getOrder_sum() {
+    public int getOrder_sum() {
         return order_sum;
     }
 
-    public void setOrder_sum(Long order_sum) {
+    public void setOrder_sum(int order_sum) {
         this.order_sum = order_sum;
     }
 
@@ -162,7 +152,8 @@ public class Order {
                ", order_pmsg='" + order_pmsg + '\'' +
                ", order_user_id='" + order_user_id + '\'' +
                ", order_time='" + order_time + '\'' +
-               ", order_status='" + order_status + '\'' +
+               ", order_status='" + order_status + '\''+
+                ", order_sum='" + order_sum + '\'' +
                '}';
     }
 }

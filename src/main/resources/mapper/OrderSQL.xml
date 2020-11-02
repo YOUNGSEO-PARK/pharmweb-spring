@@ -4,8 +4,8 @@
 <mapper namespace="com.example.pharmwebspring.DAO.OrderDAO">
 
     <insert id="setOrder" parameterType="com.example.pharmwebspring.Model.Order">
-        INSERT INTO parmdb.order (order_user_id, order_name, order_adr1, order_adr2, order_phone, order_pharm, order_msg, order_status,order_prod,order_sum)
-        VALUE (#{order_user_id}, #{order_name}, #{order_adr1}, #{order_adr2}, #{order_phone}, #{order_pharm},#{order_msg}, #{order_status},#{order_prod},#{order_sum})
+        INSERT INTO parmdb.order (order_user_id, order_name, order_adr1, order_adr2, order_phone, order_pharm, order_msg, order_status, order_prod ,order_sum)
+        VALUE (#{order_user_id}, #{order_name}, #{order_adr1}, #{order_adr2}, #{order_phone}, #{order_pharm},#{order_msg}, #{order_status}, #{order_prod} ,#{order_sum})
     </insert>
 
     <select id="getOrder" resultType="com.example.pharmwebspring.Model.Order">

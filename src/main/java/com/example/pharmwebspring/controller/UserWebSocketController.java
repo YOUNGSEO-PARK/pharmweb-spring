@@ -93,7 +93,7 @@ public class UserWebSocketController {
                                 "                                    <p>주문번호 : " + e.getValue().getOrder_no() + " </p>\n" +
                                 "                                    <p>주문자 아이디 : " + e.getValue().getOrder_user_id() + " </p>\n" +
                         "                                            <p>상품명 : " + e.getValue().getOrder_prod() + " </p>\n" +
-                        "                                            <p>가격 : 29000원</p>\n" +
+                        "                                            <p>가격 : " + e.getValue().getOrder_sum() + " </p>\n" +
                         "                                            <p>일시 : " + e.getValue().getOrder_time() + "</p>\n" +
                         "                                            <br>\n" +
                         "                                            <div class=\"border mb-2\">\n" +

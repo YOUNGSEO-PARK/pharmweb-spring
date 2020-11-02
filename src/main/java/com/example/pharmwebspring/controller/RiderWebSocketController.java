@@ -101,7 +101,7 @@ public class RiderWebSocketController {
                         "                            <h4 class=\"text-black\"><b>수령인 주소 : " + e.getValue().getOrder_adr1() + " " + e.getValue().getOrder_adr2() + " </b></h4>\n"+
                         "                            <p class=\"text-black\">상품명 <br> " + e.getValue().getOrder_prod() + " </p>\n" +
 
-                                "                    <p class=\"text-black\">약사의 한 마디 : " + e.getValue().getOrder_sum() + "</p><br>\n"+
+                                "                    <p class=\"text-black\">상품 가격: " + e.getValue().getOrder_sum()+ "</p><br>\n"+
 
                 "                            <h6 class=\"text-black\">약사의 한 마디 : " + e.getValue().getOrder_pmsg() + "</h6><br>\n");
 
