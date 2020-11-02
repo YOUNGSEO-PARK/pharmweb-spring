@@ -41,7 +41,6 @@
                                 <table class="table table-bordered">
                                     <thead>
                                     <tr>
-                                        <th width="200;">상품 이미지</th>
                                         <th width="400">주문내역</th>
                                         <th width="150;">배송상태</th>
                                     </tr>
@@ -78,7 +77,7 @@
     const websocket = new WebSocket(uri)
 
     websocket.onopen = function (event) {
-        websocket.send(":" + "irene")
+        websocket.send(":" + event.data)
     }
     websocket.onclose = function (event) {
 

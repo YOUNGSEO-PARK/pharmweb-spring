@@ -90,9 +90,6 @@ public class UserWebSocketController {
             for (Map.Entry<Integer, Order> e : orders.entrySet()) {
                 result.append("<tr>\n" +
                         "                                        <td>\n" +
-                        "                                            <img src=\"images/product_02.png\" alt=\"Image\" class=\"img-fluid\">\n" +
-                        "                                        </td>\n" +
-                        "                                        <td>\n" +
                                 "                                    <p>주문번호 : " + e.getValue().getOrder_no() + " </p>\n" +
                                 "                                    <p>주문자 아이디 : " + e.getValue().getOrder_user_id() + " </p>\n" +
                         "                                            <p>상품명 : " + e.getValue().getOrder_prod() + " </p>\n" +
@@ -137,7 +134,7 @@ public class UserWebSocketController {
                                     "                            <td>\n" +
                                     "                              <h5>배송 대기</h5>\n" +
                                     "                              <br> \n" +
-                                    "                              <input type=\"button\" style=\"font-size:medium;\"class=\"btn btn-primary btn-lg btn-block\" value=\"환불 신청\">\n" +
+                                    "                              <input type=\"button\" style=\"font-size:medium;\"class=\"btn btn-primary btn-lg btn-block\" value=\"환불 신청\" onclick=\"refund('" + e.getValue().getOrder_no() + "')\">\n" +
                                     "                            </input>\n" +
                                     "                            </td>\n" +
                                     "                          </tr>         ";
@@ -149,10 +146,7 @@ public class UserWebSocketController {
                             "                              </div>\n" +
                             "                            </td>\n" +
                             "                            <td>\n" +
-                            "                              <h5>배송 중</h5>\n" +
-                            "                              <br> \n" +
-                            "                              <input type=\"button\" style=\"font-size:medium;\"class=\"btn btn-primary btn-lg btn-block\" value=\"환불 신청\">\n" +
-                            "                            </input>\n" +
+                            "                              <h5>배송 중</h5>\n"+
                             "                            </td>\n" +
                             "                          </tr>         ";
                     result.append(str);
