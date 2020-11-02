@@ -369,7 +369,6 @@ $("#upwCheckBtn").on('click', () => { //.on 이벤트 트리거
     $("form[name=umpform]").serializeArray().map(function (x) {
         data[x.name] = x.value;
     });
-
     $.ajax({
         type: "POST", //fix
         dataType: "json", //fix
@@ -393,6 +392,9 @@ $("#ppwCheckBtn").on('click', () => { //.on 이벤트 트리거
     $("form[name=pmpform]").serializeArray().map(function (x) {
         data[x.name] = x.value;
     });
+
+    data = $('#login_pw').val()
+    console.log(data)
 
     $.ajax({
         type: "POST", //fix
@@ -418,6 +420,8 @@ $("#rpwCheckBtn").on('click', () => { //.on 이벤트 트리거
         data[x.name] = x.value;
     });
 
+    data = $('#login_pw').val()
+    console.log(data)
     $.ajax({
         type: "POST", //fix
         dataType: "json", //fix

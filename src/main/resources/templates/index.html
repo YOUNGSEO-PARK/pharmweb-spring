@@ -110,12 +110,19 @@
                     <h2>Best <strong class="text-primary">Items</strong></h2>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-md-12 block-3 products-wrap">
                     <div class="nonloop-block-3 owl-carousel">
 
+<!--                        <div th:each="col:${list}" class="text-center item mb-4 item-v2">-->
+<!--                            <a th:href="@{${col.prodA_name}}"> <img th:src="${col.imgA_url}" width="200" height="400" alt="Image"></a>-->
+<!--                            <h3 class="text-dark"><a th:href="@{${col.prodA_name}}" th:text="${col.prodA_name}"></a></h3>-->
+<!--                            <p class="price" th:text="${col.priceA}+' 원'"></p>-->
+<!--                        </div>-->
+
                         <div class="text-center item mb-4 item-v2">
-                            <span class="onsale">Sale</span>
+
                             <a href="shop-single"> <img src="images/게보린.jpg" width="200" height="400" alt="Image"></a>
                             <h3 class="text-dark"><a href="shop-single">게보린</a></h3>
                             <p class="price">3400원</p>
@@ -128,7 +135,6 @@
                         </div>
 
                         <div class="text-center item mb-4 item-v2">
-                            <span class="onsale">Sale</span>
                             <a href="shop-single"> <img src="images/신신파스.jpg" width="200" height="400" alt="Image"></a>
                             <h3 class="text-dark"><a href="shop-single">신신파스</a></h3>
                             <p class="price">2600원</p>

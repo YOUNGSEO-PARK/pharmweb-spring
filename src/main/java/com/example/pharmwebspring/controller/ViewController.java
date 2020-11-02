@@ -170,9 +170,11 @@ public class ViewController {
     }
 
     @GetMapping("/index")
-    public String indexpage(Model model, HttpSession session) {
+    public String indexpage(ModelAndView mav,Model model, HttpSession session) {
 
         userSession(model, session);
+
+
         return "index";
     }
 
@@ -480,26 +482,8 @@ public class ViewController {
         return "contents_05";
     }
 
-
     @Inject
     CartService cartService;
-
-
-    @PostMapping("/list")
-    public ModelAndView list(HttpSession session, ModelAndView mav,
-                             Model model) {
-        String user_id = (String) session.getAttribute("user_id");
-        userSession(model, session);
-        Map<String, Object> map = new HashMap<>();
-        List<Cart> list = cartService.listCart(user_id);
-
-        map.put("list", list);
-        mav.setViewName("mp_cart");
-        mav.addObject("map", map);
-
-        return mav;
-    }
-
 
     @RequestMapping("/cartdelete")
     public String delete(
@@ -510,7 +494,6 @@ public class ViewController {
         return "redirect:/mp_cart";
     }
 
-
     @RequestMapping("/cartdeleteAll")
     public String deleteAll(HttpSession session) {
         String user_id = (String) session.getAttribute("user_id");
@@ -519,7 +502,6 @@ public class ViewController {
         }
         return "thankyou";
     }
-
 
     @RequestMapping("/update")
     public String update(@RequestParam int[] count_p, @RequestParam String[] prod_name, HttpSession session) {
@@ -583,31 +565,6 @@ public class ViewController {
         mav.addObject("list", productService.listProduct());  //데이터 저장
         return mav; //페이지 이동
     }
-
-
-
-    /*@RequestMapping("/cart")
-    public ModelAndView list(HttpSession session, ModelAndView mav){
-        Map<String, Object> map=new HashMap<>();
-        String user_id=(String)session.getAttribute("user_id");
-
-        if(user_id!= null){
-            List<Cart> list = CartService.listCart(user_id);
-            int sumMoney=CartService.sumMoney(user_id);
-
-            map.put("sumMoney", sumMoney);
-            map.put("list", list);
-            map.put("count_p", list.size());
-
-            mav.setViewName("/cart");
-            mav.addObject("map", map);
-
-            return mav;
-        }else{
-            return new ModelAndView("/index","",null);
-        }
-    }
-    */
 
     @RequestMapping("/{prod_name}")
     public ModelAndView shop_singlepage(
