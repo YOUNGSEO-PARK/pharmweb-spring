@@ -497,10 +497,10 @@ function Sum() {
         console.log(x.carttotal);
     });
 }
-
-$(function(){
-    $("#orderBtn").click(function(){
-        location.href="/cartdeleteAll";
-    });
-
-});
+//
+// $(function(){
+//     $("#orderBtn").click(function(){
+//         location.href="/cartdeleteAll";
+//     });
+//
+// });
