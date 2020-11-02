@@ -169,13 +169,23 @@ public class ViewController {
         return "index";
     }
 
-    @GetMapping("/index")
+   /* @GetMapping("/index")
     public String indexpage(ModelAndView mav,Model model, HttpSession session) {
 
         userSession(model, session);
 
 
         return "index";
+    }*/
+
+    @Inject
+    ProductServiceA productServiceA;
+    @RequestMapping("/index") //세부적인 url mapping
+    public ModelAndView indexpage(ModelAndView mav, Model model, HttpSession session) {
+        userSession(model, session);
+        mav.setViewName("index"); //이동할 페이지 이름 (product_list.jsp 파일로 이동)
+        mav.addObject("list", productServiceA.listProductA());  //데이터 저장
+        return mav; //페이지 이동
     }
 
     @GetMapping("/register")
