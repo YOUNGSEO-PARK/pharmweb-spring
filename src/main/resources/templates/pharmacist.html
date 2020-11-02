@@ -64,10 +64,10 @@
         container.innerHTML = event.data
     }
 
-    function sendToRider(number, id, name, adr1, adr2, phone, omsg, prod, pmsg, time, s) {
+    function sendToRider(number, id, name, adr1, adr2, phone, omsg, prod, pmsg, time, s, sum) {
         const pomsg = document.getElementById("pharm_msg").value
 
-        websocket.send(number + "/"+ id + "/" + name + "/" + adr1 + "/" + adr2 + "/" + phone+ "/"+ omsg+ "/"+ prod+ "/" +pomsg+ "/" + time+ "/"+ s)
+        websocket.send(number + "/"+ id + "/" + name + "/" + adr1 + "/" + adr2 + "/" + phone+ "/"+ omsg+ "/"+ prod+ "/" +pomsg+ "/" + time+ "/"+ s+ "/"+ sum)
     }
 
     function fail(orderNo) {

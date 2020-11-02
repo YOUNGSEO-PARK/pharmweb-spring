@@ -94,6 +94,7 @@ public class PharmacistWebSocketController {
         String order_pmsg = tokenizer.nextToken();
         String order_time = tokenizer.nextToken();
         String order_status = tokenizer.nextToken();
+        String order_sum = tokenizer.nextToken();
 
         Order order = new Order();
         order.setOrder_no(order_no);
@@ -107,6 +108,7 @@ public class PharmacistWebSocketController {
         order.setOrder_pmsg(order_pmsg);
         order.setOrder_time(order_time);
         order.setOrder_status(order_status);
+        order.setOrder_sum(order_sum);
 
         // status 업데이트하는 쿼리
         order.setOrder_status("1");
@@ -146,7 +148,8 @@ public class PharmacistWebSocketController {
                         "                            <h6 class=\"text-black\">주문자 메세지 : " + e.getValue().getOrder_msg() + " </h6><br>\n" +
                         "                           <p class=\"text-black\">수령인 이름 : " + e.getValue().getOrder_name() + "</p>\n" +
                         "                            <h6 class=\"text-black\">수령인 주소 : " + e.getValue().getOrder_adr1() + " " + e.getValue().getOrder_adr2() + " </h6>\n" +
-                        "                            <p class=\"text-black\"><br>상품명 <br> " + e.getValue().getOrder_prod() + " </p>\n" );
+                        "                            <p class=\"text-black\"><br>상품명 <br> " + e.getValue().getOrder_prod() + " </p>\n" +
+                        "                            <p class=\"text-black\"><br>상품 총 가격 <br> " + e.getValue().getOrder_sum() + " </p>\n");
 
                                                     if(e.getValue().getOrder_status().equals("0")){
 
@@ -169,7 +172,8 @@ public class PharmacistWebSocketController {
                                                                                                                         + "\',\'" + e.getValue().getOrder_msg()
                                                                                                                         + "\',\'" + e.getValue().getOrder_prod()
                                                                                                                         + "\',\'" + e.getValue().getOrder_pmsg()
-                                                                                                                         + "\',\'" + e.getValue().getOrder_time() + "\')\">\n" +
+                                                                                                                         + "\',\'" + e.getValue().getOrder_time()
+                                                                                                                        + "\',\'" + e.getValue().getOrder_sum() + "\')\">\n" +
                         "                                </div>\n"+
                                 "<div class=\"col-lg-6\">\n" +
                                 "                                    <input type=\"button\" class=\"btn btn-primary btn-lg btn-block\" style=\"width:150px;\" value=\"배달 불가\" onclick=fail(" + e.getValue().getOrder_no() +")>\n" +

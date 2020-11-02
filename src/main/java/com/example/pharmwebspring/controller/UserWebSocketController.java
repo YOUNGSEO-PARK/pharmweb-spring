@@ -185,7 +185,9 @@ public class UserWebSocketController {
                             "                              </div>\n" +
                             "                            </td>\n" +
                             "                            <td>\n" +
-                            "                              <h5>구매 불가</h5>\n" +
+                            "                              <h5>구매 불가</h5>\n"  +
+                            "                              <input type=\"button\" style=\"font-size:medium;\"class=\"btn btn-primary btn-lg btn-block\" value=\"환불 신청\" onclick=\"refund('" + e.getValue().getOrder_no() + "')\">\n" +
+                            "                            </input>\n" +
                             "                            </td>\n" +
                             "                          </tr>         ";
 

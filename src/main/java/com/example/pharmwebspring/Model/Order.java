@@ -16,6 +16,16 @@ public class Order {
     private String order_time;
     private String order_status;
 
+    public String getOrder_sum() {
+        return order_sum;
+    }
+
+    public void setOrder_sum(String order_sum) {
+        this.order_sum = order_sum;
+    }
+
+    private String order_sum;
+
     public String getOrder_time() {
         return order_time;
     }
