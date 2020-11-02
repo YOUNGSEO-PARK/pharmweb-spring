@@ -15,6 +15,7 @@ public class Order {
     private String order_user_id;
     private String order_time;
     private String order_status;
+    private Long order_sum = 0L;
 
     public String getOrder_time() {
         return order_time;
@@ -127,5 +128,31 @@ public class Order {
     public void setOrder_user_id(String order_user_id) {
 
         this.order_user_id = order_user_id;
+    }
+
+    public Long getOrder_sum() {
+        return order_sum;
+    }
+
+    public void setOrder_sum(Long order_sum) {
+        this.order_sum = order_sum;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+               "order_no=" + order_no +
+               ", order_name='" + order_name + '\'' +
+               ", order_adr1='" + order_adr1 + '\'' +
+               ", order_adr2='" + order_adr2 + '\'' +
+               ", order_phone='" + order_phone + '\'' +
+               ", order_pharm='" + order_pharm + '\'' +
+               ", order_msg='" + order_msg + '\'' +
+               ", order_prod='" + order_prod + '\'' +
+               ", order_pmsg='" + order_pmsg + '\'' +
+               ", order_user_id='" + order_user_id + '\'' +
+               ", order_time='" + order_time + '\'' +
+               ", order_status='" + order_status + '\'' +
+               '}';
     }
 }

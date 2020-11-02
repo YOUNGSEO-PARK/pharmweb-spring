@@ -17,6 +17,7 @@ public class Cart {
     private int summoney;  //같은 상품 가격 총액
     private int carttotal;  //장바구니 전체 총액
     private String code;
+    private int cart_order_id;
 
     public int getCart_no() {
         return cart_no;
@@ -90,5 +91,13 @@ public class Cart {
 
     public void addCount(int count) {
         this.count_p += count;
+    }
+
+    public int getCart_order_id() {
+        return cart_order_id;
+    }
+
+    public void setCart_order_id(int cart_order_id) {
+        this.cart_order_id = cart_order_id;
     }
 }
