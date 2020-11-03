@@ -114,11 +114,9 @@ public class PharmacistWebSocketController {
         order.setOrder_status("1");
         orderService.updateStatus(order);
         orderService.updateOrderPmsg(order);
-        //
 
         updateOrderList();
 
-        //order.setOrder_prod(prod);
         RiderWebSocketController.orders.put(String.valueOf(order_no), order);
         RiderWebSocketController.updateOrderList();
         UserWebSocketController.updateOrderList();

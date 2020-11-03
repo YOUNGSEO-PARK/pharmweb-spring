@@ -3,7 +3,6 @@
 
 <th:block th:replace="layout/01_link :: linkFragment"></th:block>
 <body>
-
 <div class="site-wrap">
 
     <th:block th:replace="layout/02_header :: headerFragment"></th:block>
@@ -42,7 +41,7 @@
                             <div class="mb-5">
                                 <div class="input-group mb-3" style="max-width: 220px;">
                                     <div class="input-group-prepend">
-                                        <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
+                                        <input class="btn btn-outline-primary js-btn-minus" type="button" value="-">
                                     </div>
                                     <input type="hidden" name="user_id" th:value="${id}">
                                     <input type="hidden" name="cart_prod_price" th:value="${dto.price}">
@@ -50,11 +49,11 @@
                                     <input type="hidden" name="cart_img_url" th:value="${dto.img_url}">
                                     <input type="hidden" name="code" th:value="${dto.code}">
 
-                                    <input type="text" class="form-control text-center" name="count_p" th:value="${dto.count_p}" placeholder=""
-                                           aria-label="Example text with button addon" aria-describedby="button-addon1">
+                                    <input type="number" class="form-control text-center" name="count_p" th:value="${dto.count_p}" placeholder=""
+                                           aria-label="Example text with button addon" aria-describedby="button-addon1" >
 
                                     <div class="input-group-append">
-                                        <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
+                                        <input class="btn btn-outline-primary js-btn-plus" type="button" min="0" max="5" value="+">
                                     </div>
                                 </div>
 

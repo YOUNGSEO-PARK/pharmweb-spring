@@ -126,7 +126,6 @@ public class ViewController {
         mav.setViewName("order");
         mav.addObject("list", cartService.listCart(user_id));  //데이터 저장
 
-        // 붙이기
         Map<String, Object> map = new HashMap<>();
         List<Cart> list = cartService.listCart(user_id);
 
@@ -157,7 +156,6 @@ public class ViewController {
 
         map.put("total", total);
         map.put("list", result);
-        //mav.setViewName("mp_cart");
         mav.addObject("map", map);
         return mav;
     }
@@ -171,16 +169,6 @@ public class ViewController {
         mav.addObject("list", productServiceA.listProductA());  //데이터 저장
         return mav; //페이지 이동
     }
-
-   /* @GetMapping("/index")
-    public String indexpage(ModelAndView mav,Model model, HttpSession session) {
-
-        userSession(model, session);
-
-
-        return "index";
-    }*/
-
 
     @RequestMapping("/index") //세부적인 url mapping
     public ModelAndView indexpage(ModelAndView mav, Model model, HttpSession session) {

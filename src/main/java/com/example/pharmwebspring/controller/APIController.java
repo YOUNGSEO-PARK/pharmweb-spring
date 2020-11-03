@@ -173,7 +173,6 @@ public class APIController {
     @PostMapping("/pregi")
     public StatusRes regPharmacy(@RequestBody Pharmacy regPharmacy) {
 
-        // validation\
         StatusRes statusRes = new StatusRes();
         String pharms = memberService.getPharmIDList(regPharmacy.getPharm_id());
 
@@ -192,7 +191,6 @@ public class APIController {
     @PostMapping("/rregi")
     public StatusRes regPharmacy(@RequestBody Rider regRider) {
 
-        // validation\
         StatusRes statusRes = new StatusRes();
         String pharms = memberService.getRiderIDList(regRider.getRider_id());
 
@@ -280,7 +278,6 @@ public class APIController {
         }
         return statusRes;
     }
-
 
     @PostMapping("/udelete")
     public StatusRes DeleteUser(HttpSession session, @RequestBody String pw) throws JSONException {
@@ -392,8 +389,6 @@ public class APIController {
 
             statusRes.setStatus(502);
         }
-//
-//        else if(cart.getCart_prod_name().equals())
 
         else{
 
@@ -403,7 +398,6 @@ public class APIController {
 
         return statusRes;
     }
-
 
     @PostMapping("/upwupdate")
     public StatusRes UserpwUpdate(HttpSession session, @RequestBody User user) {
@@ -422,37 +416,5 @@ public class APIController {
 
         return statusRes;
     }
-   /* @RequestMapping("list.do")
-    public ModelAndView list(HttpSession session, ModelAndView mav){
-        String user_id = (String) session.getAttribute("user_id");
-        Map<String, Object> map = new HashMap<String, Object>();
-        List<Cart> list = cartService.listCart(user_id);
-        int sumMoney = cartService.sumMoney(user_id);
-        map.put("list", list);
-        map.put("count_p", list.size());
-        map.put("sumMoney", sumMoney);
-        mav.setViewName("mp_cart");
-        mav.addObject("map",map);
-        return mav;
-    }
-
-    @RequestMapping("delete.do")
-    public String delete(@RequestParam int cart_no){
-        cartService.delete(cart_no);
-        return "/mp_cart";
-    }
-
-    @RequestMapping("update.do")
-    public String update(@RequestParam int[] count_p, @RequestParam String[] prod_name, HttpSession session){
-        String user_id = (String)session.getAttribute("user_id");
-        for(int i = 0; i<prod_name.length; i++){
-            Cart cart = new Cart();
-            cart.setUser_id(user_id);
-            cart.setCount_p(count_p[i]);
-            cart.setCart_prod_name(prod_name[i]);
-            cartService.modifyCart(cart);
-        }
-        return "/mp_cart";
-    }*/
 
 }
