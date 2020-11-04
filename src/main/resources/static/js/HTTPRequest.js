@@ -4,7 +4,6 @@ $("#LoginBtn").on('click', () => { //.on 이벤트 트리거
 
     if (selectVal == "user") {
         var data = {};
-        //loginform 태그에 접근 후 직렬화 후 객체화
         $("form[name=loginform]").serializeArray().map(function (x) {
             data[x.name] = x.value;
         });
@@ -386,58 +385,31 @@ $("#upwCheckBtn").on('click', () => { //.on 이벤트 트리거
     })
 })
 
-$("#ppwCheckBtn").on('click', () => { //.on 이벤트 트리거
+$("#userConfirmBtn").on('click', () => { //.on 이벤트 트리거
 
     var data = {};
-    $("form[name=pmpform]").serializeArray().map(function (x) {
+    $("form[name=upwupdateform]").serializeArray().map(function (x) {
         data[x.name] = x.value;
     });
-
-    data = $('#login_pw').val()
-    console.log(data)
 
     $.ajax({
         type: "POST", //fix
         dataType: "json", //fix
         contentType: "application/json; charset=utf-8;", //fix
-        url: "/api/ppwcheck",
+        url: "/api/upwupdate",
         data: JSON.stringify(data), //fix ; 객체->스트링
     }).done(function (data) {
 
         //로직 필요에 따라 변경
-        if (data.status == 207) {
-            document.location.href = '/mp_profile_pharm';
-        } else if (data.status == 208) {
-            alert("약사님, 비밀번호가 틀렸습니다.")
+        if (data.status == 907) {
+            alert("수정 완료되었습니다.")
+            document.location.href = '/mypage';
+        } else if (data.status == 908) {
+            alert("수정 오류입니다.")
         }
     })
 })
 
-$("#rpwCheckBtn").on('click', () => { //.on 이벤트 트리거
-
-    var data = {};
-    $("form[name=rmpform]").serializeArray().map(function (x) {
-        data[x.name] = x.value;
-    });
-
-    data = $('#login_pw').val()
-    console.log(data)
-    $.ajax({
-        type: "POST", //fix
-        dataType: "json", //fix
-        contentType: "application/json; charset=utf-8;", //fix
-        url: "/api/rpwcheck",
-        data: JSON.stringify(data), //fix ; 객체->스트링
-    }).done(function (data) {
-
-        //로직 필요에 따라 변경
-        if (data.status == 307) {
-            document.location.href = '/mp_profile_rider';
-        } else if (data.status == 308) {
-            alert("라이더님, 비밀번호가 틀렸습니다.")
-        }
-    })
-})
 
 $("#CartBtn").on('click', () => { //.on 이벤트 트리거
     var data = {};
@@ -461,34 +433,10 @@ $("#CartBtn").on('click', () => { //.on 이벤트 트리거
             alert("장바구니 담기에 실패하였습니다. 다시 시도해주세요.")
         } else if (data.status == 502) {
             alert("선택한 상품의 수량이 0입니다.")
+        } else if (data.status == 503) {
+            alert("선택한 상품의 수량을 줄여주세요. 과다 복용/사용은 몸에 해롭습니다.")
         }
 
-    })
-})
-
-//------------------------------success-fin-------------------------------------------------------------------
-$("#userConfirmBtn").on('click', () => { //.on 이벤트 트리거
-
-    var data = {};
-    $("form[name=umpform]").serializeArray().map(function (x) {
-        data[x.name] = x.value;
-    });
-
-    $.ajax({
-        type: "POST", //fix
-        dataType: "json", //fix
-        contentType: "application/json; charset=utf-8;", //fix
-        url: "/api/upwupdate",
-        data: JSON.stringify(data), //fix ; 객체->스트링
-    }).done(function (data) {
-
-        //로직 필요에 따라 변경
-        if (data.status == 907) {
-            alert("수정 완료되었습니다.")
-            document.location.href = '/mypage';
-        } else if (data.status == 908) {
-            alert("수정 오류입니다.")
-        }
     })
 })
 
@@ -501,10 +449,3 @@ function Sum() {
         console.log(x.carttotal);
     });
 }
-//
-// $(function(){
-//     $("#orderBtn").click(function(){
-//         location.href="/cartdeleteAll";
-//     });
-//
-// });

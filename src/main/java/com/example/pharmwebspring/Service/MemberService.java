@@ -25,4 +25,7 @@ public interface MemberService {
 
     void updateUser(User user);
 
+    void updatePharm(Pharmacy pharmacy);
+
+    void updateRider(Rider rider);
 }

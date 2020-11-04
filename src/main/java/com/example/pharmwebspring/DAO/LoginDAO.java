@@ -33,4 +33,7 @@ public interface LoginDAO {
 
     void updateUser(User user);
 
+    void updatePharm(Pharmacy pharmacy);
+
+    void updateRider(Rider rider);
 }

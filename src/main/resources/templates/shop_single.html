@@ -34,8 +34,7 @@
                         <h5 class="text-primary">용법·용량</h5>
                         <pre class="prod_info_how text-black" style="font-family: sans-serif;" th:text="${dto.prod_info_how}"></pre>
 
-                        <p>
-                            <strong class="text-primary h4" th:text="${dto.price}+'원'"></strong></p>
+                        <p><strong class="text-primary h4" th:text="${dto.price}+'원'"></strong></p>
 
                         <form name="cartform" action="#" method="post">
                             <div class="mb-5">
@@ -50,10 +49,10 @@
                                     <input type="hidden" name="code" th:value="${dto.code}">
 
                                     <input type="number" class="form-control text-center" name="count_p" th:value="${dto.count_p}" placeholder=""
-                                           aria-label="Example text with button addon" aria-describedby="button-addon1" >
+                                           aria-label="Example text with button addon" aria-describedby="button-addon1" max = "3">
 
                                     <div class="input-group-append">
-                                        <input class="btn btn-outline-primary js-btn-plus" type="button" min="0" max="5" value="+">
+                                        <input class="btn btn-outline-primary js-btn-plus" type="button" value="+">
                                     </div>
                                 </div>
 

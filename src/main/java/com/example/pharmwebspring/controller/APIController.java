@@ -225,7 +225,6 @@ public class APIController {
             session.setAttribute("uemail", user.getUser_email());
             session.setAttribute("uadr1", user.getUser_adr1());
             session.setAttribute("uadr2", user.getUser_adr2());
-//            session.setAttribute("category",1);
 
             statusRes.setStatus(102);
         }
@@ -330,53 +329,6 @@ public class APIController {
         return statusRes;
     }
 
-    @PostMapping("/ppwcheck")
-    public StatusRes PharmpwCheck(HttpSession session, @RequestBody String pharmpw) throws JSONException {
-
-        Login login = new Login();
-
-        login.setLogin_id((String) session.getAttribute("id"));
-
-        login.setLogin_pw(pharmpw);
-        System.out.println(pharmpw);
-
-        Pharmacy pharmacy = memberService.checkPharmacy(login);
-
-        if (pharmacy == null) {
-
-            statusRes.setStatus(208);
-        } else {
-
-            statusRes.setStatus(207);
-        }
-
-        return statusRes;
-    }
-
-    @PostMapping("/rpwcheck")
-    public StatusRes RiderpwCheck(HttpSession session, @RequestBody String riderpw) throws JSONException {
-
-        Login login = new Login();
-
-        login.setLogin_id((String) session.getAttribute("id"));
-
-        JSONObject jObject = new JSONObject(riderpw);
-        String login_pw = jObject.getString("login_pw");
-        login.setLogin_pw(login_pw);
-
-        Rider rider = memberService.checkRider(login);
-
-        if (rider == null) {
-
-            statusRes.setStatus(308);
-        } else {
-
-            statusRes.setStatus(307);
-        }
-
-        return statusRes;
-    }
-
     @PostMapping("/cartinsert")
     public StatusRes insert(@RequestBody Cart cart){
 
@@ -388,6 +340,11 @@ public class APIController {
         else if(cart.getCount_p() == 0){
 
             statusRes.setStatus(502);
+        }
+
+        else if(cart.getCount_p() > 3){
+
+            statusRes.setStatus(503);
         }
 
         else{
@@ -417,4 +374,38 @@ public class APIController {
         return statusRes;
     }
 
+    @PostMapping("/ppwupdate")
+    public StatusRes PharmpwUpdate(HttpSession session, @RequestBody Pharmacy pharmacy) {
+
+        pharmacy.setPharm_id((String) session.getAttribute("id"));
+
+        memberService.updatePharm(pharmacy);
+
+        if (pharmacy == null) {
+
+            statusRes.setStatus(908);
+        } else {
+
+            statusRes.setStatus(907);
+        }
+
+        return statusRes;
+    }
+    @PostMapping("/rpwupdate")
+    public StatusRes RiderpwUpdate(HttpSession session, @RequestBody Rider rider) {
+
+        rider.setRider_id((String) session.getAttribute("id"));
+
+        memberService.updateRider(rider);
+
+        if (rider == null) {
+
+            statusRes.setStatus(908);
+        } else {
+
+            statusRes.setStatus(907);
+        }
+
+        return statusRes;
+    }
 }

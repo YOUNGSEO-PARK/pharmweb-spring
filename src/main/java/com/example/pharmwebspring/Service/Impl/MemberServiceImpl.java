@@ -77,4 +77,14 @@ public class MemberServiceImpl implements MemberService {
     public void updateUser(User user) {
         dao.updateUser(user);
     }
+
+    @Override
+    public void updatePharm(Pharmacy pharmacy) {
+        dao.updatePharm(pharmacy);
+    }
+
+    @Override
+    public void updateRider(Rider rider) {
+        dao.updateRider(rider);
+    }
 }
